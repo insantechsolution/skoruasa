@@ -1,0 +1,1364 @@
+<title>SkorUASA</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="SkorUASA.com — 3 set soalan ramalan UASA Tahun 5 bagi Bahasa Melayu, Bahasa Inggeris, Matematik dan Sains, ikut format rasmi KPM dengan skema jawapan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,500;0,700;0,800;0,900;1,500&family=Kalam:wght@700&display=swap">
+<style>
+/* Layout: meja murid — latar buku latihan bertitik, kad "pelekat" bergaris tebal dengan bayang berwarna,
+   setiap subjek ada warna krayon sendiri; kertas soalan kekal putih & mudah dibaca, skema dalam dakwat merah guru */
+:root{
+ --desk:#e9f5ff; --dot:#c7e0fa; --paper:#ffffff; --ink:#1d2b4f; --ink2:#55648a; --line:#1d2b4f; --rule:#dbe4f2; --soft:#f4f8fe;
+ --sun:#ffd23f; --sun-t:#fff6cf; --ok:#14994a; --ok-t:#dcf7e6; --red:#e23b3b; --red-t:#ffe7e5;
+ --bm:#0f9950; --bm-t:#ddf7e8; --bi:#e8650a; --bi-t:#ffeedd; --mt:#2f6bff; --mt-t:#e3ecff; --sn:#9b51e0; --sn-t:#f2e7fd;
+ --on:#ffffff;
+ --f-disp:"Baloo 2", "Trebuchet MS", system-ui, sans-serif;
+ --f-body:"Nunito", "Segoe UI", Arial, sans-serif;
+ --f-pen:"Kalam", "Comic Sans MS", cursive;
+ --r:18px; --sh:4px 4px 0 var(--line);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+ --desk:#0f1733; --dot:#1d2a52; --paper:#17213f; --ink:#eef3ff; --ink2:#a9b7da; --line:#5468a6; --rule:#2a3762; --soft:#1e2a4d;
+ --sun:#ffd23f; --sun-t:#3d3412; --ok:#4ade80; --ok-t:#123726; --red:#ff6b6b; --red-t:#3f1d24;
+ --bm:#3ddc84; --bm-t:#143a29; --bi:#ff9a4d; --bi-t:#40281a; --mt:#6f97ff; --mt-t:#1c2c5c; --sn:#bb8cff; --sn-t:#2f2152;
+ --on:#0f1733; color-scheme:dark }}
+:root[data-theme="dark"]{
+ --desk:#0f1733; --dot:#1d2a52; --paper:#17213f; --ink:#eef3ff; --ink2:#a9b7da; --line:#5468a6; --rule:#2a3762; --soft:#1e2a4d;
+ --sun:#ffd23f; --sun-t:#3d3412; --ok:#4ade80; --ok-t:#123726; --red:#ff6b6b; --red-t:#3f1d24;
+ --bm:#3ddc84; --bm-t:#143a29; --bi:#ff9a4d; --bi-t:#40281a; --mt:#6f97ff; --mt-t:#1c2c5c; --sn:#bb8cff; --sn-t:#2f2152;
+ --on:#0f1733; color-scheme:dark }
+*{box-sizing:border-box}
+body{background-color:var(--desk); background-image:radial-gradient(var(--dot) 1.4px, transparent 1.6px); background-size:22px 22px;
+ color:var(--ink); font-family:var(--f-body); font-size:16.5px; line-height:1.6; margin:0; font-weight:500}
+button{font:inherit; color:inherit}
+a{color:var(--mt)}
+b, strong{font-weight:800}
+:focus-visible{outline:3px solid var(--sun); outline-offset:3px}
+.wrap{max-width:880px; margin:0 auto; padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px))}
+.num{font-variant-numeric:tabular-nums}
+
+/* Bar atas */
+.top{position:sticky; top:env(safe-area-inset-top,0px); z-index:20; background:var(--paper); border-bottom:3px solid var(--line)}
+.top .wrap{display:flex; align-items:center; gap:10px; padding-block:8px; flex-wrap:wrap}
+.brand{font-family:var(--f-disp); font-weight:800; font-size:1.55rem; line-height:1; text-decoration:none; color:var(--ink); display:flex; align-items:baseline}
+.brand .u{display:inline-block} .brand .u1{color:var(--bm); transform:rotate(-6deg)} .brand .u2{color:var(--bi); transform:translateY(-2px) rotate(4deg)} .brand .u3{color:var(--mt); transform:rotate(-3deg)} .brand .u4{color:var(--sn); transform:translateY(-1px) rotate(6deg)}
+.brand small{font-size:.75rem; color:var(--ink2); font-weight:700; margin-left:3px}
+.nav{margin-left:auto; display:flex; gap:6px}
+.nav a{padding:6px 14px; border-radius:999px; text-decoration:none; color:var(--ink); font-weight:800; font-size:.92rem; border:2px solid transparent}
+.nav a[aria-current="page"]{background:var(--sun); border-color:var(--line); color:#1d2b4f}
+.pill-top{font-family:var(--f-disp); font-weight:700; font-size:.95rem; padding:4px 12px; border-radius:999px; background:var(--soft); border:2px solid var(--line); font-variant-numeric:tabular-nums; cursor:pointer; white-space:nowrap}
+.pill-top.low{background:var(--red-t); color:var(--red); border-color:var(--red)}
+.progbar{height:6px; background:var(--soft); position:relative}
+.progbar i{position:absolute; inset:0 auto 0 0; background:var(--c, var(--mt)); width:0; transition:width .3s}
+
+/* Laman utama */
+.hero{padding-block:30px 6px; display:grid; grid-template-columns:1fr auto; gap:16px; align-items:center}
+.hero h1{font-family:var(--f-disp); font-weight:800; font-size:clamp(2rem, 6vw, 3.1rem); line-height:1.02; margin:0 0 10px; text-wrap:balance}
+.hero h1 mark{background:var(--sun); color:#1d2b4f; padding:0 .2em; border-radius:10px; box-decoration-break:clone; -webkit-box-decoration-break:clone}
+.hero p{margin:0; color:var(--ink2); max-width:58ch; font-size:1.02rem}
+.hero-art{width:150px; max-width:100%}
+@media (max-width:600px){ .hero{grid-template-columns:1fr} .hero-art{display:none} }
+.facts{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
+.facts span{font-weight:800; font-size:.85rem; padding:5px 12px; border-radius:999px; background:var(--paper); border:2px solid var(--line)}
+.facts span:nth-child(1){background:var(--bm-t)} .facts span:nth-child(2){background:var(--bi-t)} .facts span:nth-child(3){background:var(--mt-t)} .facts span:nth-child(4){background:var(--sn-t)}
+.grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap:22px; padding-block:24px 8px}
+.mp{background:var(--paper); border:3px solid var(--line); border-radius:var(--r); box-shadow:6px 6px 0 var(--c); overflow:hidden; display:flex; flex-direction:column; min-width:0}
+.mp-h{background:var(--c); color:var(--on); display:flex; align-items:center; gap:12px; padding:14px 16px; border-bottom:3px solid var(--line)}
+.ico{flex:none; width:52px; height:52px; border-radius:16px; background:var(--paper); border:3px solid var(--line); display:grid; place-items:center; color:var(--c)}
+.ico svg{width:30px; height:30px}
+.mp h2{font-family:var(--f-disp); font-weight:800; font-size:1.45rem; margin:0; line-height:1.1}
+.mp-h small{display:block; font-weight:800; font-size:.8rem; opacity:.9}
+.mp-b{padding:16px; display:flex; flex-direction:column; gap:12px; background:var(--t)}
+.mp .fmt{font-size:.88rem; color:var(--ink2); margin:0; font-weight:700}
+.sets{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:10px}
+.set-btn{display:flex; flex-direction:column; align-items:center; gap:2px; padding:12px 6px 10px; border-radius:14px; border:3px solid var(--line); background:var(--paper); text-decoration:none; color:var(--ink); box-shadow:3px 3px 0 var(--line); transition:transform .12s, box-shadow .12s; min-width:0}
+.set-btn:hover{transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--line)}
+.set-btn:active{transform:translate(2px,2px); box-shadow:1px 1px 0 var(--line)}
+.set-btn b{font-family:var(--f-disp); font-size:1.25rem; line-height:1.1}
+.set-btn .st{font-size:.95rem; letter-spacing:1px; line-height:1; color:var(--rule)}
+.set-btn .st .on{color:#f5b300}
+.set-btn span.sc{font-size:.76rem; color:var(--ink2); font-weight:800; text-align:center}
+.set-btn.done span.sc{color:var(--c)}
+.note{font-size:.9rem; color:var(--ink); background:var(--sun-t); border:2px dashed var(--line); border-radius:14px; padding:12px 16px; margin-block:16px 36px; max-width:74ch}
+
+/* Kertas soalan */
+.paper{background:var(--paper); border:3px solid var(--line); border-radius:var(--r); margin-block:20px 40px; padding:clamp(18px, 4vw, 40px); box-shadow:8px 8px 0 var(--c, var(--line))}
+.cover{border-radius:14px; background:var(--c); color:var(--on); border:3px solid var(--line); padding:16px 18px; display:grid; grid-template-columns:auto 1fr auto; gap:6px 16px; align-items:center}
+.cover .ico{width:58px; height:58px}
+.cover .lbl{font-weight:800; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; opacity:.9}
+.cover h1{font-family:var(--f-disp); font-weight:800; font-size:clamp(1.6rem,4.5vw,2.2rem); margin:0; line-height:1.05; text-wrap:balance}
+.cover .meta{text-align:right; font-weight:800}
+.cover .meta .setno{display:inline-block; font-family:var(--f-disp); font-size:1.3rem; background:var(--sun); color:#1d2b4f; border:3px solid var(--line); border-radius:12px; padding:0 12px; transform:rotate(3deg)}
+.cover .bar{grid-column:1/-1; display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
+.cover .bar span{background:var(--paper); color:var(--ink); border-radius:999px; padding:3px 12px; font-size:.84rem; font-weight:800; border:2px solid var(--line)}
+@media (max-width:520px){ .cover{grid-template-columns:auto 1fr} .cover .meta{grid-column:1/-1; text-align:left} }
+.tools{display:flex; gap:8px; flex-wrap:wrap; margin-block:16px 6px}
+.btn{border:2.5px solid var(--line); background:var(--paper); padding:8px 16px; border-radius:999px; font-weight:800; cursor:pointer; font-size:.92rem; text-decoration:none; color:var(--ink); box-shadow:2px 2px 0 var(--line); transition:transform .1s, box-shadow .1s; display:inline-flex; align-items:center; gap:6px}
+.btn:hover{transform:translate(-1px,-1px); box-shadow:3px 3px 0 var(--line)}
+.btn:active{transform:translate(1px,1px); box-shadow:0 0 0 var(--line)}
+.btn.pri{background:var(--c, var(--mt)); color:var(--on); font-family:var(--f-disp); font-size:1.15rem; padding:10px 24px}
+.btn.red{color:var(--red); border-color:var(--red); box-shadow:2px 2px 0 var(--red)}
+.sec{margin-top:34px}
+.sec-h{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+.sec-h h2{font-family:var(--f-disp); font-weight:800; font-size:1.3rem; margin:0; background:var(--t); border:3px solid var(--line); border-radius:12px; padding:2px 14px; transform:rotate(-1.5deg)}
+.sec-h .m{font-weight:800; font-size:.9rem; margin-left:auto; color:var(--ink2)}
+.sec-a{color:var(--ink2); margin:10px 0 4px; font-size:.97rem; font-weight:700}
+.q{display:grid; grid-template-columns:2.8em 1fr; gap:0 12px; padding-block:16px; border-bottom:2px dashed var(--rule)}
+.q:last-child{border-bottom:0}
+.qn{font-family:var(--f-disp); font-weight:800; font-size:1rem; width:2.4em; height:2.4em; border-radius:50%; background:var(--t); border:2.5px solid var(--line); display:grid; place-items:center; line-height:1}
+.qn.long{border-radius:10px; width:auto; min-width:2.4em; height:auto; padding:4px 4px; font-size:.8rem}
+.q.answered .qn{background:var(--c); color:var(--on)}
+.qb{min-width:0}
+.qs{margin:2px 0 10px; font-size:1.02rem}
+.qm{font-weight:800; font-size:.78rem; color:var(--ink2); white-space:nowrap; float:right; margin-left:10px; background:var(--soft); border-radius:999px; padding:1px 9px}
+.opts{display:grid; gap:8px}
+.opts.c2{grid-template-columns:repeat(auto-fill, minmax(min(100%, 160px), 1fr))}
+.opts.c8{grid-template-columns:repeat(8, minmax(0,1fr))}
+@media (max-width:520px){ .opts.c8{grid-template-columns:repeat(4, minmax(0,1fr))} }
+.opt{display:flex; align-items:center; gap:10px; text-align:left; padding:9px 12px; border:2.5px solid var(--rule); border-radius:14px; background:var(--paper); cursor:pointer; min-width:0; font-weight:700; transition:border-color .12s, background .12s, transform .1s}
+.opt:hover{border-color:var(--c); background:var(--t)}
+.opt:active{transform:scale(.98)}
+.opt .bub{flex:none; width:2em; height:2em; border-radius:50%; border:2.5px solid var(--line); display:grid; place-items:center; font-family:var(--f-disp); font-weight:800; font-size:.9rem; background:var(--paper)}
+.opt[aria-pressed="true"]{border-color:var(--line); background:var(--t); box-shadow:3px 3px 0 var(--c)}
+.opt[aria-pressed="true"] .bub{background:var(--c); color:var(--on)}
+.opt.ok{border-color:var(--ok); background:var(--ok-t); box-shadow:none}
+.opt.ok .bub{background:var(--ok); color:var(--on); border-color:var(--ok)}
+.opt.no{border-color:var(--red); background:var(--red-t); box-shadow:none}
+.opt.no .bub{background:var(--red); color:var(--on); border-color:var(--red)}
+.inp{width:100%; padding:10px 14px; border:2.5px solid var(--rule); border-radius:14px; background:var(--soft); color:var(--ink); font:inherit; font-weight:700}
+.inp:focus{border-color:var(--c, var(--mt)); outline:none; box-shadow:3px 3px 0 var(--c, var(--mt))}
+textarea.inp{resize:vertical; font-weight:600; line-height:1.8; background-image:linear-gradient(transparent calc(1.8em - 1px), var(--rule) 0); background-size:100% 1.8em; background-attachment:local; background-position:0 10px}
+.wc{font-size:.78rem; color:var(--ink2); text-align:right; margin-top:4px; font-weight:800}
+.eq{font-family:var(--f-disp); font-weight:800; font-size:1.08em; white-space:nowrap; background:var(--sun-t); padding:0 .35em; border-radius:6px}
+.arahan{margin:0 0 8px; font-weight:800}
+.stim{margin-top:12px}
+.petikan{border:2.5px solid var(--line); background:var(--soft); padding:16px 20px; border-radius:14px; margin:6px 0 4px; max-width:70ch}
+.petikan h4{font-family:var(--f-disp); margin:0 0 8px; font-size:1.15rem; text-align:center; color:var(--c)}
+.petikan p{margin:0 0 8px}
+.poster{border:3px dashed var(--c); background:var(--paper); border-radius:16px; padding:14px 18px; margin:6px 0 4px; max-width:62ch}
+.poster p{margin:4px 0} .poster ul{margin:4px 0 4px 1.2em; padding:0}
+.poster-h{font-family:var(--f-disp); font-weight:800; font-size:1.2rem; text-align:center; margin-bottom:6px; color:var(--c)}
+.kecil{font-size:.86rem; color:var(--ink2)}
+.nota{display:inline-block; border:3px solid var(--line); border-radius:12px; padding:10px 18px; font-weight:800; text-align:center; margin:4px 0; max-width:100%; background:var(--paper); box-shadow:3px 3px 0 var(--sun)}
+.nota.msg{font-weight:600; text-align:left; background:var(--sun-t); max-width:56ch; border-radius:4px 18px 18px 18px; box-shadow:none}
+.notes{border-left:4px solid var(--c); padding-left:12px; margin-top:8px}
+.notes ul{margin:0; padding-left:1.1em}
+.match{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap:8px; margin:6px 0}
+.match div{border:2px solid var(--rule); border-radius:12px; padding:8px 12px; font-size:.95rem; background:var(--t)}
+.match b{font-family:var(--f-disp)}
+.grafik{border:3px solid var(--line); border-radius:16px; padding:14px; max-width:560px; background:var(--t)}
+.grafik-h{font-family:var(--f-disp); font-weight:800; font-size:1.15rem; text-align:center; margin-bottom:10px}
+.grafik-g{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px}
+.grafik-g div{display:flex; flex-direction:column; align-items:center; text-align:center; gap:4px; font-size:2.1rem; padding:10px 8px; border:2px solid var(--line); border-radius:12px; background:var(--paper)}
+.grafik-g span{font-size:.88rem; font-weight:800}
+.rantai{display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-weight:900; font-size:1.2rem; margin:8px 0}
+.rantai span{border:2.5px solid var(--line); border-radius:12px; padding:5px 14px; font-size:1rem; background:var(--t)}
+.siratan, .kitar{font-weight:800; display:grid; gap:4px; border:2.5px solid var(--line); padding:12px 16px; border-radius:14px; background:var(--t); max-width:520px}
+.kad4{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:8px; max-width:560px}
+.kad4.dua{grid-template-columns:repeat(2, minmax(0,1fr))}
+@media (max-width:520px){ .kad4{grid-template-columns:repeat(2, minmax(0,1fr))} }
+.kad4 div{border:2.5px solid var(--line); border-radius:12px; padding:10px 8px; text-align:center; background:var(--t); font-size:.94rem}
+.tbl{overflow-x:auto; max-width:100%}
+table.jd, table.rb{border-collapse:separate; border-spacing:0; margin:6px 0; font-size:.94rem; font-variant-numeric:tabular-nums; border:2.5px solid var(--line); border-radius:12px; overflow:hidden; background:var(--paper)}
+table.jd th, table.jd td, table.rb th, table.rb td{border-right:1.5px solid var(--rule); border-bottom:1.5px solid var(--rule); padding:7px 12px; text-align:left; vertical-align:top}
+table.jd tr > :last-child, table.rb tr > :last-child{border-right:0}
+table.jd tr:last-child > *, table.rb tr:last-child > *{border-bottom:0}
+table.jd th, table.rb th{background:var(--t); font-weight:800}
+.cap{text-align:center; font-weight:800; font-size:.88rem; margin:2px 0 0; max-width:560px; color:var(--ink2)}
+svg.rajah{display:block; width:100%; max-width:380px; height:auto; color:var(--ink); margin:8px 0}
+svg.rajah text{fill:currentColor; font-family:var(--f-body); font-weight:800; font-size:13px}
+svg.rajah .sh{fill:var(--t); stroke:currentColor; stroke-width:2.5; stroke-linejoin:round}
+svg.rajah .sh2{fill:var(--sun-t); stroke:currentColor; stroke-width:2.5; stroke-linejoin:round}
+svg.rajah .tk, svg.rajah .ra{stroke:currentColor; stroke-width:1.8; fill:none}
+svg.rajah .lbl{font-size:12px}
+svg.rajah .gr{stroke:var(--rule); stroke-width:1}
+svg.rajah .axl{stroke:currentColor; stroke-width:2}
+svg.rajah .ax{font-size:11px; fill:var(--ink2)}
+svg.rajah .dot{fill:var(--c)}
+svg.rajah .ptl{font-size:12px}
+svg.rajah .bar{fill:var(--c); stroke:var(--line); stroke-width:1.5}
+
+/* Hantar, keputusan & skema */
+.submit{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:30px; padding:16px; border-radius:16px; background:var(--t); border:3px solid var(--line)}
+.submit p{margin:0; font-weight:800; flex:1 1 220px}
+.result{margin-top:28px; border:3px solid var(--line); background:var(--sun-t); border-radius:var(--r); padding:20px; display:grid; grid-template-columns:auto 1fr; gap:16px 24px; align-items:center; box-shadow:6px 6px 0 var(--red); position:relative; overflow:hidden}
+.stamp{font-family:var(--f-pen); color:var(--red); font-size:3.4rem; line-height:1; transform:rotate(-7deg); text-align:center; min-width:3.2em; border:4px solid var(--red); border-radius:50%; width:3.4em; height:3.4em; display:grid; place-content:center; background:var(--paper)}
+.stamp small{display:block; font-size:1rem}
+.result .msg{font-family:var(--f-disp); font-weight:800; font-size:1.5rem; line-height:1.1; margin:0 0 4px}
+.result h3{font-family:var(--f-disp); margin:0 0 6px; font-size:1.05rem; color:var(--ink2)}
+.result p{margin:3px 0; font-size:.95rem}
+.result ul{margin:6px 0 0; padding-left:1.1em; font-size:.92rem}
+.result .bigstars{font-size:1.9rem; letter-spacing:4px; line-height:1; color:var(--rule)}
+.result .bigstars .on{color:#f5b300}
+@media (max-width:520px){ .result{grid-template-columns:1fr; justify-items:start} }
+canvas.confetti{position:fixed; inset:0; pointer-events:none; z-index:50; width:100%; height:100%}
+.skema{margin-top:34px}
+.skema .sec-h h2{background:var(--red-t); color:var(--red); border-color:var(--red)}
+.sk{display:grid; grid-template-columns:2.8em 1fr; gap:0 12px; padding-block:12px; border-bottom:2px dashed var(--rule)}
+.sk .qn{background:var(--red-t); border-color:var(--red); color:var(--red)}
+.sk-body{min-width:0}
+.sk-ans{color:var(--red); font-weight:800}
+.sk-ans .pen{font-family:var(--f-pen); font-size:1.25rem}
+.sk-detail{font-size:.94rem; margin-top:4px}
+.sk-you{font-size:.88rem; color:var(--ink2); margin-top:6px; font-weight:700}
+.sk-you q{quotes:none; font-style:italic; color:var(--ink)}
+.self{display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-top:8px; font-size:.88rem; font-weight:800; background:var(--soft); border-radius:12px; padding:8px 10px}
+.self button{min-width:2.4em; padding:4px 8px; border:2.5px solid var(--line); border-radius:10px; background:var(--paper); cursor:pointer; font-family:var(--f-disp); font-weight:800}
+.self button[aria-pressed="true"]{background:var(--red); color:var(--on); border-color:var(--red)}
+.tag{font-weight:800; font-size:.76rem; padding:2px 9px; border-radius:999px; border:2px solid var(--rule); color:var(--ink2); white-space:nowrap}
+.tag.ok{color:var(--ok); border-color:var(--ok); background:var(--ok-t)}
+.tag.no{color:var(--red); border-color:var(--red); background:var(--red-t)}
+.contoh{background:var(--soft); border-left:4px solid var(--red); border-radius:0 10px 10px 0; padding:8px 12px; margin:8px 0 0; color:var(--ink)}
+.pill{font-weight:900; font-size:.74rem; padding:3px 10px; border-radius:999px; white-space:nowrap; border:2px solid var(--line)}
+.pill.wajib{background:var(--red); color:var(--on)}
+.pill.tinggi{background:var(--sun); color:#1d2b4f}
+.pill.sederhana{background:var(--paper); color:var(--ink)}
+.confirm{border:2.5px solid var(--red); background:var(--red-t); border-radius:14px; padding:10px 14px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; font-size:.94rem; font-weight:700; margin-top:10px}
+
+/* Analisis */
+.an h2{font-family:var(--f-disp); font-weight:800; margin:0 0 4px; font-size:1.8rem; line-height:1.1}
+.an h3{font-family:var(--f-disp); font-weight:800; font-size:1.2rem; margin:24px 0 6px}
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-block:16px}
+.tabs button{border:2.5px solid var(--line); background:var(--paper); padding:6px 16px; border-radius:999px; cursor:pointer; font-weight:800; box-shadow:2px 2px 0 var(--line)}
+.tabs button[aria-selected="true"]{background:var(--tc); color:var(--on)}
+.rlist{display:grid; gap:10px; margin:10px 0 20px}
+.ritem{display:grid; grid-template-columns:7.4em 1fr; gap:4px 12px; align-items:start; padding:12px 14px; border:2px solid var(--rule); border-radius:14px; background:var(--soft)}
+.ritem h4{margin:0; font-size:1.02rem; font-weight:900}
+.ritem p{margin:2px 0 0; font-size:.93rem; color:var(--ink2)}
+@media (max-width:520px){ .ritem{grid-template-columns:1fr} }
+.dist{display:grid; gap:8px; margin-top:8px}
+.drow{display:grid; grid-template-columns:minmax(0, 15em) 1fr 3.4em; gap:10px; align-items:center; font-size:.9rem; font-weight:700}
+.drow .lb{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.drow .tr{height:14px; background:var(--soft); border-radius:999px; overflow:hidden; border:2px solid var(--line)}
+.drow .fl{height:100%; background:var(--c); border-radius:999px}
+.drow .v{text-align:right; font-variant-numeric:tabular-nums; font-weight:900}
+@media (max-width:520px){ .drow{grid-template-columns:minmax(0,1fr) 3.4em} .drow .tr{grid-column:1/-1; grid-row:2} }
+@media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto!important; transition:none!important; animation:none!important} }
+@media print{
+ body{background:#fff} .top, .tools, .submit, .self, .confirm{display:none!important}
+ .paper{border:0; box-shadow:none; padding:0; margin:0}
+}
+</style>
+
+<header class="top"><div class="wrap">
+ <a class="brand" href="#utama" aria-label="SkorUASA.com — laman utama">Skor<span class="u u1">U</span><span class="u u2">A</span><span class="u u3">S</span><span class="u u4">A</span><small>.com</small></a>
+ <nav class="nav" aria-label="Menu utama"><a href="#utama" id="nav-utama">Kertas</a><a href="#analisis" id="nav-analisis">Analisis</a></nav>
+ <span class="pill-top" id="prog-pill" hidden></span>
+ <button class="pill-top" id="timer" hidden title="Mula / jeda pemasa">⏱ 01:15:00</button>
+</div><div class="progbar" id="progbar" hidden><i></i></div></header>
+<main id="app" class="wrap"></main>
+
+<script>
+(function(){
+// SkorUASA.com — maklumat subjek, format rasmi & analisis ramalan
+window.META = {
+ urutan: ['bm','bi','mt','sn'],
+ mp: {
+  bm: { nama:'Bahasa Melayu', pendek:'BM', warna:'bm' },
+  bi: { nama:'Bahasa Inggeris', pendek:'BI', warna:'bi' },
+  mt: { nama:'Matematik', pendek:'MT', warna:'mt' },
+  sn: { nama:'Sains', pendek:'SN', warna:'sn' },
+ },
+ format: {
+  bm: [['Bahagian A','10 soalan objektif aneka pilihan: tatabahasa (3–5) dan pemahaman teks tunggal & teks pelbagai (5–7)','10'],['Bahagian B','Objektif pelbagai bentuk & respons terhad: tatabahasa, pemahaman, 1 soalan respons kritis & kreatif','10'],['Bahagian C','Penulisan perenggan (1 soalan)','10'],['Bahagian D','Penulisan karangan (1 soalan)','20']],
+  bi: [['Part 1','Short texts — multiple choice (5)','5'],['Part 2','Lexico-grammar cloze (4)','4'],['Part 3','Linear / non-linear text comprehension (5)','5'],['Part 4','Matching multiple texts (6)','6'],['Part 5','Word completion (5)','5'],['Part 6','Guided writing — short message (1)','10'],['Part 7','Notes expansion — longer message (1)','15']],
+  mt: [['Bahagian A','13 soalan subjektif respons terhad (1–3 markah setiap satu)','26'],['Bahagian B','2 soalan subjektif berstruktur (12 markah setiap satu)','24']],
+  sn: [['Bahagian A','10 soalan objektif aneka pilihan','10'],['Bahagian B','2 soalan objektif pelbagai bentuk / respons terhad','8'],['Bahagian C','4 soalan respons terhad berasaskan kemahiran proses sains','32']],
+ },
+ // tahap: wajib = ditetapkan oleh format rasmi; tinggi = standard DSKP teras yang sesuai untuk format itu; sederhana = mungkin muncul 1 soalan
+ ramalan: {
+  bm: [
+   ['wajib','Karangan (Bahagian D)','20 markah — 40% daripada kertas. Bersedia untuk tiga bentuk: karangan pengalaman/cerita, karangan fakta, dan surat kiriman tidak rasmi.'],
+   ['wajib','Penulisan perenggan berdasarkan grafik (Bahagian C)','Tema lazim: kebersihan, keselamatan, kesihatan, penjimatan dan alam sekitar. Latih ayat topik → 4 isi → penutup.'],
+   ['wajib','Respons kritis & kreatif (Bahagian B)','Satu soalan pendapat atau tindakan dengan alasan. Jawab "cara + sebab" sebanyak dua kali.'],
+   ['tinggi','Pemahaman teks pelbagai','Format menyebut teks tunggal dan teks pelbagai. Iklan, notis dan jadual paling sesuai untuk teks pelbagai.'],
+   ['tinggi','Tatabahasa teras','Kata hubung, imbuhan apitan, kata sendi nama (dari/daripada, ke/kepada), ayat majmuk, ayat pasif dan tanda baca.'],
+   ['tinggi','Peribahasa','Simpulan bahasa dan perumpamaan dalam konteks situasi.'],
+  ],
+  bi: [
+   ['wajib','Part 7 Notes expansion','15 marks. Every note must become a full sentence. Practise articles, stories and blog posts.'],
+   ['wajib','Part 6 Guided writing','10 marks. Emails, notes and messages that answer exactly three points.'],
+   ['wajib','Part 4 Matching','6 marks. Match people to clubs, camps, books or places, with two extra options.'],
+   ['tinggi','Grammar in Part 2','Simple past, comparatives and superlatives, prepositions, conjunctions, articles and gerunds.'],
+   ['tinggi','Word completion vocabulary','Daily routines, jobs, weather, food and school items at CEFR A1–A2 level.'],
+   ['sederhana','Non-linear texts','Timetables, posters and programmes with simple calculations of time and price.'],
+  ],
+  mt: [
+   ['wajib','Bahagian B berstruktur','2 soalan × 12 markah. Paling sesuai untuk isi padu/perimeter/luas, pengurusan data, koordinat & nisbah, dan wang.'],
+   ['tinggi','Nombor bulat hingga 1 000 000','Menulis, nilai tempat, membundar, nombor perdana, pola dan operasi bergabung.'],
+   ['tinggi','Pecahan, perpuluhan & peratus','Darab dan bahagi pecahan dengan nombor bulat, perpuluhan 3 tempat, nilai peratus.'],
+   ['tinggi','Pengurusan data','Mod, median, min dan julat — kerap menjadi soalan berstruktur.'],
+   ['tinggi','Ruang','Perimeter dan luas bentuk gabungan, isi padu kubus dan kuboid gabungan.'],
+   ['sederhana','Masa & ukuran','Abad, dekad, tahun lompat serta penukaran unit dalam pecahan dan perpuluhan.'],
+   ['sederhana','Wang: simpanan & pelaburan','Maksud simpanan, faedah mudah dan faedah kompaun.'],
+  ],
+  sn: [
+   ['wajib','Kemahiran proses sains (Bahagian C)','32 markah. Pemboleh ubah, hipotesis, inferens, ramalan, mentafsir data dan kesimpulan.'],
+   ['tinggi','Elektrik','Litar bersiri dan selari, kecerahan mentol, suis, keselamatan dan penjimatan elektrik.'],
+   ['tinggi','Haba','Takat beku dan didih, perubahan suhu dengan masa, pengembangan dan pengecutan.'],
+   ['tinggi','Pengaratan','Faktor (air dan udara), eksperimen tabung uji, cara mencegah.'],
+   ['tinggi','Haiwan & tumbuhan','Kemandirian spesies, rantai dan siratan makanan, penyebaran biji benih.'],
+   ['sederhana','Manusia','Sistem rangka, peredaran darah dan hubungan antara sistem.'],
+   ['sederhana','Jirim, Bulan & buruj, mesin','Perubahan keadaan air, fasa Bulan, kegunaan buruj, mesin ringkas dalam alatan.'],
+  ],
+ },
+};
+
+})();
+(function(){
+// SkorUASA.com — Bahasa Melayu Tahun 5 (3 set)
+// Jenis soalan: o = objektif (auto), s = jawapan pendek, w = penulisan, x = bahan rangsangan (tiada markah)
+// ar: R/S/T (aras rendah/sederhana/tinggi)
+window.SETS = window.SETS || {};
+
+const RUBRIK_PERENGGAN = `<table class="rb"><tr><th>Aspek</th><th>Markah</th></tr>
+<tr><td>Ayat topik / pengenalan yang jelas</td><td>1</td></tr>
+<tr><td>Isi berdasarkan bahan grafik (4 isi × 1)</td><td>4</td></tr>
+<tr><td>Huraian / contoh bagi isi</td><td>2</td></tr>
+<tr><td>Tatabahasa, ejaan &amp; tanda baca</td><td>2</td></tr>
+<tr><td>Ayat penutup</td><td>1</td></tr></table>`;
+
+const RUBRIK_KARANGAN = `<table class="rb"><tr><th>Tahap</th><th>Markah</th><th>Ciri</th></tr>
+<tr><td>Cemerlang</td><td>17–20</td><td>Isi tepat dan dihuraikan, ayat gramatis dan pelbagai, kosa kata menarik, peribahasa sesuai, perenggan tersusun.</td></tr>
+<tr><td>Baik</td><td>13–16</td><td>Isi sesuai dengan huraian, sedikit kesalahan bahasa, perenggan teratur.</td></tr>
+<tr><td>Sederhana</td><td>9–12</td><td>Isi ada tetapi huraian nipis, beberapa kesalahan bahasa.</td></tr>
+<tr><td>Lemah</td><td>5–8</td><td>Isi kurang, banyak kesalahan bahasa, kurang tersusun.</td></tr>
+<tr><td>Sangat lemah</td><td>0–4</td><td>Tidak menepati tajuk atau sangat pendek.</td></tr></table>`;
+
+SETS.bm = [
+/* ============================== SET 1 ============================== */
+{
+ set: 1,
+ bhg: [
+ { n: 'Bahagian A', m: 10, a: 'Jawab semua soalan. Pilih jawapan yang paling sesuai.', q: [
+  {t:'o', s:'Adik menangis ______ mainannya rosak.', p:['lalu','tetapi','kerana','atau'], j:2, m:1, tp:'Tatabahasa: kata hubung', ar:'R'},
+  {t:'o', s:'Ayat yang manakah menggunakan <b>kata ganda berentak</b> dengan betul?', p:['Ibu membeli sayur-mayur di pasar tani.','Pelajar itu membaca buku-buku cerita.','Rumah-rumah di kampung itu cantik.','Budak-budak itu bermain di taman.'], j:0, m:1, tp:'Tatabahasa: kata ganda', ar:'S'},
+  {t:'o', s:'Pihak sekolah akan ______ hadiah kepada murid yang cemerlang pada Hari Anugerah.', p:['disampaikan','menyampaikan','penyampaian','sampaian'], j:1, m:1, tp:'Tatabahasa: imbuhan apitan', ar:'R'},
+  {t:'o', s:'Ali rajin membantu ibunya membuat kerja rumah. Ali seorang yang ______.', p:['panjang tangan','besar kepala','kaki bangku','ringan tulang'], j:3, m:1, tp:'Peribahasa: simpulan bahasa', ar:'S'},
+  {t:'x', h:`<p class="arahan">Baca petikan di bawah, kemudian jawab soalan 5 hingga 7.</p>
+<div class="petikan"><h4>Kebun Hijau Sekolah Kami</h4>
+<p>Setiap pagi Rabu, murid-murid Kelab Pencinta Alam Sekolah Kebangsaan Taman Seri berkumpul di kebun sekolah. Kebun yang terletak di belakang blok kantin itu ditanam dengan sawi, kangkung dan cili. Cikgu Faridah, guru penasihat kelab, membahagikan murid kepada tiga kumpulan. Kumpulan pertama menyiram pokok, kumpulan kedua membuang rumpai, manakala kumpulan ketiga menggemburkan tanah.</p>
+<p>Bulan lalu, hasil sawi kebun itu dijual kepada guru-guru. Wang jualan sebanyak RM120 digunakan untuk membeli baja dan benih baharu. Selain itu, sebahagian sayur disumbangkan kepada kantin sekolah untuk dimasak bagi Rancangan Makanan Tambahan.</p>
+<p>Menurut Cikgu Faridah, aktiviti berkebun mengajar murid erti bertanggungjawab dan bekerjasama. Murid juga dapat mengenali jenis-jenis tanaman. Kini, kebun sekolah itu menjadi kebanggaan warga sekolah.</p></div>`},
+  {t:'o', s:'Bilakah murid Kelab Pencinta Alam berkumpul di kebun sekolah?', p:['Setiap pagi Isnin','Setiap petang Rabu','Setiap pagi Rabu','Setiap hujung minggu'], j:2, m:1, tp:'Pemahaman: teks tunggal', ar:'R'},
+  {t:'o', s:'Apakah tugas kumpulan kedua?', p:['Membuang rumpai','Menyiram pokok','Menggemburkan tanah','Menjual sayur kepada guru'], j:0, m:1, tp:'Pemahaman: teks tunggal', ar:'R'},
+  {t:'o', s:'Antara berikut, yang manakah <b>BENAR</b> tentang petikan?', p:['Kebun itu terletak di hadapan kantin.','Semua sayur dijual kepada guru-guru.','Cikgu Faridah ialah guru besar sekolah.','Wang jualan sawi berjumlah RM120.'], j:3, m:1, tp:'Pemahaman: teks tunggal', ar:'S'},
+  {t:'x', h:`<p class="arahan">Baca iklan di bawah, kemudian jawab soalan 8 hingga 10.</p>
+<div class="poster"><div class="poster-h">KARNIVAL MEMBACA 2026</div>
+<p><b>Anjuran:</b> Perpustakaan Desa Bukit Beruntung</p>
+<p><b>Tarikh:</b> 21 November 2026 (Sabtu) &nbsp; <b>Masa:</b> 9.00 pagi – 1.00 petang</p>
+<p><b>Aktiviti:</b></p><ul><li>Pertandingan bercerita (Tahun 4 hingga Tahun 6)</li><li>Jualan buku murah — diskaun 30%</li><li>Pameran buku digital</li></ul>
+<p><b>Cabutan bertuah</b> untuk 50 pengunjung terawal!</p>
+<p class="kecil">*Penyertaan percuma. Daftar di kaunter perpustakaan sebelum 14 November 2026.</p></div>`},
+  {t:'o', s:'Siapakah penganjur karnival itu?', p:['Sekolah Kebangsaan Bukit Beruntung','Perpustakaan Desa Bukit Beruntung','Persatuan Ibu Bapa dan Guru','Kelab Pencinta Buku'], j:1, m:1, tp:'Pemahaman: teks pelbagai', ar:'R'},
+  {t:'o', s:'Bilakah tarikh akhir pendaftaran pertandingan?', p:['14 November 2026','21 November 2026','1 November 2026','30 November 2026'], j:0, m:1, tp:'Pemahaman: teks pelbagai', ar:'S'},
+  {t:'o', s:'Mengapakah orang ramai digalakkan datang awal ke karnival itu?', p:['Karnival itu tamat pada pukul 9.00 pagi.','Buku hanya dijual kepada murid Tahun 4.','Mereka berpeluang menyertai cabutan bertuah.','Mereka perlu membayar yuran penyertaan.'], j:2, m:1, tp:'Pemahaman: teks pelbagai (KBAT)', ar:'T'},
+ ]},
+ { n: 'Bahagian B', m: 10, a: 'Jawab semua soalan.', q: [
+  {t:'x', h:`<p class="arahan">Soalan 11: Tentukan sama ada kata sendi nama dalam ayat berikut digunakan dengan <b>betul</b> atau <b>salah</b>.</p>`},
+  {no:'11(a)', t:'o', s:'Ayah pergi <u>ke</u> pejabat pos untuk mengepos bungkusan.', p:['Betul','Salah'], j:0, m:1, tp:'Tatabahasa: kata sendi nama', ar:'R'},
+  {no:'11(b)', t:'o', s:'Surat itu dihantar <u>kepada</u> Kuala Lumpur semalam.', p:['Betul','Salah'], j:1, m:1, tp:'Tatabahasa: kata sendi nama', ar:'S'},
+  {no:'12', t:'s', s:'Gabungkan dua ayat tunggal di bawah menjadi satu ayat majmuk.<br><i>Hujan turun dengan lebat.</i> &nbsp; <i>Kami tidak dapat bermain di padang.</i>', m:2, sk:'Contoh: <b>Hujan turun dengan lebat, oleh itu kami tidak dapat bermain di padang.</b> / <b>Kami tidak dapat bermain di padang kerana hujan turun dengan lebat.</b><br>2 markah: ayat gramatis dengan kata hubung yang sesuai. 1 markah: makna betul tetapi ada kesalahan ejaan/tanda baca.', tp:'Tatabahasa: ayat majmuk', ar:'S'},
+  {no:'13', t:'s', s:'Berdasarkan petikan <i>Kebun Hijau Sekolah Kami</i>, nyatakan <b>dua</b> faedah aktiviti berkebun kepada murid.', m:2, sk:'Mana-mana dua (1 markah setiap satu):<br>• Mengajar murid bertanggungjawab<br>• Mengajar murid bekerjasama<br>• Murid dapat mengenali jenis-jenis tanaman', tp:'Pemahaman: teks tunggal', ar:'R'},
+  {no:'14', t:'w', rows:5, s:'Pada pendapat kamu, apakah <b>dua</b> cara untuk menggalakkan lebih ramai murid menyertai Kelab Pencinta Alam? Berikan alasan bagi setiap cara.', m:4, sk:'Respons kritis dan kreatif. Terima jawapan munasabah. 1 markah cara + 1 markah alasan, × 2.<br>Contoh:<br>• Mengadakan pertandingan menanam pokok antara kelas <i>kerana</i> murid suka bersaing dan memenangi hadiah.<br>• Memberikan sijil penghargaan kepada ahli aktif <i>supaya</i> murid berasa dihargai.<br>• Mempamerkan hasil tanaman di perhimpunan <i>agar</i> murid lain tertarik untuk mencuba.', tp:'Respons kritis & kreatif', ar:'T'},
+ ]},
+ { n: 'Bahagian C', m: 10, a: 'Penulisan perenggan.', q: [
+  {t:'x', h:`<div class="grafik"><div class="grafik-h">Cara Menjimatkan Air di Rumah</div><div class="grafik-g">
+<div>🚰<span>Tutup paip semasa memberus gigi</span></div><div>🪣<span>Cuci kereta menggunakan baldi</span></div>
+<div>🌱<span>Siram pokok dengan air basuhan beras</span></div><div>🔧<span>Baiki paip yang bocor</span></div></div></div>`},
+  {no:'15', t:'w', rows:9, s:'Berdasarkan bahan grafik di atas, tulis <b>satu perenggan</b> tentang cara-cara menjimatkan air di rumah. Panjang perenggan hendaklah sekurang-kurangnya <b>50 patah perkataan</b>.', m:10, sk:RUBRIK_PERENGGAN+`<p class="contoh"><b>Contoh jawapan:</b> Terdapat beberapa cara untuk menjimatkan air di rumah. Pertama, kita hendaklah menutup paip semasa memberus gigi supaya air tidak terbuang begitu sahaja. Selain itu, kita boleh mencuci kereta menggunakan baldi dan bukannya hos getah. Air basuhan beras pula boleh digunakan untuk menyiram pokok kerana air itu menyuburkan tanaman. Akhir sekali, paip yang bocor mestilah dibaiki dengan segera. Jika semua ahli keluarga berjimat, bekalan air akan sentiasa mencukupi.</p>`, tp:'Penulisan perenggan', ar:'S', arx:[5,3,2]},
+ ]},
+ { n: 'Bahagian D', m: 20, a: 'Penulisan karangan.', q: [
+  {no:'16', t:'w', rows:16, s:'Tulis sebuah karangan bertajuk <b>"Aktiviti Hujung Minggu Bersama Keluarga"</b>. Panjang karangan hendaklah antara <b>80 hingga 120 patah perkataan</b>.', m:20, sk:RUBRIK_KARANGAN+`<p><b>Isi yang dijangka:</b> pengenalan (siapa, ke mana), aktiviti 1 (contoh: bersarapan bersama), aktiviti 2 (berkelah/beriadah), aktiviti 3 (membersihkan rumah/gotong-royong), perasaan dan pengajaran, penutup.</p><p class="contoh"><b>Contoh karangan:</b><br>Pada hari Sabtu yang lalu, saya dan keluarga meluangkan masa bersama-sama. Awal pagi, kami bersarapan nasi lemak yang dimasak oleh ibu. Selepas itu, ayah membawa kami berbasikal di Taman Tasik. Udara pagi yang segar membuatkan kami berasa cergas.<br>Pada sebelah petang, kami bergotong-royong membersihkan halaman rumah. Abang memotong rumput, manakala saya dan adik mengutip daun kering. Bak kata pepatah, berat sama dipikul, ringan sama dijinjing. Kerja itu siap dengan cepat.<br>Pada waktu malam, kami makan malam sambil berbual mesra. Saya berasa sangat gembira kerana hubungan kami sekeluarga bertambah erat. Saya berharap aktiviti seperti ini dapat diadakan setiap minggu.</p>`, tp:'Penulisan karangan (cerita/pengalaman)', ar:'T', arx:[9,7,4]},
+ ]},
+ ]
+},
+/* ============================== SET 2 ============================== */
+{
+ set: 2,
+ bhg: [
+ { n: 'Bahagian A', m: 10, a: 'Jawab semua soalan. Pilih jawapan yang paling sesuai.', q: [
+  {t:'o', s:'Pilih <b>kata adjektif</b> dalam ayat di bawah.<br><i>Kucing yang gebu itu tidur di atas permaidani.</i>', p:['kucing','gebu','tidur','permaidani'], j:1, m:1, tp:'Tatabahasa: kata adjektif', ar:'R'},
+  {t:'o', s:'Ayat yang manakah ialah <b>ayat pasif</b>?', p:['Kakak menyapu sampah di dapur.','Kakak rajin menyapu sampah.','Kakak sedang menyapu sampah.','Sampah di dapur disapu oleh kakak.'], j:3, m:1, tp:'Tatabahasa: ayat aktif & pasif', ar:'S'},
+  {t:'o', s:'Pilih ayat yang menggunakan <b>tanda baca</b> dengan betul.', p:['"Bilakah kamu akan pulang?" tanya ibu.','"Bilakah kamu akan pulang." tanya ibu?','Bilakah kamu akan pulang, tanya ibu.','"Bilakah kamu akan pulang"? tanya ibu.'], j:0, m:1, tp:'Tatabahasa: tanda baca', ar:'S'},
+  {t:'o', s:'Murid-murid perlu belajar bersungguh-sungguh sejak awal. Jangan tunggu peperiksaan hampir baru hendak mengulang kaji. Peribahasa yang sesuai ialah ______.', p:['bagai aur dengan tebing','seperti katak di bawah tempurung','sediakan payung sebelum hujan','bagai menatang minyak yang penuh'], j:2, m:1, tp:'Peribahasa: perumpamaan', ar:'S'},
+  {t:'x', h:`<p class="arahan">Baca petikan di bawah, kemudian jawab soalan 5 hingga 7.</p>
+<div class="petikan"><h4>Penyu Belimbing yang Semakin Pupus</h4>
+<p>Penyu belimbing ialah penyu yang terbesar di dunia. Panjangnya boleh mencecah dua meter dan beratnya melebihi 500 kilogram. Dahulu, penyu ini sering mendarat di Pantai Rantau Abang, Terengganu untuk bertelur, terutamanya pada bulan Mei hingga Ogos.</p>
+<p>Malangnya, bilangan penyu belimbing yang mendarat semakin berkurangan. Antara puncanya ialah pencemaran sampah plastik di laut. Penyu sering menyangka beg plastik sebagai obor-obor, iaitu makanan kegemarannya. Selain itu, telur penyu juga diambil untuk dijual.</p>
+<p>Kerajaan telah mewujudkan pusat penetasan untuk melindungi telur penyu. Orang ramai pula boleh membantu dengan tidak membuang sampah ke laut dan tidak membeli telur penyu. Kita semua bertanggungjawab memastikan haiwan ini tidak pupus.</p></div>`},
+  {t:'o', s:'Pada bulan apakah penyu belimbing biasanya mendarat untuk bertelur?', p:['Januari hingga April','Sepanjang tahun','September hingga Disember','Mei hingga Ogos'], j:3, m:1, tp:'Pemahaman: teks tunggal', ar:'R'},
+  {t:'o', s:'Mengapakah penyu belimbing memakan beg plastik?', p:['Penyu suka akan warna beg plastik.','Penyu menyangka beg plastik ialah obor-obor.','Beg plastik mudah didapati di pantai.','Penyu tidak menemui makanan lain.'], j:1, m:1, tp:'Pemahaman: teks tunggal', ar:'S'},
+  {t:'o', s:'Apakah maksud perkataan <b>pupus</b> dalam petikan?', p:['Bertambah banyak','Berpindah tempat','Hilang terus dari muka bumi','Membesar dengan cepat'], j:2, m:1, tp:'Pemahaman: makna perkataan', ar:'R'},
+  {t:'x', h:`<p class="arahan">Baca jadual di bawah, kemudian jawab soalan 8 hingga 10.</p>
+<div class="poster"><div class="poster-h">JADUAL BAS SEKOLAH — SESI PAGI</div>
+<table class="jd"><tr><th>Bas</th><th>Laluan</th><th>Bertolak</th><th>Tiba di sekolah</th></tr>
+<tr><td>A</td><td>Taman Mawar – Kampung Baru</td><td>6.15 pagi</td><td>6.50 pagi</td></tr>
+<tr><td>B</td><td>Taman Melati – Pekan Lama</td><td>6.25 pagi</td><td>6.55 pagi</td></tr>
+<tr><td>C</td><td>Kampung Sentosa</td><td>6.30 pagi</td><td>7.00 pagi</td></tr></table>
+<p class="kecil">Murid mesti berada di perhentian 5 minit sebelum bas bertolak. Tambang bulanan: RM60.</p></div>`},
+  {t:'o', s:'Bas manakah yang paling awal tiba di sekolah?', p:['Bas A','Bas B','Bas C','Semua bas tiba serentak'], j:0, m:1, tp:'Pemahaman: teks pelbagai', ar:'R'},
+  {t:'o', s:'Pada pukul berapakah murid yang menaiki Bas C perlu berada di perhentian?', p:['6.10 pagi','6.25 pagi','6.30 pagi','6.55 pagi'], j:1, m:1, tp:'Pemahaman: teks pelbagai', ar:'S'},
+  {t:'o', s:'Hafiz tinggal di Taman Melati. Berapakah jumlah tambang yang perlu dibayar oleh Hafiz bagi tempoh tiga bulan?', p:['RM60','RM120','RM180','RM240'], j:2, m:1, tp:'Pemahaman: teks pelbagai (KBAT)', ar:'T'},
+ ]},
+ { n: 'Bahagian B', m: 10, a: 'Jawab semua soalan.', q: [
+  {t:'x', h:`<p class="arahan">Soalan 11: Pilih kata ganti nama yang sesuai bagi ayat berikut.</p>`},
+  {no:'11(a)', t:'o', s:'"Cikgu, bolehkah ______ meminjam buku ini?" tanya Aina kepada gurunya.', p:['saya','aku','engkau'], j:0, m:1, tp:'Tatabahasa: kata ganti nama diri', ar:'R'},
+  {no:'11(b)', t:'o', s:'Tuanku, ______ menjunjung titah tuanku.', p:['patik','beta','baginda'], j:0, m:1, tp:'Tatabahasa: bahasa istana', ar:'S'},
+  {no:'12', t:'s', s:'Betulkan kesalahan ejaan dalam ayat di bawah.<br><i>Kami melawat muzium negara dan melihat pameran bersejarah yang sanggat menarik.</i>', m:2, sk:'<b>Muzium Negara</b> (huruf besar kata nama khas) dan <b>sangat</b>.<br>1 markah setiap pembetulan.', tp:'Tatabahasa: ejaan & huruf besar', ar:'S'},
+  {no:'13', t:'s', s:'Berdasarkan petikan <i>Penyu Belimbing yang Semakin Pupus</i>, nyatakan <b>dua</b> cara orang ramai boleh membantu menyelamatkan penyu belimbing.', m:2, sk:'• Tidak membuang sampah ke laut (1)<br>• Tidak membeli telur penyu (1)', tp:'Pemahaman: teks tunggal', ar:'R'},
+  {no:'14', t:'w', rows:5, s:'Sekiranya kamu ternampak seseorang menjual telur penyu di pasar, apakah tindakan kamu? Berikan <b>dua</b> tindakan beserta sebab.', m:4, sk:'Respons kritis dan kreatif (1 tindakan + 1 sebab, × 2). Contoh:<br>• Memaklumkan kepada ibu bapa atau orang dewasa <i>kerana</i> mereka boleh melaporkan kepada pihak berkuasa.<br>• Tidak membeli telur itu <i>supaya</i> penjual tidak mendapat keuntungan.<br>• Menasihati penjual dengan sopan <i>kerana</i> penyu ialah haiwan yang dilindungi.', tp:'Respons kritis & kreatif', ar:'T'},
+ ]},
+ { n: 'Bahagian C', m: 10, a: 'Penulisan perenggan.', q: [
+  {t:'x', h:`<div class="grafik"><div class="grafik-h">Langkah Keselamatan di Jalan Raya</div><div class="grafik-g">
+<div>🦓<span>Melintas di lintasan belang</span></div><div>👀<span>Pandang kanan, kiri, kanan</span></div>
+<div>🚲<span>Pakai topi keledar ketika berbasikal</span></div><div>🚦<span>Patuhi isyarat lampu</span></div></div></div>`},
+  {no:'15', t:'w', rows:9, s:'Berdasarkan bahan grafik di atas, tulis <b>satu perenggan</b> tentang langkah-langkah keselamatan di jalan raya. Panjang perenggan hendaklah sekurang-kurangnya <b>50 patah perkataan</b>.', m:10, sk:RUBRIK_PERENGGAN+`<p class="contoh"><b>Contoh jawapan:</b> Kita perlu mengambil langkah keselamatan ketika berada di jalan raya. Antaranya, kita hendaklah melintas jalan di lintasan belang supaya pemandu dapat melihat kita. Sebelum melintas, pandang ke kanan, ke kiri dan ke kanan semula untuk memastikan tiada kenderaan. Selain itu, kita mesti memakai topi keledar ketika berbasikal bagi melindungi kepala. Kita juga perlu mematuhi isyarat lampu. Dengan cara ini, kemalangan dapat dielakkan.</p>`, tp:'Penulisan perenggan', ar:'S', arx:[5,3,2]},
+ ]},
+ { n: 'Bahagian D', m: 20, a: 'Penulisan karangan.', q: [
+  {no:'16', t:'w', rows:16, s:'Tulis sebuah karangan bertajuk <b>"Kepentingan Amalan Membaca"</b>. Panjang karangan hendaklah antara <b>80 hingga 120 patah perkataan</b>.', m:20, sk:RUBRIK_KARANGAN+`<p><b>Isi yang dijangka:</b> menambah ilmu pengetahuan, meningkatkan penguasaan bahasa/kosa kata, mengisi masa lapang dengan berfaedah, membantu pelajaran dan peperiksaan, membuka minda/imaginasi.</p><p class="contoh"><b>Contoh karangan:</b><br>Membaca ialah amalan yang sangat baik. Bak kata pepatah, membaca jambatan ilmu. Terdapat banyak kepentingan amalan membaca.<br>Pertama, membaca dapat menambah ilmu pengetahuan. Kita boleh mengetahui perkara baharu tentang sains, sejarah dan dunia luar. Kedua, membaca membantu kita menguasai bahasa dengan baik. Kosa kata kita akan bertambah, lalu kita mudah menulis karangan.<br>Selain itu, membaca dapat mengisi masa lapang dengan perkara yang berfaedah. Kita tidak akan membuang masa dengan bermain gajet tanpa had.<br>Kesimpulannya, kita hendaklah menjadikan membaca sebagai amalan harian. Ibu bapa dan guru pula perlu menggalakkan kanak-kanak membaca.</p>`, tp:'Penulisan karangan (fakta)', ar:'T', arx:[9,7,4]},
+ ]},
+ ]
+},
+/* ============================== SET 3 ============================== */
+{
+ set: 3,
+ bhg: [
+ { n: 'Bahagian A', m: 10, a: 'Jawab semua soalan. Pilih jawapan yang paling sesuai.', q: [
+  {t:'o', s:'Pilih <b>kata sendi nama</b> yang sesuai.<br><i>Jam tangan itu hadiah ______ ibu saudara saya.</i>', p:['dari','di','ke','daripada'], j:3, m:1, tp:'Tatabahasa: kata sendi nama', ar:'S'},
+  {t:'o', s:'Pilih <b>penjodoh bilangan</b> yang betul.<br><i>Ayah membeli dua ______ kereta baharu.</i>', p:['ekor','buah','biji','batang'], j:1, m:1, tp:'Tatabahasa: penjodoh bilangan', ar:'R'},
+  {t:'o', s:'Perkataan yang manakah menerima <b>imbuhan ber-...-an</b> dengan betul?', p:['berlarian-an','bermainkan','berkejaran','bermasakan'], j:2, m:1, tp:'Tatabahasa: imbuhan apitan', ar:'S'},
+  {t:'o', s:'Kedua-dua sahabat itu sentiasa bersama dan saling membantu. Persahabatan mereka ______.', p:['bagai aur dengan tebing','seperti anjing dengan kucing','bagai melepaskan anjing tersepit','seperti kacang lupakan kulit'], j:0, m:1, tp:'Peribahasa: perumpamaan', ar:'S'},
+  {t:'x', h:`<p class="arahan">Baca petikan di bawah, kemudian jawab soalan 5 hingga 7.</p>
+<div class="petikan"><h4>Sang Kancil dan Buaya</h4>
+<p>Pada suatu hari, Sang Kancil berasa sangat lapar. Dia ternampak pokok rambutan yang sedang berbuah lebat di seberang sungai. Namun, sungai itu dalam dan dipenuhi buaya yang garang.</p>
+<p>Sang Kancil mendapat akal. Dia memanggil Sang Buaya dan berkata, "Raja memerintahkan aku mengira bilangan buaya di sungai ini. Raja ingin menjamu kamu semua." Mendengar kata-kata itu, buaya-buaya berbaris dari tebing ke tebing. Sang Kancil pun melompat di atas belakang buaya sambil mengira, "Satu, dua, tiga..."</p>
+<p>Sebaik sahaja tiba di seberang, Sang Kancil ketawa dan berkata, "Terima kasih, kawan-kawan! Tiada jamuan untuk kamu." Buaya-buaya itu berasa marah kerana tertipu. Sang Kancil pula menikmati buah rambutan dengan gembira.</p></div>`},
+  {t:'o', s:'Mengapakah Sang Kancil ingin ke seberang sungai?', p:['Dia mahu bertemu raja.','Dia mahu melarikan diri.','Dia mahu mengira buaya.','Dia mahu makan buah rambutan.'], j:3, m:1, tp:'Pemahaman: teks tunggal', ar:'R'},
+  {t:'o', s:'Apakah helah Sang Kancil untuk menyeberangi sungai?', p:['Dia berenang dengan pantas.','Dia menaiki rakit kayu.','Dia berpura-pura diperintah raja untuk mengira buaya.','Dia meminta bantuan Sang Gajah.'], j:2, m:1, tp:'Pemahaman: teks tunggal', ar:'S'},
+  {t:'o', s:'Sifat Sang Kancil yang ditonjolkan dalam cerita ialah ______.', p:['bijak tetapi menipu','penakut dan pemalu','pemurah dan jujur','malas dan lalai'], j:0, m:1, tp:'Pemahaman: watak & perwatakan', ar:'T'},
+  {t:'x', h:`<p class="arahan">Baca notis di bawah, kemudian jawab soalan 8 hingga 10.</p>
+<div class="poster"><div class="poster-h">NOTIS: GOTONG-ROYONG PERDANA</div>
+<p>Semua murid Tahun 5 dijemput menyertai gotong-royong membersihkan kawasan sekolah.</p>
+<p><b>Tarikh:</b> 7 November 2026 (Sabtu) &nbsp; <b>Masa:</b> 8.00 pagi – 11.00 pagi</p>
+<p><b>Tempat berkumpul:</b> Dataran perhimpunan</p>
+<p><b>Bawa:</b> penyapu lidi, sarung tangan dan botol air</p>
+<p>Sarapan disediakan oleh PIBG. Murid yang hadir akan diberikan <b>5 mata merit</b>.</p>
+<p class="kecil">Dikeluarkan oleh: Unit Hal Ehwal Murid</p></div>`},
+  {t:'o', s:'Berapa lamakah tempoh gotong-royong itu?', p:['2 jam','3 jam','4 jam','5 jam'], j:1, m:1, tp:'Pemahaman: teks pelbagai', ar:'S'},
+  {t:'o', s:'Barang yang <b>TIDAK</b> perlu dibawa oleh murid ialah ______.', p:['penyapu lidi','sarung tangan','bekal sarapan','botol air'], j:2, m:1, tp:'Pemahaman: teks pelbagai', ar:'S'},
+  {t:'o', s:'Apakah tujuan utama pihak sekolah memberikan mata merit?', p:['Menggalakkan murid menyertai gotong-royong','Menghukum murid yang tidak hadir','Mengutip yuran daripada murid','Memilih pengawas baharu'], j:0, m:1, tp:'Pemahaman: teks pelbagai (KBAT)', ar:'T'},
+ ]},
+ { n: 'Bahagian B', m: 10, a: 'Jawab semua soalan.', q: [
+  {t:'x', h:`<p class="arahan">Soalan 11: Padankan simpulan bahasa dengan maksudnya.</p>`},
+  {no:'11(a)', t:'o', s:'<b>Buah tangan</b>', p:['Hadiah atau ole-ole','Orang yang disayangi','Suka mencuri'], j:0, m:1, tp:'Peribahasa: simpulan bahasa', ar:'R'},
+  {no:'11(b)', t:'o', s:'<b>Kaki bangku</b>', p:['Suka berjalan jauh','Tidak pandai bermain bola','Kuat bekerja'], j:1, m:1, tp:'Peribahasa: simpulan bahasa', ar:'R'},
+  {no:'12', t:'s', s:'Bina <b>satu</b> ayat yang lengkap menggunakan frasa <b>bergotong-royong</b>.', m:2, sk:'Contoh: <b>Penduduk kampung bergotong-royong membersihkan surau pada hari Ahad.</b><br>2 markah: ayat lengkap, gramatis, bermakna. 1 markah: ayat ringkas tetapi ada kesalahan kecil.', tp:'Tatabahasa: pembinaan ayat', ar:'S'},
+  {no:'13', t:'s', s:'Berdasarkan petikan <i>Sang Kancil dan Buaya</i>, nyatakan <b>dua</b> perasaan watak dalam cerita itu.', m:2, sk:'Mana-mana dua:<br>• Sang Kancil berasa lapar<br>• Buaya-buaya berasa marah (kerana tertipu)<br>• Sang Kancil berasa gembira', tp:'Pemahaman: teks tunggal', ar:'S'},
+  {no:'14', t:'w', rows:5, s:'Adakah kamu bersetuju dengan perbuatan Sang Kancil menipu buaya-buaya itu? Berikan <b>pendapat</b> kamu dan <b>dua</b> alasan.', m:4, sk:'Respons kritis. Pendirian (bersetuju/tidak) diterima jika disokong alasan munasabah. Pendirian + alasan 1 (2 markah), alasan 2 (2 markah).<br>Contoh (tidak bersetuju): Menipu ialah perbuatan yang salah <i>kerana</i> boleh menyebabkan orang lain kecewa. Sang Kancil sepatutnya meminta tolong dengan jujur <i>supaya</i> dia tidak bermusuh dengan buaya.', tp:'Respons kritis & kreatif', ar:'T'},
+ ]},
+ { n: 'Bahagian C', m: 10, a: 'Penulisan perenggan.', q: [
+  {t:'x', h:`<div class="grafik"><div class="grafik-h">Kebaikan Bersenam</div><div class="grafik-g">
+<div>💪<span>Badan sihat dan cergas</span></div><div>😊<span>Mengurangkan tekanan</span></div>
+<div>😴<span>Tidur lebih lena</span></div><div>🤝<span>Mengeratkan hubungan dengan rakan</span></div></div></div>`},
+  {no:'15', t:'w', rows:9, s:'Berdasarkan bahan grafik di atas, tulis <b>satu perenggan</b> tentang kebaikan bersenam. Panjang perenggan hendaklah sekurang-kurangnya <b>50 patah perkataan</b>.', m:10, sk:RUBRIK_PERENGGAN+`<p class="contoh"><b>Contoh jawapan:</b> Bersenam memberikan banyak kebaikan kepada kita. Pertama, badan kita akan menjadi sihat dan cergas kerana otot dan jantung bertambah kuat. Bersenam juga dapat mengurangkan tekanan selepas penat belajar. Selain itu, orang yang kerap bersenam dapat tidur dengan lebih lena pada waktu malam. Bersenam bersama-sama rakan pula dapat mengeratkan hubungan persahabatan. Oleh itu, kita hendaklah bersenam sekurang-kurangnya tiga kali seminggu.</p>`, tp:'Penulisan perenggan', ar:'S', arx:[5,3,2]},
+ ]},
+ { n: 'Bahagian D', m: 20, a: 'Penulisan karangan.', q: [
+  {no:'16', t:'w', rows:16, s:'Kamu baru sahaja mengikuti lawatan sambil belajar ke sebuah tempat menarik. Tulis sebuah <b>surat kiriman tidak rasmi</b> kepada sahabat kamu untuk menceritakan pengalaman tersebut. Panjang surat hendaklah antara <b>80 hingga 120 patah perkataan</b>.', m:20, sk:RUBRIK_KARANGAN+`<p><b>Format surat kiriman tidak rasmi (wajib):</b> alamat pengirim, tarikh, panggilan (Sahabatku Amir,), salam pembuka, isi, penutup, salam penutup, tandatangan/nama. Format yang tidak lengkap boleh menurunkan tahap markah.</p><p class="contoh"><b>Contoh:</b><br>No. 12, Jalan Cempaka 3,<br>Taman Desa Rawang,<br>48000 Rawang, Selangor.<br>10 November 2026<br><br>Sahabatku Amir,<br>Apa khabar? Semoga kamu sihat di samping keluarga. Aku menulis surat ini untuk menceritakan lawatan sambil belajar ke Zoo Negara minggu lalu.<br>Kami bertolak dari sekolah pada pukul 8.00 pagi. Di zoo, aku melihat harimau Malaya, gajah dan pelbagai jenis burung. Pemandu zoo menerangkan cara haiwan melindungi diri daripada musuh. Aku juga sempat menonton pertunjukan anjing laut yang sangat lucu.<br>Lawatan ini menambah ilmu aku tentang haiwan. Aku berharap kamu dapat menyertai lawatan seperti ini suatu hari nanti.<br>Setakat ini sahaja warkah aku. Kirim salam kepada keluargamu.<br><br>Sahabatmu,<br>Danial</p>`, tp:'Penulisan karangan (surat tidak rasmi)', ar:'T', arx:[9,7,4]},
+ ]},
+ ]
+},
+];
+
+})();
+(function(){
+// SkorUASA.com — Bahasa Inggeris / English Year 5 (3 sets)
+window.SETS = window.SETS || {};
+
+const RUBRIC_P6 = `<table class="rb"><tr><th>Criteria</th><th>Marks</th><th>What to look for</th></tr>
+<tr><td>Content</td><td>4</td><td>All three points in the task are answered clearly.</td></tr>
+<tr><td>Organisation</td><td>2</td><td>Correct email/message form: greeting, ideas in order, closing.</td></tr>
+<tr><td>Language</td><td>4</td><td>Simple sentences are mostly correct; spelling and punctuation are accurate.</td></tr></table>`;
+
+const RUBRIC_P7 = `<table class="rb"><tr><th>Criteria</th><th>Marks</th><th>What to look for</th></tr>
+<tr><td>Content</td><td>6</td><td>Every note is expanded into full sentences with some extra detail.</td></tr>
+<tr><td>Organisation</td><td>3</td><td>Clear beginning, middle and ending; linkers such as <i>first, then, also, finally</i>.</td></tr>
+<tr><td>Language</td><td>6</td><td>Correct tenses, a range of vocabulary, accurate spelling and punctuation.</td></tr></table>`;
+
+SETS.bi = [
+/* ============================== SET 1 ============================== */
+{
+ set: 1,
+ bhg: [
+ { n: 'Part 1', m: 5, a: 'Look and read. Choose the correct answer A, B or C.', q: [
+  {t:'x', h:`<div class="nota">SCHOOL LIBRARY<br>Please return all books by Friday.<br>Late returns: 20 sen per day.</div>`},
+  {t:'o', s:'What does the notice say?', p:['You can only borrow books on Friday.','You must pay if you return a book late.','The library is closed on Friday.'], j:1, m:1, tp:'Short texts: notices', ar:'R'},
+  {t:'x', h:`<div class="nota msg">Mum, I'm at Lily's house to finish our Science project. Her mother will send me home at 6 p.m. — Sara</div>`},
+  {t:'o', s:'Why is Sara at Lily\'s house?', p:['To have dinner with Lily\'s family.','To work on a school project.','To celebrate Lily\'s birthday.'], j:1, m:1, tp:'Short texts: messages', ar:'R'},
+  {t:'x', h:`<div class="nota">⚠ NO DIVING<br>Shallow water: 1.2 m</div>`},
+  {t:'o', s:'What does the sign mean?', p:['Do not jump into the pool head first.','The water in this pool is very deep.','Swimming is not allowed here.'], j:0, m:1, tp:'Short texts: signs', ar:'S'},
+  {t:'x', h:`<div class="nota">CRISPY CORN SNACK<br>Keep in a cool, dry place.<br>Best before: 30/12/2026</div>`},
+  {t:'o', s:'What do we know about this snack?', p:['It must be kept in a freezer.','It was made on 30 December 2026.','It should be eaten before the end of 2026.'], j:2, m:1, tp:'Short texts: labels', ar:'S'},
+  {t:'x', h:`<div class="nota">SPORTS DAY — 6 NOVEMBER<br>Year 5 pupils: wear your house T-shirts.<br>Bring your own water bottle. No plastic cups.</div>`},
+  {t:'o', s:'Why must pupils bring their own water bottles?', p:['The school wants to reduce plastic waste.','Water is sold at the canteen.','Pupils must wear house T-shirts.'], j:0, m:1, tp:'Short texts: posters (HOTS)', ar:'T'},
+ ]},
+ { n: 'Part 2', m: 4, a: 'Read the text. Choose the best word A, B or C for each gap.', q: [
+  {t:'x', h:`<div class="petikan"><p>Last Saturday, my family went <b>(6)</b> ______ a picnic at Port Dickson. We <b>(7)</b> ______ sandwiches, fried rice and fruit. My little brother built a big sandcastle <b>(8)</b> ______ he was very proud of it. At the end of the day, we were tired <b>(9)</b> ______ happy.</p></div>`},
+  {t:'o', s:'(6)', p:['in','on','at'], j:1, m:1, tp:'Lexico-grammar: prepositions', ar:'S'},
+  {t:'o', s:'(7)', p:['bring','bringing','brought'], j:2, m:1, tp:'Lexico-grammar: simple past', ar:'R'},
+  {t:'o', s:'(8)', p:['and','or','because'], j:0, m:1, tp:'Lexico-grammar: conjunctions', ar:'R'},
+  {t:'o', s:'(9)', p:['so','but','or'], j:1, m:1, tp:'Lexico-grammar: conjunctions', ar:'S'},
+ ]},
+ { n: 'Part 3', m: 5, a: 'Read the text. Choose the correct answer A, B or C.', q: [
+  {t:'x', h:`<div class="petikan"><h4>A Visit to the Night Market</h4>
+<p>Every Wednesday evening, there is a night market near Daniel's house in Rawang. Last week, Daniel went there with his grandfather. They walked there because it is only five minutes from their house.</p>
+<p>The market was crowded and noisy. Daniel saw stalls selling clothes, toys, fruit and many kinds of food. His grandfather bought a kilogram of mangosteens for RM8. Daniel wanted a toy car, but he decided to save his money for a new storybook.</p>
+<p>Before going home, they shared a plate of hot <i>apam balik</i>. "This is the best <i>apam balik</i> in town," said Grandfather. Daniel agreed and smiled. He could not wait for next Wednesday.</p></div>`},
+  {t:'o', s:'When is the night market open?', p:['Every Saturday evening','Every Wednesday evening','Every evening'], j:1, m:1, tp:'Reading: linear text', ar:'R'},
+  {t:'o', s:'How did Daniel and his grandfather go to the market?', p:['By car','By bus','On foot'], j:2, m:1, tp:'Reading: linear text', ar:'S'},
+  {t:'o', s:'How much did Grandfather pay for the mangosteens?', p:['RM5','RM8','RM10'], j:1, m:1, tp:'Reading: linear text', ar:'R'},
+  {t:'o', s:'Why didn\'t Daniel buy the toy car?', p:['He wanted to buy a book instead.','The toy car was broken.','His grandfather did not allow him.'], j:0, m:1, tp:'Reading: linear text', ar:'S'},
+  {t:'o', s:'How did Daniel feel at the end of the story?', p:['Bored','Worried','Happy'], j:2, m:1, tp:'Reading: inference (HOTS)', ar:'T'},
+ ]},
+ { n: 'Part 4', m: 6, a: 'Six pupils want to join a holiday camp. Read about the pupils (15–20) and the camps (A–H). Choose the best camp for each pupil. There are two extra camps.', q: [
+  {t:'x', h:`<div class="match">
+<div><b>A Coding Kids</b> — Build your own simple computer games in three fun days.</div>
+<div><b>B Splash Club</b> — Swimming lessons for beginners in a safe, shallow pool.</div>
+<div><b>C Little Chefs</b> — Cook healthy meals and take the recipes home.</div>
+<div><b>D Jungle Trekkers</b> — Hike at Fraser's Hill and watch colourful birds.</div>
+<div><b>E Star Gazers</b> — A night camp with telescopes. Learn about the Moon and the stars.</div>
+<div><b>F Art Attack</b> — Try painting, batik and clay modelling.</div>
+<div><b>G Football Stars</b> — Train with real coaches and play friendly matches.</div>
+<div><b>H Book Buddies</b> — Read great books and write your own short story.</div></div>`},
+  {t:'o', s:'<b>Aiman</b> loves birds and enjoys walking in nature.', p:['A','B','C','D','E','F','G','H'], j:3, m:1, tp:'Matching multiple texts', ar:'R'},
+  {t:'o', s:'<b>Mei Ling</b> wants to make a game that she can play on the computer.', p:['A','B','C','D','E','F','G','H'], j:0, m:1, tp:'Matching multiple texts', ar:'R'},
+  {t:'o', s:'<b>Kavin</b> cannot swim yet. He wants to learn before his family trip to the beach.', p:['A','B','C','D','E','F','G','H'], j:1, m:1, tp:'Matching multiple texts', ar:'S'},
+  {t:'o', s:'<b>Nurul</b> would like to help her mother prepare food at home.', p:['A','B','C','D','E','F','G','H'], j:2, m:1, tp:'Matching multiple texts', ar:'S'},
+  {t:'o', s:'<b>Hana</b> often looks at the sky at night and wants to know more about it.', p:['A','B','C','D','E','F','G','H'], j:4, m:1, tp:'Matching multiple texts', ar:'S'},
+  {t:'o', s:'<b>Raj</b> enjoys reading and dreams of becoming a writer.', p:['A','B','C','D','E','F','G','H'], j:7, m:1, tp:'Matching multiple texts', ar:'T'},
+ ]},
+ { n: 'Part 5', m: 5, a: 'Read the text. Complete the words. The first letter is given.', q: [
+  {t:'x', h:`<div class="petikan"><p>Every morning, I brush my <b>(21)</b> t _ _ _ _ and have <b>(22)</b> b _ _ _ _ _ _ _ _ with my family. I go to school by <b>(23)</b> b _ _. After school, I do my <b>(24)</b> h _ _ _ _ _ _ _ before I play. At night, I <b>(25)</b> r _ _ _ a storybook before I sleep.</p></div>`},
+  {t:'s', s:'(21) t _ _ _ _', m:1, tr:['teeth'], sk:'teeth', tp:'Word completion', ar:'R'},
+  {t:'s', s:'(22) b _ _ _ _ _ _ _ _', m:1, tr:['breakfast'], sk:'breakfast', tp:'Word completion', ar:'R'},
+  {t:'s', s:'(23) b _ _', m:1, tr:['bus'], sk:'bus', tp:'Word completion', ar:'R'},
+  {t:'s', s:'(24) h _ _ _ _ _ _ _', m:1, tr:['homework'], sk:'homework', tp:'Word completion', ar:'S'},
+  {t:'s', s:'(25) r _ _ _', m:1, tr:['read'], sk:'read', tp:'Word completion', ar:'R'},
+ ]},
+ { n: 'Part 6', m: 10, a: 'Guided writing.', q: [
+  {t:'x', h:`<div class="nota msg"><b>From:</b> Zara<br><b>Subject:</b> My birthday party!<br><br>Hi! I'm having a birthday party at my house this Saturday. Can you come? There will be games and lots of food. Let me know soon!</div>`},
+  {no:'26', t:'w', rows:8, s:'Write a reply to Zara. In your email:<ul><li>thank Zara for the invitation</li><li>tell her if you can come</li><li>ask her what time the party starts</li></ul>Write about <b>40–60 words</b>.', m:10, sk:RUBRIC_P6+`<p class="contoh"><b>Sample answer:</b><br>Hi Zara,<br>Thank you for inviting me to your birthday party. Yes, I can come! My father will send me to your house. What time does the party start? I will bring a present for you. I am sure we will have a lot of fun playing games together.<br>See you on Saturday!<br>Aina</p>`, tp:'Guided writing: email', ar:'S', arx:[5,3,2]},
+ ]},
+ { n: 'Part 7', m: 15, a: 'Notes expansion.', q: [
+  {no:'27', t:'w', rows:14, s:'Your school is having a "Green School" week. Write an article for your school magazine titled <b>"How Our School Saves the Earth"</b>. Use all the notes below. Write about <b>80–100 words</b>.<div class="notes"><ul><li>recycling corner — every classroom</li><li>switch off fans and lights — before recess</li><li>plant trees — with friends</li><li>reusable water bottles — no plastic</li></ul></div>', m:15, sk:RUBRIC_P7+`<p class="contoh"><b>Sample answer:</b><br><b>How Our School Saves the Earth</b><br>Our school does many things to save the Earth. First, there is a recycling corner in every classroom. We put paper, plastic and cans into different boxes. Next, the class monitors switch off the fans and lights before recess so that we can save electricity. We also plant trees with our friends around the school field. The trees make our school cool and green. Finally, all pupils bring reusable water bottles to school, so we do not use plastic cups any more. I am proud of my school because we take care of the Earth together.</p>`, tp:'Notes expansion: article', ar:'T', arx:[7,4,4]},
+ ]},
+ ]
+},
+/* ============================== SET 2 ============================== */
+{
+ set: 2,
+ bhg: [
+ { n: 'Part 1', m: 5, a: 'Look and read. Choose the correct answer A, B or C.', q: [
+  {t:'x', h:`<div class="nota">SCIENCE ROOM<br>Do not eat or drink inside.<br>Wash your hands after experiments.</div>`},
+  {t:'o', s:'What must pupils do in the Science Room?', p:['Bring food for the experiments.','Clean their hands after an experiment.','Drink water before entering.'], j:1, m:1, tp:'Short texts: notices', ar:'R'},
+  {t:'x', h:`<div class="nota msg">Adam, football practice is cancelled today because of the rain. We will practise on Thursday instead. — Coach Hafiz</div>`},
+  {t:'o', s:'What should Adam do?', p:['Go to practice on Thursday.','Go to practice today in the rain.','Stop playing football.'], j:0, m:1, tp:'Short texts: messages', ar:'R'},
+  {t:'x', h:`<div class="nota">BOOK FAIR<br>Buy 2 books, get 1 FREE!<br>School Hall, 9 a.m. – 2 p.m.</div>`},
+  {t:'o', s:'If you pay for four books, how many books can you take home?', p:['Four','Five','Six'], j:2, m:1, tp:'Short texts: posters (HOTS)', ar:'T'},
+  {t:'x', h:`<div class="nota">🐾 PLEASE DO NOT FEED THE ANIMALS<br>They have special food.</div>`},
+  {t:'o', s:'Where can you see this sign?', p:['At a zoo','In a supermarket','At a bus stop'], j:0, m:1, tp:'Short texts: signs', ar:'R'},
+  {t:'x', h:`<div class="nota msg">Kak Mira, I borrowed your blue umbrella this morning. I'll return it after school. Sorry I didn't ask you first! — Hani</div>`},
+  {t:'o', s:'Why is Hani writing to Kak Mira?', p:['To ask her to buy an umbrella.','To say sorry for taking her umbrella.','To tell her that it will rain.'], j:1, m:1, tp:'Short texts: messages', ar:'S'},
+ ]},
+ { n: 'Part 2', m: 4, a: 'Read the text. Choose the best word A, B or C for each gap.', q: [
+  {t:'x', h:`<div class="petikan"><p>My best friend is Kumar. He is <b>(6)</b> ______ than me, but I can run faster. Every evening, we <b>(7)</b> ______ badminton at the community hall. Kumar has <b>(8)</b> ______ new racket. It is red and black. I always enjoy <b>(9)</b> ______ time with him.</p></div>`},
+  {t:'o', s:'(6)', p:['tall','taller','tallest'], j:1, m:1, tp:'Lexico-grammar: comparatives', ar:'R'},
+  {t:'o', s:'(7)', p:['play','plays','playing'], j:0, m:1, tp:'Lexico-grammar: simple present', ar:'S'},
+  {t:'o', s:'(8)', p:['an','a','the'], j:1, m:1, tp:'Lexico-grammar: articles', ar:'R'},
+  {t:'o', s:'(9)', p:['spend','spent','spending'], j:2, m:1, tp:'Lexico-grammar: gerunds', ar:'S'},
+ ]},
+ { n: 'Part 3', m: 5, a: 'Read the timetable. Choose the correct answer A, B or C.', q: [
+  {t:'x', h:`<div class="poster"><div class="poster-h">SUNNY HILLS SCHOOL — HOLIDAY PROGRAMME</div>
+<table class="jd"><tr><th>Day</th><th>Activity</th><th>Time</th><th>Place</th></tr>
+<tr><td>Monday</td><td>Robotics workshop</td><td>9.00 – 11.00 a.m.</td><td>Computer Lab</td></tr>
+<tr><td>Tuesday</td><td>Batik painting</td><td>9.00 – 12.00 p.m.</td><td>Art Room</td></tr>
+<tr><td>Wednesday</td><td>Treasure hunt</td><td>8.00 – 10.00 a.m.</td><td>School Field</td></tr>
+<tr><td>Thursday</td><td>Cooking class</td><td>10.00 – 12.00 p.m.</td><td>Canteen</td></tr></table>
+<p class="kecil">Fee: RM10 per activity. Bring an apron for the cooking class.</p></div>`},
+  {t:'o', s:'Which activity is held outdoors?', p:['Robotics workshop','Treasure hunt','Cooking class'], j:1, m:1, tp:'Reading: non-linear text', ar:'R'},
+  {t:'o', s:'Which activity is the longest?', p:['Batik painting','Robotics workshop','Treasure hunt'], j:0, m:1, tp:'Reading: non-linear text', ar:'S'},
+  {t:'o', s:'Where is the cooking class?', p:['In the Art Room','In the canteen','In the Computer Lab'], j:1, m:1, tp:'Reading: non-linear text', ar:'R'},
+  {t:'o', s:'Siti joins three activities. How much must she pay?', p:['RM10','RM20','RM30'], j:2, m:1, tp:'Reading: non-linear text', ar:'S'},
+  {t:'o', s:'Which pupil will enjoy Monday\'s activity the most?', p:['Ali, who likes building machines','Ben, who likes drawing','Chong, who likes running'], j:0, m:1, tp:'Reading: inference (HOTS)', ar:'T'},
+ ]},
+ { n: 'Part 4', m: 6, a: 'Six pupils want to borrow a book. Read about the pupils (15–20) and the books (A–H). Choose the best book for each pupil. There are two extra books.', q: [
+  {t:'x', h:`<div class="match">
+<div><b>A Wild Malaysia</b> — Photos and facts about orang utans, tapirs and hornbills.</div>
+<div><b>B Mystery at Midnight</b> — Two friends solve a puzzling case in their town.</div>
+<div><b>C Easy Origami</b> — Fold paper into birds, boats and flowers, step by step.</div>
+<div><b>D Football Legends</b> — The stories of the world's greatest football players.</div>
+<div><b>E Journey to Mars</b> — Learn how astronauts travel and live in space.</div>
+<div><b>F Healthy Snacks</b> — Simple recipes for tasty food that is good for you.</div>
+<div><b>G Funny Poems</b> — A collection of silly rhymes to read aloud.</div>
+<div><b>H Our Festivals</b> — How Malaysians celebrate Hari Raya, Chinese New Year and Deepavali.</div></div>`},
+  {t:'o', s:'<b>Farah</b> wants to make paper decorations for her classroom.', p:['A','B','C','D','E','F','G','H'], j:2, m:1, tp:'Matching multiple texts', ar:'R'},
+  {t:'o', s:'<b>Jason</b> likes stories where the characters find out who did something.', p:['A','B','C','D','E','F','G','H'], j:1, m:1, tp:'Matching multiple texts', ar:'S'},
+  {t:'o', s:'<b>Priya</b> wants to become an astronaut one day.', p:['A','B','C','D','E','F','G','H'], j:4, m:1, tp:'Matching multiple texts', ar:'R'},
+  {t:'o', s:'<b>Haziq</b> is doing a project about animals in our country.', p:['A','B','C','D','E','F','G','H'], j:0, m:1, tp:'Matching multiple texts', ar:'S'},
+  {t:'o', s:'<b>Lina</b> wants to learn about the celebrations of her friends from other races.', p:['A','B','C','D','E','F','G','H'], j:7, m:1, tp:'Matching multiple texts', ar:'S'},
+  {t:'o', s:'<b>Ezra</b> wants to make food for his family that is not oily or too sweet.', p:['A','B','C','D','E','F','G','H'], j:5, m:1, tp:'Matching multiple texts', ar:'T'},
+ ]},
+ { n: 'Part 5', m: 5, a: 'Read the text. Complete the words. The first letter is given.', q: [
+  {t:'x', h:`<div class="petikan"><p>My father is a <b>(21)</b> d _ _ _ _ _ _. He works at the hospital and helps sick people. My mother is a <b>(22)</b> t _ _ _ _ _ _. She teaches Mathematics. My uncle is a <b>(23)</b> f _ _ _ _ _ _. He grows padi in Kedah. My aunt flies an aeroplane. She is a <b>(24)</b> p _ _ _ _. When I grow up, I want to <b>(25)</b> b _ _ _ _ houses like my grandfather.</p></div>`},
+  {t:'s', s:'(21) d _ _ _ _ _ _', m:1, tr:['doctor'], sk:'doctor', tp:'Word completion', ar:'R'},
+  {t:'s', s:'(22) t _ _ _ _ _ _', m:1, tr:['teacher'], sk:'teacher', tp:'Word completion', ar:'R'},
+  {t:'s', s:'(23) f _ _ _ _ _ _', m:1, tr:['farmer'], sk:'farmer', tp:'Word completion', ar:'R'},
+  {t:'s', s:'(24) p _ _ _ _', m:1, tr:['pilot'], sk:'pilot', tp:'Word completion', ar:'S'},
+  {t:'s', s:'(25) b _ _ _ _', m:1, tr:['build'], sk:'build', tp:'Word completion', ar:'S'},
+ ]},
+ { n: 'Part 6', m: 10, a: 'Guided writing.', q: [
+  {t:'x', h:`<div class="nota msg">Your class is collecting old books for a rural school library. Your teacher wants you to write a note to your neighbour, Mrs Tan.</div>`},
+  {no:'26', t:'w', rows:8, s:'Write a note to Mrs Tan. In your note:<ul><li>tell her about the book collection</li><li>ask if she has any old storybooks</li><li>say when you will collect them</li></ul>Write about <b>40–60 words</b>.', m:10, sk:RUBRIC_P6+`<p class="contoh"><b>Sample answer:</b><br>Dear Mrs Tan,<br>My class is collecting old books for a school library in a village in Pahang. The pupils there do not have many books to read. Do you have any old storybooks that you do not need? I will come to your house to collect them on Saturday morning. Thank you very much.<br>Yours,<br>Irfan (House No. 14)</p>`, tp:'Guided writing: note', ar:'S', arx:[5,3,2]},
+ ]},
+ { n: 'Part 7', m: 15, a: 'Notes expansion.', q: [
+  {no:'27', t:'w', rows:14, s:'Write a story titled <b>"The Lost Kitten"</b>. Use all the notes below. Write about <b>80–100 words</b>.<div class="notes"><ul><li>walking home — heard a soft "meow"</li><li>kitten — wet, hungry, under a car</li><li>took it home — gave milk, dried it</li><li>found owner — poster — very thankful</li></ul></div>', m:15, sk:RUBRIC_P7+`<p class="contoh"><b>Sample answer:</b><br><b>The Lost Kitten</b><br>One rainy afternoon, I was walking home from school when I heard a soft "meow". I looked around and saw a small kitten under a car. It was wet and very hungry. I felt sorry for it, so I picked it up gently and took it home. My mother helped me dry the kitten with a towel, and I gave it some warm milk. The next day, I saw a poster about a lost kitten near the shop. I called the number and the owner came to my house. She was very thankful and hugged her kitten tightly. I was happy because I had done a good deed.</p>`, tp:'Notes expansion: story', ar:'T', arx:[7,4,4]},
+ ]},
+ ]
+},
+/* ============================== SET 3 ============================== */
+{
+ set: 3,
+ bhg: [
+ { n: 'Part 1', m: 5, a: 'Look and read. Choose the correct answer A, B or C.', q: [
+  {t:'x', h:`<div class="nota">CANTEEN<br>Please queue up.<br>Rice and noodles sold out after 10.30 a.m.</div>`},
+  {t:'o', s:'What does the notice tell pupils?', p:['There is no food after 10.30 a.m.','Pupils must wait in a line.','The canteen opens at 10.30 a.m.'], j:1, m:1, tp:'Short texts: notices', ar:'S'},
+  {t:'x', h:`<div class="nota msg">Ravi, the Maths homework is on page 45, questions 1 to 10. Hand it in tomorrow. — Kevin</div>`},
+  {t:'o', s:'What should Ravi do?', p:['Finish ten questions for tomorrow.','Read page 10 tonight.','Give Kevin his Maths book.'], j:0, m:1, tp:'Short texts: messages', ar:'R'},
+  {t:'x', h:`<div class="nota">🚲 BICYCLE PARKING ONLY<br>Lock your bicycle. The school is not responsible for lost items.</div>`},
+  {t:'o', s:'Why should pupils lock their bicycles?', p:['So the bicycles do not get dirty.','So the bicycles are not stolen.','So the bicycles stay dry.'], j:1, m:1, tp:'Short texts: signs (HOTS)', ar:'T'},
+  {t:'x', h:`<div class="nota">LOST: Green water bottle with the name "AMY" on it. Last seen in the music room. Please return to 5 Bestari.</div>`},
+  {t:'o', s:'Where should you return the bottle?', p:['To the music room','To the office','To the class 5 Bestari'], j:2, m:1, tp:'Short texts: notices', ar:'R'},
+  {t:'x', h:`<div class="nota">ZOO NEGARA<br>Opening hours: 9 a.m. – 5 p.m.<br>Children below 3: FREE</div>`},
+  {t:'o', s:'Which statement is true?', p:['The zoo opens at night.','A two-year-old child does not need to pay.','All children must pay.'], j:1, m:1, tp:'Short texts: notices', ar:'S'},
+ ]},
+ { n: 'Part 2', m: 4, a: 'Read the text. Choose the best word A, B or C for each gap.', q: [
+  {t:'x', h:`<div class="petikan"><p>Dear Grandma,<br>I hope you are well. Yesterday, I <b>(6)</b> ______ a prize in the drawing competition! My drawing was about a busy market. I drew <b>(7)</b> ______ people buying fruit and vegetables. My teacher said it was the <b>(8)</b> ______ drawing in the class. I <b>(9)</b> ______ show it to you when I visit you next month.</p></div>`},
+  {t:'o', s:'(6)', p:['win','won','winning'], j:1, m:1, tp:'Lexico-grammar: simple past', ar:'R'},
+  {t:'o', s:'(7)', p:['many','much','a'], j:0, m:1, tp:'Lexico-grammar: quantifiers', ar:'S'},
+  {t:'o', s:'(8)', p:['good','better','best'], j:2, m:1, tp:'Lexico-grammar: superlatives', ar:'R'},
+  {t:'o', s:'(9)', p:['will','was','did'], j:0, m:1, tp:'Lexico-grammar: future', ar:'S'},
+ ]},
+ { n: 'Part 3', m: 5, a: 'Read the text. Choose the correct answer A, B or C.', q: [
+  {t:'x', h:`<div class="petikan"><h4>The Hornbill</h4>
+<p>The hornbill is a large bird with a long, curved beak. On top of its beak, there is a hard part called a <i>casque</i>. There are ten kinds of hornbills in Malaysia. Sarawak is known as the "Land of the Hornbills".</p>
+<p>Hornbills eat mostly fruit, especially figs. When they fly from tree to tree, they drop seeds on the forest floor. These seeds grow into new trees. That is why hornbills are called the "farmers of the forest".</p>
+<p>When the mother hornbill lays eggs, she stays inside a hole in a tree. The father closes the hole with mud, leaving only a small gap. He brings food to the mother and babies every day. Today, hornbills are in danger because many forests are cut down.</p></div>`},
+  {t:'o', s:'What is a casque?', p:['A kind of fig','The hard part on top of the beak','The hole in a tree'], j:1, m:1, tp:'Reading: linear text', ar:'R'},
+  {t:'o', s:'How many kinds of hornbills are there in Malaysia?', p:['Eight','Ten','Twelve'], j:1, m:1, tp:'Reading: linear text', ar:'R'},
+  {t:'o', s:'Why are hornbills called the "farmers of the forest"?', p:['They help new trees grow by dropping seeds.','They dig the soil with their beaks.','They live on farms near the forest.'], j:0, m:1, tp:'Reading: linear text', ar:'S'},
+  {t:'o', s:'What does the father hornbill do?', p:['He sits on the eggs.','He brings food to his family.','He builds a nest on the ground.'], j:1, m:1, tp:'Reading: linear text', ar:'S'},
+  {t:'o', s:'What is the best way to protect hornbills?', p:['Keep them in cages at home.','Stop cutting down too many forests.','Plant more figs in the city.'], j:1, m:1, tp:'Reading: evaluation (HOTS)', ar:'T'},
+ ]},
+ { n: 'Part 4', m: 6, a: 'Six pupils are choosing a co-curricular club. Read about the pupils (15–20) and the clubs (A–H). Choose the best club for each pupil. There are two extra clubs.', q: [
+  {t:'x', h:`<div class="match">
+<div><b>A Scouts</b> — Learn to tie knots, set up tents and go camping.</div>
+<div><b>B Choir</b> — Sing together and perform at school events.</div>
+<div><b>C Chess Club</b> — Play chess and join district tournaments.</div>
+<div><b>D Red Crescent</b> — Learn first aid and how to help injured people.</div>
+<div><b>E Nature Club</b> — Look after the school garden and fish pond.</div>
+<div><b>F Taekwondo</b> — Build strength and learn self-defence.</div>
+<div><b>G Photography Club</b> — Take pictures and edit them on a tablet.</div>
+<div><b>H English Drama</b> — Act in plays and improve your speaking.</div></div>`},
+  {t:'o', s:'<b>Iqbal</b> likes games where he must think carefully before he moves.', p:['A','B','C','D','E','F','G','H'], j:2, m:1, tp:'Matching multiple texts', ar:'S'},
+  {t:'o', s:'<b>Sofia</b> wants to become a nurse and help people who are hurt.', p:['A','B','C','D','E','F','G','H'], j:3, m:1, tp:'Matching multiple texts', ar:'S'},
+  {t:'o', s:'<b>Darren</b> loves sleeping outdoors and exploring the forest.', p:['A','B','C','D','E','F','G','H'], j:0, m:1, tp:'Matching multiple texts', ar:'R'},
+  {t:'o', s:'<b>Aisyah</b> has a beautiful voice and enjoys music.', p:['A','B','C','D','E','F','G','H'], j:1, m:1, tp:'Matching multiple texts', ar:'R'},
+  {t:'o', s:'<b>Wei Jie</b> enjoys taking care of plants and fish.', p:['A','B','C','D','E','F','G','H'], j:4, m:1, tp:'Matching multiple texts', ar:'R'},
+  {t:'o', s:'<b>Mira</b> is shy but wants to be more confident when she speaks English in front of people.', p:['A','B','C','D','E','F','G','H'], j:7, m:1, tp:'Matching multiple texts', ar:'T'},
+ ]},
+ { n: 'Part 5', m: 5, a: 'Read the text. Complete the words. The first letter is given.', q: [
+  {t:'x', h:`<div class="petikan"><p>Today the weather is very hot and <b>(21)</b> s _ _ _ _. I wear my <b>(22)</b> h _ _ to protect my head. In the afternoon, dark clouds come and it starts to <b>(23)</b> r _ _ _. I open my <b>(24)</b> u _ _ _ _ _ _ _ so I don't get wet. After the rain, I see a beautiful <b>(25)</b> r _ _ _ _ _ _ in the sky.</p></div>`},
+  {t:'s', s:'(21) s _ _ _ _', m:1, tr:['sunny'], sk:'sunny', tp:'Word completion', ar:'R'},
+  {t:'s', s:'(22) h _ _', m:1, tr:['hat'], sk:'hat', tp:'Word completion', ar:'R'},
+  {t:'s', s:'(23) r _ _ _', m:1, tr:['rain'], sk:'rain', tp:'Word completion', ar:'R'},
+  {t:'s', s:'(24) u _ _ _ _ _ _ _', m:1, tr:['umbrella'], sk:'umbrella', tp:'Word completion', ar:'S'},
+  {t:'s', s:'(25) r _ _ _ _ _ _', m:1, tr:['rainbow'], sk:'rainbow', tp:'Word completion', ar:'S'},
+ ]},
+ { n: 'Part 6', m: 10, a: 'Guided writing.', q: [
+  {t:'x', h:`<div class="nota msg">Your cousin, Danish, is coming to stay at your house during the school holidays. He has never been to your town before.</div>`},
+  {no:'26', t:'w', rows:8, s:'Write a message to Danish. In your message:<ul><li>tell him you are happy he is coming</li><li>suggest <b>one</b> place you can visit together</li><li>tell him what he should bring</li></ul>Write about <b>40–60 words</b>.', m:10, sk:RUBRIC_P6+`<p class="contoh"><b>Sample answer:</b><br>Hi Danish,<br>I am so happy that you are coming to stay with us! We can go to the waterfall near my house. The water is cool and clear, and we can have a picnic there. Please bring an extra set of clothes and a towel because we will get wet. I can't wait to see you!<br>Your cousin,<br>Haikal</p>`, tp:'Guided writing: message', ar:'S', arx:[5,3,2]},
+ ]},
+ { n: 'Part 7', m: 15, a: 'Notes expansion.', q: [
+  {no:'27', t:'w', rows:14, s:'Write an article titled <b>"Staying Healthy"</b> for your class blog. Use all the notes below. Write about <b>80–100 words</b>.<div class="notes"><ul><li>eat fruit and vegetables — every day</li><li>drink plenty of water — not sweet drinks</li><li>exercise — 30 minutes</li><li>sleep early — 8 to 10 hours</li></ul></div>', m:15, sk:RUBRIC_P7+`<p class="contoh"><b>Sample answer:</b><br><b>Staying Healthy</b><br>Everyone wants to be healthy, and it is easy if we follow a few simple tips. First, we should eat fruit and vegetables every day because they give us vitamins. Next, we must drink plenty of water. Sweet drinks have too much sugar and are bad for our teeth. We should also exercise for at least 30 minutes a day. We can cycle, swim or play badminton with our friends. Finally, we need to sleep early, for about eight to ten hours, so that our bodies can rest. If we do all these things, we will be strong and happy.</p>`, tp:'Notes expansion: article', ar:'T', arx:[7,4,4]},
+ ]},
+ ]
+},
+];
+
+})();
+(function(){
+// SkorUASA.com — Matematik Tahun 5 (3 set)
+// Format UASA: Bahagian A 13 soalan (26 markah), Bahagian B 2 soalan (24 markah), semua subjektif.
+window.SETS = window.SETS || {};
+
+const S = (vb, inner) => `<svg class="rajah" viewBox="${vb}" xmlns="http://www.w3.org/2000/svg" role="img">${inner}</svg>`;
+
+// Set 1 Q11: segi empat sama + segi tiga sama sisi
+const SVG_M1_11 = S('0 0 260 270', `
+<polygon points="70,130 190,130 190,250 70,250" class="sh"/>
+<polygon points="70,130 190,130 130,26" class="sh2"/>
+<text x="130" y="266" text-anchor="middle">6 cm</text>
+<line x1="125" y1="246" x2="135" y2="254" class="tk"/><line x1="186" y1="185" x2="194" y2="195" class="tk"/><line x1="66" y1="185" x2="74" y2="195" class="tk"/>
+<line x1="96" y1="74" x2="104" y2="82" class="tk"/><line x1="156" y1="82" x2="164" y2="74" class="tk"/>
+<text x="130" y="200" text-anchor="middle" class="lbl">Segi empat sama</text>
+<text x="130" y="110" text-anchor="middle" class="lbl">Segi tiga sama sisi</text>`);
+
+// Set 1 Q14: peta koordinat
+const grid = (n, u, ox, oy) => { let g=''; for(let i=0;i<=n;i++){ g+=`<line x1="${ox+i*u}" y1="${oy}" x2="${ox+i*u}" y2="${oy-n*u}" class="gr"/><line x1="${ox}" y1="${oy-i*u}" x2="${ox+n*u}" y2="${oy-i*u}" class="gr"/><text x="${ox+i*u}" y="${oy+16}" text-anchor="middle" class="ax">${i}</text>${i?`<text x="${ox-10}" y="${oy-i*u+4}" text-anchor="end" class="ax">${i}</text>`:''}`; } return g + `<line x1="${ox}" y1="${oy}" x2="${ox+n*u+8}" y2="${oy}" class="axl"/><line x1="${ox}" y1="${oy}" x2="${ox}" y2="${oy-n*u-8}" class="axl"/>`; };
+const pt = (x,y,l,u,ox,oy) => `<circle cx="${ox+x*u}" cy="${oy-y*u}" r="5" class="dot"/><text x="${ox+x*u+8}" y="${oy-y*u-8}" class="ptl">${l}</text>`;
+const SVG_M1_14 = S('0 0 300 290', grid(8,30,40,260) + pt(2,3,'Sekolah',30,40,260) + pt(6,3,'Kedai',30,40,260) + pt(6,7,'Rumah',30,40,260) + pt(1,6,'Masjid',30,40,260)
+ + `<text x="290" y="276" text-anchor="end" class="ax">x</text><text x="30" y="14" class="ax">y</text>`);
+
+// Set 2 Q11: segi empat tepat + segi tiga bersudut tegak
+const SVG_M2_11 = S('0 0 340 190', `
+<polygon points="30,40 190,40 190,140 30,140" class="sh"/>
+<polygon points="190,40 190,140 310,140" class="sh2"/>
+<polyline points="190,128 202,128 202,140" class="ra"/>
+<text x="110" y="32" text-anchor="middle">8 cm</text><text x="22" y="95" text-anchor="end">5 cm</text><text x="250" y="160" text-anchor="middle">6 cm</text>`);
+
+// Set 2 Q14: kuboid A dengan kubus B di atasnya
+const SVG_M2_14 = S('0 0 340 230', `
+<polygon points="30,130 230,130 230,190 30,190" class="sh"/>
+<polygon points="30,130 70,100 270,100 230,130" class="sh"/>
+<polygon points="230,130 270,100 270,160 230,190" class="sh"/>
+<polygon points="40,50 120,50 120,130 40,130" class="sh2"/>
+<polygon points="40,50 70,28 150,28 120,50" class="sh2"/>
+<polygon points="120,50 150,28 150,107 120,130" class="sh2"/>
+<text x="130" y="208" text-anchor="middle">10 cm</text><text x="258" y="186" >4 cm</text><text x="24" y="165" text-anchor="end">3 cm</text>
+<text x="80" y="95" text-anchor="middle" class="lbl">B</text><text x="170" y="165" text-anchor="middle" class="lbl">A</text>
+<text x="80" y="146" text-anchor="middle" class="ax">sisi 4 cm</text>`);
+
+// Set 2 Q15: carta palang pengunjung perpustakaan
+const bars = (vals, labels) => { const ox=50, oy=210, h=1.8, w=44; let g=''; for(let v=0; v<=100; v+=20){ g+=`<line x1="${ox}" y1="${oy-v*h}" x2="${ox+5*56+10}" y2="${oy-v*h}" class="gr"/><text x="${ox-8}" y="${oy-v*h+4}" text-anchor="end" class="ax">${v}</text>`; }
+ vals.forEach((v,i)=>{ const x=ox+12+i*56; g+=`<rect x="${x}" y="${oy-v*h}" width="${w}" height="${v*h}" class="bar"/><text x="${x+w/2}" y="${oy-v*h-6}" text-anchor="middle" class="ptl">${v}</text><text x="${x+w/2}" y="${oy+16}" text-anchor="middle" class="ax">${labels[i]}</text>`; });
+ return g + `<line x1="${ox}" y1="${oy}" x2="${ox+5*56+10}" y2="${oy}" class="axl"/><line x1="${ox}" y1="${oy}" x2="${ox}" y2="${oy-100*h-6}" class="axl"/><text x="14" y="${oy-50*h}" transform="rotate(-90 14 ${oy-50*h})" text-anchor="middle" class="ax">Bilangan pengunjung</text>`; };
+const SVG_M2_15 = S('0 0 360 240', bars([45,30,60,30,85],['Isnin','Selasa','Rabu','Khamis','Jumaat']));
+
+// Set 3 Q11: segi empat sama + segi tiga bersudut tegak
+const SVG_M3_11 = S('0 0 350 240', `
+<polygon points="40,40 200,40 200,200 40,200" class="sh"/>
+<polygon points="200,40 200,200 320,200" class="sh2"/>
+<polyline points="200,188 212,188 212,200" class="ra"/>
+<text x="120" y="222" text-anchor="middle">8 cm</text><text x="260" y="222" text-anchor="middle">6 cm</text><text x="270" y="112">10 cm</text>`);
+
+SETS.mt = [
+/* ============================== SET 1 ============================== */
+{
+ set: 1,
+ bhg: [
+ { n: 'Bahagian A', m: 26, a: 'Jawab semua soalan. Tunjukkan jalan kerja bagi soalan 2 dan 3 markah.', q: [
+  {t:'s', s:'Tulis <b>405 060</b> dalam perkataan.', m:1, tr:['empat ratus lima ribu enam puluh'], sk:'Empat ratus lima ribu enam puluh', tp:'Nombor bulat: membaca & menulis', ar:'R'},
+  {t:'s', s:'Bundarkan <b>683 452</b> kepada ratus ribu yang terdekat.', m:1, tr:['700000','700 000'], sk:'700 000', tp:'Nombor bulat: membundar', ar:'R'},
+  {t:'s', s:'Nyatakan nilai digit <b>7</b> dalam nombor <b>0.473</b>.', m:1, tr:['0.07'], sk:'0.07 (7 perseratus)', tp:'Perpuluhan: nilai digit', ar:'R'},
+  {t:'s', s:'<b>2½ jam</b> = ______ minit', m:1, tr:['150','150minit'], sk:'2½ × 60 = <b>150 minit</b>', tp:'Masa: penukaran unit pecahan', ar:'R'},
+  {t:'s', s:'Senaraikan semua <b>nombor perdana</b> antara 20 dan 40.', m:2, tr:['23,29,31,37','23 29 31 37'], sk:'<b>23, 29, 31, 37</b><br>2 markah: keempat-empat betul. 1 markah: 2–3 nombor betul.', tp:'Nombor bulat: nombor perdana', ar:'R'},
+  {t:'s', s:'Hitung: &nbsp; <span class="eq">2/5 × 35</span>', m:2, tr:['14'], sk:'35 ÷ 5 = 7 &nbsp;(1m)<br>7 × 2 = <b>14</b> &nbsp;(1m)', tp:'Pecahan: darab dengan nombor bulat', ar:'R'},
+  {t:'s', s:'Hitung: &nbsp; <span class="eq">4.56 + 12.8 − 7.093</span>', m:2, tr:['10.267'], sk:'4.56 + 12.8 = 17.36 &nbsp;(1m)<br>17.36 − 7.093 = <b>10.267</b> &nbsp;(1m)', tp:'Perpuluhan: operasi bergabung', ar:'R'},
+  {t:'s', s:'Hitung <b>25%</b> daripada <b>RM360</b>.', m:2, tr:['90','90.00'], sk:'25/100 × 360 &nbsp;(1m)<br>= <b>RM90</b> &nbsp;(1m)', tp:'Peratus: nilai peratus kuantiti', ar:'R'},
+  {t:'s', s:'<b>3/5 abad</b> = ______ tahun', m:2, tr:['60','60tahun'], sk:'1 abad = 100 tahun &nbsp;(1m)<br>3/5 × 100 = <b>60 tahun</b> &nbsp;(1m)', tp:'Masa: abad, dekad & tahun', ar:'R'},
+  {t:'s', s:'Sebuah bekas mengandungi <b>2.4 ℓ</b> air. Aina menuang <b>750 mℓ</b> air daripada bekas itu ke dalam sebuah botol. Berapakah isi padu air yang tinggal di dalam bekas itu, dalam <b>mℓ</b>?', m:3, tr:['1650','1650ml','1 650'], sk:'2.4 ℓ = 2 400 mℓ &nbsp;(1m)<br>2 400 − 750 &nbsp;(1m)<br>= <b>1 650 mℓ</b> &nbsp;(1m)', tp:'Ukuran: isi padu cecair', ar:'S'},
+  {t:'x', h:`<p class="arahan">Rajah 1 menunjukkan sebuah bentuk yang terdiri daripada sebuah segi empat sama dan sebuah segi tiga sama sisi.</p>${SVG_M1_11}<p class="cap">Rajah 1</p>`},
+  {t:'s', s:'Hitung <b>perimeter</b>, dalam cm, seluruh rajah itu.', m:3, tr:['30','30cm'], sk:'Sisi segi tiga sama sisi = 6 cm &nbsp;(1m)<br>Perimeter = 6 + 6 + 6 + 6 + 6 &nbsp;(1m)<br>= <b>30 cm</b> &nbsp;(1m)<br><i>Sisi yang dikongsi tidak dikira.</i>', tp:'Ruang: perimeter bentuk gabungan', ar:'S'},
+  {t:'s', s:'Encik Rahim menyimpan <b>RM5 000</b> di sebuah bank yang memberikan <b>faedah mudah 3%</b> setahun. Berapakah jumlah wang simpanannya selepas <b>1 tahun</b>?', m:3, tr:['5150','5 150','5150.00'], sk:'Faedah = 3/100 × 5 000 &nbsp;(1m)<br>= RM150 &nbsp;(1m)<br>Jumlah = 5 000 + 150 = <b>RM5 150</b> &nbsp;(1m)', tp:'Wang: simpanan & faedah mudah', ar:'S'},
+  {t:'s', s:'Jisim lima bungkusan ialah <b>2 kg, 5 kg, 3 kg, 5 kg</b> dan <b>10 kg</b>. Hitung <b>min</b> jisim bungkusan itu.', m:3, tr:['5','5kg'], sk:'Jumlah = 2 + 5 + 3 + 5 + 10 = 25 kg &nbsp;(1m)<br>Min = 25 ÷ 5 &nbsp;(1m)<br>= <b>5 kg</b> &nbsp;(1m)', tp:'Pengurusan data: min', ar:'T'},
+ ]},
+ { n: 'Bahagian B', m: 24, a: 'Jawab semua soalan.', q: [
+  {t:'x', h:`<p class="arahan"><b>Soalan 14.</b> Rajah 2 menunjukkan kedudukan beberapa tempat pada satah Cartes. Setiap unit mewakili <b>1 km</b>.</p>${SVG_M1_14}<p class="cap">Rajah 2</p>`},
+  {no:'14(a)', t:'s', s:'Nyatakan koordinat <b>Kedai</b>.', m:2, tr:['(6,3)','6,3'], sk:'<b>(6, 3)</b>', tp:'Koordinat: menyatakan koordinat', ar:'R'},
+  {no:'14(b)', t:'s', s:'Berapakah jarak mengufuk, dalam km, dari <b>Sekolah</b> ke <b>Kedai</b>?', m:2, tr:['4','4km'], sk:'6 − 2 = <b>4 km</b>', tp:'Koordinat: jarak mengufuk', ar:'R'},
+  {no:'14(c)', t:'s', s:'Ahmad berjalan dari Sekolah ke Kedai, kemudian terus ke Rumah. Hitung jumlah jarak, dalam km, yang dilalui oleh Ahmad.', m:3, tr:['8','8km'], sk:'Sekolah → Kedai = 4 km &nbsp;(1m)<br>Kedai → Rumah = 7 − 3 = 4 km &nbsp;(1m)<br>Jumlah = <b>8 km</b> &nbsp;(1m)', tp:'Koordinat: jarak mencancang', ar:'R'},
+  {no:'14(d)', t:'s', s:'Nisbah bilangan murid lelaki kepada murid perempuan di sekolah itu ialah <b>3 : 4</b>. Terdapat <b>280</b> orang murid perempuan. Berapakah <b>jumlah</b> murid di sekolah itu?', m:5, tr:['490'], sk:'4 bahagian = 280 &nbsp;(1m)<br>1 bahagian = 280 ÷ 4 = 70 &nbsp;(1m)<br>Murid lelaki = 3 × 70 = 210 &nbsp;(1m)<br>Jumlah = 210 + 280 &nbsp;(1m)<br>= <b>490 orang</b> &nbsp;(1m)', tp:'Nisbah & kadaran', ar:'T'},
+  {t:'x', h:`<p class="arahan"><b>Soalan 15.</b> Jadual 1 menunjukkan harga kek di kedai Puan Lim.</p><table class="jd"><tr><th>Jenis kek</th><th>Harga sebiji</th></tr><tr><td>Kek coklat</td><td>RM45.00</td></tr><tr><td>Kek pandan</td><td>RM38.00</td></tr><tr><td>Kek keju</td><td>RM60.00</td></tr></table><p class="cap">Jadual 1</p>`},
+  {no:'15(a)', t:'s', s:'Puan Lim menjual <b>12</b> biji kek coklat. Berapakah hasil jualan kek coklat itu?', m:2, tr:['540','540.00'], sk:'12 × 45 = <b>RM540</b>', tp:'Wang: darab', ar:'R'},
+  {no:'15(b)', t:'s', s:'Encik Ravi membeli <b>2</b> biji kek keju dan <b>1</b> biji kek pandan. Dia membayar dengan <b>RM200</b>. Berapakah baki wangnya?', m:3, tr:['42','42.00'], sk:'2 × 60 + 38 = RM158 &nbsp;(2m)<br>200 − 158 = <b>RM42</b> &nbsp;(1m)', tp:'Wang: operasi bergabung', ar:'S'},
+  {no:'15(c)', t:'s', s:'Pada hari Jumaat, harga kek keju dikurangkan sebanyak <b>15%</b>. Berapakah harga sebiji kek keju pada hari itu?', m:3, tr:['51','51.00'], sk:'15/100 × 60 = RM9 &nbsp;(1m)<br>60 − 9 &nbsp;(1m)<br>= <b>RM51</b> &nbsp;(1m)', tp:'Peratus: pengurangan', ar:'S'},
+  {no:'15(d)', t:'s', s:'Kek keju perlu dibakar selama <b>1 jam 25 minit</b>. Puan Lim memasukkan kek ke dalam ketuhar pada pukul <b>2:50 petang</b>. Pada pukul berapakah kek itu siap dibakar?', m:4, tr:['4:15petang','4.15petang','4:15','4.15'], sk:'2:50 petang + 1 jam = 3:50 petang &nbsp;(1m)<br>3:50 petang + 10 minit = 4:00 petang &nbsp;(1m)<br>4:00 petang + 15 minit &nbsp;(1m)<br>= <b>4:15 petang</b> &nbsp;(1m)', tp:'Masa & waktu: tempoh', ar:'T'},
+ ]},
+ ]
+},
+/* ============================== SET 2 ============================== */
+{
+ set: 2,
+ bhg: [
+ { n: 'Bahagian A', m: 26, a: 'Jawab semua soalan. Tunjukkan jalan kerja bagi soalan 2 dan 3 markah.', q: [
+  {t:'s', s:'Tulis <b>dua ratus tiga ribu lima ratus</b> dalam angka.', m:1, tr:['203500','203 500'], sk:'203 500', tp:'Nombor bulat: menulis nombor', ar:'R'},
+  {t:'s', s:'Nyatakan <b>nilai tempat</b> bagi digit 8 dalam nombor <b>586 214</b>.', m:1, tr:['puluh ribu','puluhribu'], sk:'Puluh ribu', tp:'Nombor bulat: nilai tempat', ar:'R'},
+  {t:'s', s:'Tukarkan <b>2/5</b> kepada peratus.', m:1, tr:['40','40%'], sk:'40%', tp:'Peratus: pecahan kepada peratus', ar:'R'},
+  {t:'s', s:'<b>3 dekad</b> = ______ tahun', m:1, tr:['30','30tahun'], sk:'30 tahun', tp:'Masa: dekad & tahun', ar:'R'},
+  {t:'s', s:'Tukarkan <b>3.6 juta</b> kepada nombor bulat.', m:2, tr:['3600000','3 600 000'], sk:'3.6 × 1 000 000 = <b>3 600 000</b>', tp:'Nombor bulat: perpuluhan juta', ar:'R'},
+  {t:'s', s:'Hitung: &nbsp; <span class="eq">1¾ + 2½</span>', m:2, tr:['4 1/4','41/4','4¼','17/4','4.25'], sk:'1¾ + 2²⁄₄ = 3⁵⁄₄ &nbsp;(1m)<br>= <b>4¼</b> &nbsp;(1m)', tp:'Pecahan: tambah nombor bercampur', ar:'R'},
+  {t:'s', s:'Hitung: &nbsp; <span class="eq">3.25 × 8</span>', m:2, tr:['26','26.00','26.0'], sk:'3.25 × 8 = <b>26</b>', tp:'Perpuluhan: darab', ar:'R'},
+  {t:'s', s:'<b>4 kg 350 g − 1.8 kg</b> = ______ g', m:2, tr:['2550','2550g','2 550'], sk:'4 350 g − 1 800 g &nbsp;(1m)<br>= <b>2 550 g</b> &nbsp;(1m)', tp:'Ukuran: jisim', ar:'R'},
+  {t:'s', s:'<b>3/8</b> daripada <b>2 km</b> = ______ m', m:2, tr:['750','750m'], sk:'2 km = 2 000 m &nbsp;(1m)<br>3/8 × 2 000 = <b>750 m</b> &nbsp;(1m)', tp:'Ukuran: panjang & pecahan', ar:'R'},
+  {t:'s', s:'Aiman ada <b>RM250</b>. Dia membeli <b>3</b> buah buku yang berharga <b>RM18.50</b> sebuah dan sebuah beg berharga <b>RM79.90</b>. Berapakah baki wang Aiman?', m:3, tr:['114.60','114.6'], sk:'3 × 18.50 = RM55.50 &nbsp;(1m)<br>55.50 + 79.90 = RM135.40 &nbsp;(1m)<br>250 − 135.40 = <b>RM114.60</b> &nbsp;(1m)', tp:'Wang: operasi bergabung', ar:'S'},
+  {t:'x', h:`<p class="arahan">Rajah 1 menunjukkan sebuah segi empat tepat dan sebuah segi tiga bersudut tegak.</p>${SVG_M2_11}<p class="cap">Rajah 1</p>`},
+  {t:'s', s:'Hitung <b>luas</b>, dalam cm², seluruh rajah itu.', m:3, tr:['55','55cm2','55cm²'], sk:'Luas segi empat tepat = 8 × 5 = 40 cm² &nbsp;(1m)<br>Luas segi tiga = ½ × 6 × 5 = 15 cm² &nbsp;(1m)<br>Jumlah = <b>55 cm²</b> &nbsp;(1m)', tp:'Ruang: luas bentuk gabungan', ar:'S'},
+  {t:'s', s:'Bilangan buku yang dibaca oleh enam orang murid dalam sebulan ialah:<br><span class="eq">4, 9, 6, 3, 8, 6</span><br>Cari <b>median</b> data itu.', m:3, tr:['6'], sk:'Susun: 3, 4, 6, 6, 8, 9 &nbsp;(1m)<br>Dua nilai tengah: 6 dan 6 &nbsp;(1m)<br>Median = (6 + 6) ÷ 2 = <b>6</b> &nbsp;(1m)', tp:'Pengurusan data: median', ar:'S'},
+  {t:'s', s:'<b>3</b> batang pen berharga <b>RM4.50</b>. Berapakah harga <b>8</b> batang pen yang sama?', m:3, tr:['12','12.00'], sk:'1 batang = 4.50 ÷ 3 = RM1.50 &nbsp;(1m)<br>8 batang = 8 × 1.50 &nbsp;(1m)<br>= <b>RM12</b> &nbsp;(1m)', tp:'Kadaran', ar:'T'},
+ ]},
+ { n: 'Bahagian B', m: 24, a: 'Jawab semua soalan.', q: [
+  {t:'x', h:`<p class="arahan"><b>Soalan 14.</b> Rajah 2 menunjukkan pepejal P yang terdiri daripada kuboid A dan kubus B.</p>${SVG_M2_14}<p class="cap">Rajah 2</p>`},
+  {no:'14(a)', t:'s', s:'Hitung isi padu kuboid A, dalam cm³.', m:2, tr:['120','120cm3','120cm³'], sk:'10 × 4 × 3 = <b>120 cm³</b>', tp:'Ruang: isi padu kuboid', ar:'R'},
+  {no:'14(b)', t:'s', s:'Hitung isi padu kubus B, dalam cm³.', m:2, tr:['64','64cm3','64cm³'], sk:'4 × 4 × 4 = <b>64 cm³</b>', tp:'Ruang: isi padu kubus', ar:'R'},
+  {no:'14(c)', t:'s', s:'Hitung jumlah isi padu pepejal P, dalam cm³.', m:3, tr:['184','184cm3','184cm³'], sk:'120 + 64 &nbsp;(2m)<br>= <b>184 cm³</b> &nbsp;(1m)', tp:'Ruang: isi padu gabungan', ar:'R'},
+  {no:'14(d)', t:'s', s:'Kubus B dikeluarkan dan digantikan dengan kuboid C. Isi padu kuboid C ialah <b>½</b> daripada isi padu kuboid A. Hitung isi padu pepejal yang baharu, dalam cm³.', m:5, tr:['180','180cm3','180cm³'], sk:'Isi padu C = ½ × 120 &nbsp;(1m)<br>= 60 cm³ &nbsp;(1m)<br>Isi padu baharu = 120 + 60 &nbsp;(2m)<br>= <b>180 cm³</b> &nbsp;(1m)', tp:'Ruang: isi padu (KBAT)', ar:'T'},
+  {t:'x', h:`<p class="arahan"><b>Soalan 15.</b> Carta palang menunjukkan bilangan pengunjung sebuah perpustakaan dari hari Isnin hingga Jumaat.</p>${SVG_M2_15}<p class="cap">Rajah 3</p>`},
+  {no:'15(a)', t:'s', s:'Nyatakan <b>mod</b> bilangan pengunjung.', m:2, tr:['30'], sk:'<b>30</b> (muncul dua kali: Selasa & Khamis)', tp:'Pengurusan data: mod', ar:'R'},
+  {no:'15(b)', t:'s', s:'Hitung <b>julat</b> bilangan pengunjung.', m:2, tr:['55'], sk:'85 − 30 = <b>55</b>', tp:'Pengurusan data: julat', ar:'S'},
+  {no:'15(c)', t:'s', s:'Hitung <b>min</b> bilangan pengunjung sehari.', m:3, tr:['50'], sk:'45 + 30 + 60 + 30 + 85 = 250 &nbsp;(1m)<br>250 ÷ 5 &nbsp;(1m)<br>= <b>50 orang</b> &nbsp;(1m)', tp:'Pengurusan data: min', ar:'S'},
+  {no:'15(d)', t:'s', s:'Perpustakaan itu juga dibuka pada hari Sabtu. Min bilangan pengunjung bagi <b>enam</b> hari ialah <b>55</b> orang. Berapakah bilangan pengunjung pada hari Sabtu?', m:5, tr:['80'], sk:'Jumlah 6 hari = 6 × 55 &nbsp;(1m)<br>= 330 &nbsp;(1m)<br>Sabtu = 330 − 250 &nbsp;(2m)<br>= <b>80 orang</b> &nbsp;(1m)', tp:'Pengurusan data: min (KBAT)', ar:'T'},
+ ]},
+ ]
+},
+/* ============================== SET 3 ============================== */
+{
+ set: 3,
+ bhg: [
+ { n: 'Bahagian A', m: 26, a: 'Jawab semua soalan. Tunjukkan jalan kerja bagi soalan 2 dan 3 markah.', q: [
+  {t:'s', s:'Bundarkan <b>849 562</b> kepada ribu yang terdekat.', m:1, tr:['850000','850 000'], sk:'850 000', tp:'Nombor bulat: membundar', ar:'R'},
+  {t:'s', s:'Lengkapkan pola nombor: &nbsp;<span class="eq">250 000, 300 000, 350 000, ______</span>', m:1, tr:['400000','400 000'], sk:'400 000 (tambah 50 000)', tp:'Nombor bulat: pola nombor', ar:'R'},
+  {t:'s', s:'Tukarkan <b>17/5</b> kepada nombor bercampur.', m:1, tr:['3 2/5','32/5','3⅖'], sk:'3 2/5', tp:'Pecahan: pecahan tak wajar', ar:'R'},
+  {t:'s', s:'<b>0.8</b> = ______ %', m:1, tr:['80','80%'], sk:'80%', tp:'Peratus: perpuluhan kepada peratus', ar:'R'},
+  {t:'s', s:'Hitung: &nbsp; <span class="eq">45 600 + 12 400 ÷ 4</span>', m:2, tr:['48700','48 700'], sk:'12 400 ÷ 4 = 3 100 (bahagi dahulu) &nbsp;(1m)<br>45 600 + 3 100 = <b>48 700</b> &nbsp;(1m)', tp:'Nombor bulat: operasi bergabung', ar:'R'},
+  {t:'s', s:'Hitung: &nbsp; <span class="eq">3/5 ÷ 3</span>', m:2, tr:['1/5'], sk:'3/5 × 1/3 &nbsp;(1m)<br>= <b>1/5</b> &nbsp;(1m)', tp:'Pecahan: bahagi dengan nombor bulat', ar:'R'},
+  {t:'s', s:'<b>4.5 ℓ</b> jus dituang sama banyak ke dalam <b>6</b> buah botol. Berapakah isi padu jus dalam sebuah botol, dalam mℓ?', m:2, tr:['750','750ml'], sk:'4.5 ℓ = 4 500 mℓ &nbsp;(1m)<br>4 500 ÷ 6 = <b>750 mℓ</b> &nbsp;(1m)', tp:'Ukuran: isi padu cecair', ar:'R'},
+  {t:'s', s:'<b>2.5 abad</b> = ______ tahun', m:2, tr:['250','250tahun'], sk:'2.5 × 100 = <b>250 tahun</b>', tp:'Masa: abad & tahun (perpuluhan)', ar:'R'},
+  {t:'s', s:'Daripada <b>40</b> orang murid, <b>35%</b> menyertai Kelab Sains. Berapakah bilangan murid yang menyertai Kelab Sains?', m:2, tr:['14'], sk:'35/100 × 40 &nbsp;(1m)<br>= <b>14 orang</b> &nbsp;(1m)', tp:'Peratus: nilai peratus kuantiti', ar:'R'},
+  {t:'s', s:'Jarak dari rumah ke sekolah ialah <b>1.25 km</b>. Aisyah berjalan pergi dan balik dari sekolah setiap hari. Berapakah jumlah jarak, dalam km, yang dilalui oleh Aisyah dalam <b>5</b> hari?', m:3, tr:['12.5','12.5km'], sk:'Sehari = 1.25 × 2 = 2.5 km &nbsp;(1m)<br>5 hari = 2.5 × 5 &nbsp;(1m)<br>= <b>12.5 km</b> &nbsp;(1m)', tp:'Ukuran: panjang', ar:'S'},
+  {t:'x', h:`<p class="arahan">Rajah 1 menunjukkan sebuah segi empat sama dan sebuah segi tiga bersudut tegak.</p>${SVG_M3_11}<p class="cap">Rajah 1</p>`},
+  {t:'s', s:'Hitung <b>perimeter</b>, dalam cm, seluruh rajah itu.', m:3, tr:['40','40cm'], sk:'Sisi segi empat sama yang terlibat = 8 + 8 + 8 = 24 cm &nbsp;(1m)<br>24 + 6 + 10 &nbsp;(1m)<br>= <b>40 cm</b> &nbsp;(1m)', tp:'Ruang: perimeter bentuk gabungan', ar:'S'},
+  {t:'s', s:'Puan Aini menyimpan <b>RM1 200</b> setiap bulan selama <b>1 tahun</b>. Kemudian, dia mengeluarkan <b>3/8</b> daripada jumlah simpanannya untuk membeli sebuah komputer. Berapakah baki simpanannya?', m:3, tr:['9000','9 000'], sk:'Simpanan = 1 200 × 12 = RM14 400 &nbsp;(1m)<br>3/8 × 14 400 = RM5 400 &nbsp;(1m)<br>14 400 − 5 400 = <b>RM9 000</b> &nbsp;(1m)', tp:'Wang: simpanan & pecahan', ar:'S'},
+  {t:'s', s:'Nisbah bilangan guli merah kepada guli biru ialah <b>2 : 5</b>. Jumlah guli ialah <b>63</b> biji. Berapakah bilangan guli biru?', m:3, tr:['45'], sk:'Jumlah bahagian = 2 + 5 = 7 &nbsp;(1m)<br>1 bahagian = 63 ÷ 7 = 9 &nbsp;(1m)<br>Guli biru = 5 × 9 = <b>45 biji</b> &nbsp;(1m)', tp:'Nisbah', ar:'T'},
+ ]},
+ { n: 'Bahagian B', m: 24, a: 'Jawab semua soalan.', q: [
+  {t:'x', h:`<p class="arahan"><b>Soalan 14.</b> Encik Tan mempunyai tiga karung beras.</p><table class="jd"><tr><th>Karung</th><th>Jisim</th></tr><tr><td>P</td><td>12.5 kg</td></tr><tr><td>Q</td><td>9 kg 750 g</td></tr><tr><td>R</td><td>15 kg 250 g</td></tr></table><p class="cap">Jadual 1</p>`},
+  {no:'14(a)', t:'s', s:'Hitung jumlah jisim ketiga-tiga karung beras itu, dalam kg.', m:3, tr:['37.5','37.5kg'], sk:'9 kg 750 g = 9.75 kg; 15 kg 250 g = 15.25 kg &nbsp;(1m)<br>12.5 + 9.75 + 15.25 &nbsp;(1m)<br>= <b>37.5 kg</b> &nbsp;(1m)', tp:'Ukuran: jisim', ar:'S'},
+  {no:'14(b)', t:'s', s:'Semua beras itu dibungkus ke dalam beg yang setiap satunya mengandungi <b>750 g</b> beras. Berapakah bilangan beg yang diperlukan?', m:3, tr:['50'], sk:'37.5 kg = 37 500 g &nbsp;(1m)<br>37 500 ÷ 750 &nbsp;(1m)<br>= <b>50 beg</b> &nbsp;(1m)', tp:'Ukuran: jisim & bahagi', ar:'S'},
+  {no:'14(c)', t:'s', s:'Setiap beg dijual dengan harga <b>RM3.20</b>. Berapakah jumlah wang yang diperoleh jika semua beg dijual?', m:2, tr:['160','160.00'], sk:'50 × 3.20 = <b>RM160</b>', tp:'Wang: darab', ar:'R'},
+  {no:'14(d)', t:'s', s:'Pada hari pertama, <b>2/5</b> daripada beg itu dijual. Pada hari kedua, <b>30%</b> daripada baki beg pula dijual. Berapakah bilangan beg yang <b>belum dijual</b>?', m:4, tr:['21'], sk:'Hari pertama: 2/5 × 50 = 20 beg &nbsp;(1m)<br>Baki = 30 beg &nbsp;(1m)<br>Hari kedua: 30/100 × 30 = 9 beg &nbsp;(1m)<br>Belum dijual = 30 − 9 = <b>21 beg</b> &nbsp;(1m)', tp:'Pecahan & peratus (KBAT)', ar:'T'},
+  {t:'x', h:`<p class="arahan"><b>Soalan 15.</b> Jadual 2 menunjukkan tahun lahir tiga orang ahli keluarga Aina.</p><table class="jd"><tr><th>Ahli keluarga</th><th>Tahun lahir</th></tr><tr><td>Datuk</td><td>1958</td></tr><tr><td>Ayah</td><td>1986</td></tr><tr><td>Aina</td><td>2016</td></tr></table><p class="cap">Jadual 2</p>`},
+  {no:'15(a)', t:'s', s:'Berapakah umur datuk pada tahun <b>2026</b>?', m:2, tr:['68','68tahun'], sk:'2026 − 1958 = <b>68 tahun</b>', tp:'Masa: tempoh dalam tahun', ar:'R'},
+  {no:'15(b)', t:'s', s:'Beza umur antara datuk dengan Aina, dalam <b>dekad</b>.', m:3, tr:['5.8','5.8dekad'], sk:'2016 − 1958 = 58 tahun &nbsp;(1m)<br>58 ÷ 10 &nbsp;(1m)<br>= <b>5.8 dekad</b> &nbsp;(1m)', tp:'Masa: dekad (perpuluhan)', ar:'S'},
+  {no:'15(c)', t:'s', s:'Antara tahun 1958, 1986 dan 2016, tahun manakah ialah <b>tahun lompat</b>?', m:2, tr:['2016'], sk:'<b>2016</b> (2016 ÷ 4 = 504, tiada baki)', tp:'Masa: tahun lompat', ar:'S'},
+  {no:'15(d)', t:'s', s:'Bangunan sekolah Aina dibina pada tahun <b>1926</b>. Pada tahun berapakah bangunan itu genap berusia <b>1½ abad</b>?', m:5, tr:['2076'], sk:'1 abad = 100 tahun &nbsp;(1m)<br>1½ abad = 150 tahun &nbsp;(2m)<br>1926 + 150 &nbsp;(1m)<br>= <b>tahun 2076</b> &nbsp;(1m)', tp:'Masa: abad (KBAT)', ar:'T'},
+ ]},
+ ]
+},
+];
+
+})();
+(function(){
+// SkorUASA.com — Sains Tahun 5 (3 set)
+// Format UASA: Bahagian A 10 soalan (10m), Bahagian B 2 soalan (8m), Bahagian C 4 soalan (32m)
+window.SETS = window.SETS || {};
+
+const KPS = '<p class="kecil"><b>Ingat:</b> pemboleh ubah dimanipulasikan = apa yang diubah; bergerak balas = apa yang diperhatikan/diukur; dimalarkan = apa yang dikekalkan sama.</p>';
+
+SETS.sn = [
+/* ============================== SET 1 ============================== */
+{
+ set: 1,
+ bhg: [
+ { n: 'Bahagian A', m: 10, a: 'Jawab semua soalan. Pilih jawapan yang paling tepat.', q: [
+  {t:'o', s:'Darah yang kaya dengan oksigen dibawa dari peparu ke ______.', p:['ginjal','jantung','perut','otak'], j:1, m:1, tp:'Manusia: sistem peredaran darah', ar:'R'},
+  {t:'o', s:'Apakah fungsi salur darah?', p:['Mengepam darah','Menyokong badan','Mengangkut darah ke seluruh badan','Menukar karbon dioksida kepada oksigen'], j:2, m:1, tp:'Manusia: sistem peredaran darah', ar:'R'},
+  {t:'o', s:'Pasangan haiwan dan cara melindungi diri daripada musuh yang manakah <b>betul</b>?', p:['Cicak — memutuskan ekor','Kerbau — berhijrah','Penguin — berkubang','Tupai tanah — mengeram telur'], j:0, m:1, tp:'Haiwan: kemandirian spesies', ar:'R'},
+  {t:'o', s:'Biji benih yang manakah disebarkan oleh <b>angin</b>?', p:['Kelapa','Rambutan','Kacang bendi','Kekabu'], j:3, m:1, tp:'Tumbuhan: penyebaran biji benih', ar:'R'},
+  {t:'o', s:'Antara berikut, yang manakah sumber tenaga elektrik yang <b>boleh dibaharui</b>?', p:['Arang batu','Gas asli','Cahaya Matahari','Petroleum'], j:2, m:1, tp:'Elektrik: sumber tenaga elektrik', ar:'R'},
+  {t:'o', s:'Dua mentol, P dan Q, disambungkan secara <b>selari</b> dalam sebuah litar lengkap. Apakah yang berlaku kepada mentol Q jika mentol P ditanggalkan?', p:['Mentol Q terus menyala','Mentol Q padam','Mentol Q terbakar','Mentol Q berkelip-kelip'], j:0, m:1, tp:'Elektrik: litar selari', ar:'R'},
+  {t:'o', s:'Pada suhu berapakah air tulen mendidih?', p:['0 °C','37 °C','50 °C','100 °C'], j:3, m:1, tp:'Haba: takat didih', ar:'R'},
+  {t:'o', s:'Apakah faktor yang menyebabkan pengaratan?', p:['Cahaya dan haba','Air dan udara','Tanah dan pasir','Minyak dan cat'], j:1, m:1, tp:'Pengaratan: faktor', ar:'R'},
+  {t:'o', s:'Titisan air terbentuk di bahagian luar gelas yang berisi ais. Proses ini dinamakan ______.', p:['pemeluwapan','pembekuan','penyejatan','peleburan'], j:0, m:1, tp:'Jirim: perubahan keadaan air', ar:'R'},
+  {t:'o', s:'Pengasah pensel mekanikal mempunyai gabungan beberapa mesin ringkas. Mengapakah gabungan mesin ringkas ini penting?', p:['Supaya alat itu kelihatan cantik','Supaya alat itu lebih berat','Supaya alat itu dapat berfungsi dan memudahkan kerja','Supaya alat itu mudah rosak'], j:2, m:1, tp:'Mesin: kegunaan alatan (KBAT)', ar:'T'},
+ ]},
+ { n: 'Bahagian B', m: 8, a: 'Jawab semua soalan.', q: [
+  {t:'x', h:`<p class="arahan"><b>Soalan 11.</b> Rajah 1 menunjukkan satu rantai makanan di kawasan sawah padi.</p><div class="rantai"><span>Padi</span>→<span>Tikus</span>→<span>Ular</span>→<span>Helang</span></div><p class="cap">Rajah 1</p>`},
+  {no:'11(a)', t:'s', s:'Namakan <b>pengeluar</b> dalam rantai makanan itu.', m:1, tr:['padi'], sk:'Padi', tp:'Haiwan: rantai makanan', ar:'R'},
+  {no:'11(b)', t:'s', s:'Berapakah bilangan <b>pengguna</b> dalam rantai makanan itu?', m:1, tr:['3','tiga'], sk:'3 (tikus, ular, helang)', tp:'Haiwan: rantai makanan', ar:'R'},
+  {no:'11(c)', t:'s', s:'Apakah sumber tenaga utama bagi rantai makanan itu?', m:1, tr:['matahari','cahayamatahari'], sk:'Matahari / cahaya Matahari', tp:'Haiwan: pemindahan tenaga', ar:'R'},
+  {no:'11(d)', t:'o', s:'Ramalkan apa yang berlaku kepada populasi tikus jika semua ular mati.', p:['Bertambah','Berkurang','Tidak berubah'], j:0, m:1, tp:'Haiwan: meramal perubahan populasi', ar:'T'},
+  {t:'x', h:`<p class="arahan"><b>Soalan 12.</b> Padankan bahagian rangka manusia dengan fungsinya.</p>`},
+  {no:'12(a)', t:'o', s:'Tulang belakang', p:['Menyokong badan','Melindungi otak','Melindungi jantung dan peparu','Membolehkan pergerakan'], j:0, m:1, tp:'Manusia: sistem rangka', ar:'R'},
+  {no:'12(b)', t:'o', s:'Tulang rusuk', p:['Menyokong badan','Melindungi otak','Melindungi jantung dan peparu','Membolehkan pergerakan'], j:2, m:1, tp:'Manusia: sistem rangka', ar:'R'},
+  {no:'12(c)', t:'o', s:'Tengkorak', p:['Menyokong badan','Melindungi otak','Melindungi jantung dan peparu','Membolehkan pergerakan'], j:1, m:1, tp:'Manusia: sistem rangka', ar:'R'},
+  {no:'12(d)', t:'o', s:'Sendi', p:['Menyokong badan','Melindungi otak','Melindungi jantung dan peparu','Membolehkan pergerakan'], j:3, m:1, tp:'Manusia: sistem rangka', ar:'R'},
+ ]},
+ { n: 'Bahagian C', m: 32, a: 'Jawab semua soalan.', q: [
+  {t:'x', h:`<p class="arahan"><b>Soalan 13.</b> Seorang murid menjalankan satu penyiasatan menggunakan litar bersiri dengan sebiji mentol. Dia mengubah bilangan sel kering dan memerhatikan kecerahan mentol.</p><table class="jd"><tr><th>Bilangan sel kering</th><th>Kecerahan mentol</th></tr><tr><td>1</td><td>Malap</td></tr><tr><td>2</td><td>Cerah</td></tr><tr><td>3</td><td>Sangat cerah</td></tr></table><p class="cap">Jadual 1</p>${KPS}`},
+  {no:'13(a)', t:'s', s:'Nyatakan pemboleh ubah yang <b>dimanipulasikan</b>.', m:1, tr:['bilangan sel kering'], sk:'Bilangan sel kering', tp:'KPS: mengawal pemboleh ubah', ar:'R'},
+  {no:'13(b)', t:'s', s:'Nyatakan pemboleh ubah yang <b>bergerak balas</b>.', m:1, tr:['kecerahan mentol'], sk:'Kecerahan mentol', tp:'KPS: mengawal pemboleh ubah', ar:'R'},
+  {no:'13(c)', t:'s', s:'Nyatakan <b>satu</b> pemboleh ubah yang <b>dimalarkan</b>.', m:1, sk:'Bilangan mentol / jenis mentol / jenis wayar / jenis sel kering (mana-mana satu)', tp:'KPS: mengawal pemboleh ubah', ar:'S'},
+  {no:'13(d)', t:'s', s:'Tulis satu <b>hipotesis</b> bagi penyiasatan ini.', m:2, sk:'<b>Semakin bertambah bilangan sel kering, semakin cerah mentol menyala.</b><br>2m: hubungan PU dimanipulasi dengan PU bergerak balas yang lengkap. 1m: hanya menyebut satu pemboleh ubah dengan betul.', tp:'KPS: membuat hipotesis', ar:'T'},
+  {no:'13(e)', t:'s', s:'<b>Ramalkan</b> kecerahan mentol jika 4 sel kering digunakan.', m:1, sk:'Lebih cerah daripada 3 sel kering / paling cerah. (Terima juga: mentol mungkin terbakar.)', tp:'KPS: meramal', ar:'S'},
+  {no:'13(f)', t:'s', s:'Mengapakah mentol <b>tidak boleh</b> disambungkan kepada terlalu banyak sel kering?', m:2, sk:'Arus elektrik terlalu tinggi (1m), menyebabkan filamen mentol terbakar/putus (1m).', tp:'Elektrik: keselamatan (KBAT)', ar:'T'},
+  {t:'x', h:`<p class="arahan"><b>Soalan 14.</b> Rajah 2 menunjukkan penyiasatan tentang pengaratan. Paku besi dimasukkan ke dalam tiga tabung uji dan dibiarkan selama seminggu.</p><table class="jd"><tr><th>Tabung uji</th><th>Keadaan</th><th>Pemerhatian</th></tr><tr><td>A</td><td>Paku dalam air paip (ada udara)</td><td>?</td></tr><tr><td>B</td><td>Paku dalam air yang telah dididihkan + lapisan minyak di atas</td><td>Tidak berkarat</td></tr><tr><td>C</td><td>Paku + kalsium klorida kontang, tabung ditutup</td><td>Tidak berkarat</td></tr></table><p class="cap">Rajah 2</p>`},
+  {no:'14(a)', t:'o', s:'Ramalkan pemerhatian bagi tabung uji A.', p:['Paku berkarat','Paku tidak berkarat','Paku larut'], j:0, m:1, tp:'Pengaratan: penyiasatan', ar:'R'},
+  {no:'14(b)', t:'s', s:'Apakah fungsi lapisan minyak dalam tabung uji B?', m:1, sk:'Menghalang udara daripada masuk ke dalam air.', tp:'Pengaratan: penyiasatan', ar:'S'},
+  {no:'14(c)', t:'s', s:'Apakah fungsi kalsium klorida kontang dalam tabung uji C?', m:1, sk:'Menyerap wap air / lembapan daripada udara.', tp:'Pengaratan: penyiasatan', ar:'S'},
+  {no:'14(d)', t:'s', s:'Nyatakan satu <b>kesimpulan</b> bagi penyiasatan ini.', m:2, sk:'<b>Paku besi berkarat apabila terdedah kepada air dan udara.</b> (2m — kedua-dua faktor disebut)', tp:'Pengaratan: membuat kesimpulan', ar:'T'},
+  {no:'14(e)', t:'s', s:'Nyatakan <b>dua</b> cara untuk mencegah basikal daripada berkarat.', m:2, sk:'Mana-mana dua: mengecat bingkai, menyapu minyak/gris pada rantai, menyimpan di tempat kering/berbumbung, menyadur.', tp:'Pengaratan: cara mencegah', ar:'S'},
+  {no:'14(f)', t:'s', s:'Nyatakan <b>satu</b> ciri objek yang berkarat.', m:1, sk:'Lapisan berwarna perang kemerahan / permukaan kasar / rapuh.', tp:'Pengaratan: ciri objek berkarat', ar:'R'},
+  {t:'x', h:`<p class="arahan"><b>Soalan 15.</b> Ketulan ais dipanaskan di dalam sebuah bikar. Suhu dicatat setiap 2 minit.</p><table class="jd"><tr><th>Masa (minit)</th><td>0</td><td>2</td><td>4</td><td>6</td><td>8</td><td>10</td><td>12</td></tr><tr><th>Suhu (°C)</th><td>0</td><td>0</td><td>25</td><td>50</td><td>75</td><td>100</td><td>100</td></tr></table><p class="cap">Jadual 2</p>`},
+  {no:'15(a)', t:'s', s:'Berdasarkan Jadual 2, nyatakan takat beku air.', m:1, tr:['0','0°c','0c'], sk:'0 °C', tp:'Haba: takat beku', ar:'R'},
+  {no:'15(b)', t:'s', s:'Nyatakan takat didih air.', m:1, tr:['100','100°c','100c'], sk:'100 °C', tp:'Haba: takat didih', ar:'R'},
+  {no:'15(c)', t:'s', s:'Namakan alat yang digunakan untuk mengukur suhu.', m:1, tr:['termometer'], sk:'Termometer', tp:'Haba: mengukur suhu', ar:'R'},
+  {no:'15(d)', t:'s', s:'Huraikan perubahan suhu dari minit ke-2 hingga minit ke-10.', m:2, sk:'Suhu meningkat (1m) sebanyak 25 °C setiap 2 minit (1m).', tp:'KPS: mentafsir data', ar:'S'},
+  {no:'15(e)', t:'s', s:'Buat satu <b>inferens</b> mengapa suhu tidak berubah selepas minit ke-10.', m:2, sk:'Air sedang mendidih (1m); haba yang diterima digunakan untuk menukar air kepada wap air (1m).', tp:'KPS: membuat inferens', ar:'T'},
+  {no:'15(f)', t:'s', s:'<b>Ramalkan</b> suhu air pada minit ke-14.', m:1, tr:['100','100°c','100c'], sk:'100 °C', tp:'KPS: meramal', ar:'S'},
+  {t:'x', h:`<p class="arahan"><b>Soalan 16.</b> Maklumat berikut menunjukkan empat fasa Bulan.</p><div class="kad4"><div><b>P</b><br>Bulan separa</div><div><b>Q</b><br>Bulan purnama</div><div><b>R</b><br>Anak bulan</div><div><b>S</b><br>Bulan sabit</div></div>`},
+  {no:'16(a)', t:'s', s:'Fasa Bulan yang manakah dapat dilihat pada hari ke-15 dalam kalendar Hijrah?', m:1, tr:['q','bulanpurnama','qbulanpurnama'], sk:'Q — Bulan purnama', tp:'Bulan: fasa Bulan', ar:'R'},
+  {no:'16(b)', t:'s', s:'Susun fasa P, Q, R dan S mengikut urutan yang betul bermula dengan anak bulan.', m:2, tr:['rspq','r,s,p,q','r→s→p→q','r-s-p-q'], sk:'<b>R → S → P → Q</b>', tp:'Bulan: menggunakan perhubungan ruang-masa', ar:'S'},
+  {no:'16(c)', t:'s', s:'Mengapakah Bulan kelihatan bercahaya pada waktu malam?', m:1, sk:'Bulan memantulkan cahaya Matahari. (Bulan tidak mengeluarkan cahaya sendiri.)', tp:'Bulan: sifat Bulan', ar:'S'},
+  {no:'16(d)', t:'o', s:'Bulan beredar mengelilingi Bumi dari arah ______.', p:['timur ke barat','barat ke timur','utara ke selatan'], j:1, m:1, tp:'Bulan: pergerakan Bulan', ar:'S'},
+  {no:'16(e)', t:'s', s:'Nyatakan <b>dua</b> kegunaan buruj dalam kehidupan.', m:2, sk:'Menunjukkan arah (kepada pelayar/pengembara) (1m); menentukan musim bercucuk tanam (1m).', tp:'Buruj: kegunaan', ar:'S'},
+  {no:'16(f)', t:'s', s:'Mengapakah kemunculan anak bulan penting kepada umat Islam?', m:1, sk:'Menentukan permulaan bulan Hijrah, contohnya awal Ramadan dan Syawal.', tp:'Bulan: kaitan dengan kehidupan (KBAT)', ar:'T'},
+ ]},
+ ]
+},
+/* ============================== SET 2 ============================== */
+{
+ set: 2,
+ bhg: [
+ { n: 'Bahagian A', m: 10, a: 'Jawab semua soalan. Pilih jawapan yang paling tepat.', q: [
+  {t:'o', s:'Bahagian di antara dua tulang yang membolehkan pergerakan dinamakan ______.', p:['otot','tengkorak','sendi','rusuk'], j:2, m:1, tp:'Manusia: sistem rangka', ar:'R'},
+  {t:'o', s:'Antara berikut, yang manakah laluan darah yang <b>kaya dengan karbon dioksida</b>?', p:['Seluruh badan → jantung → peparu','Peparu → jantung → seluruh badan','Peparu → seluruh badan → jantung','Jantung → seluruh badan → peparu'], j:0, m:1, tp:'Manusia: laluan peredaran darah', ar:'R'},
+  {t:'o', s:'Kerbau suka berkubang di dalam lumpur. Apakah tujuan tingkah laku ini?', p:['Mencari makanan','Menarik pasangan','Menyembunyikan anak','Melindungi diri daripada cuaca panas'], j:3, m:1, tp:'Haiwan: kemandirian spesies', ar:'R'},
+  {t:'o', s:'Bagaimanakah katak melindungi telurnya?', p:['Mengeram telur','Menghasilkan telur yang berlendir','Membawa telur dalam mulut','Menanam telur di dalam pasir'], j:1, m:1, tp:'Haiwan: melindungi telur', ar:'R'},
+  {t:'o', s:'Apakah ciri khas pokok rotan untuk melindungi dirinya daripada musuh?', p:['Mempunyai duri','Menggugurkan daun','Mempunyai bunga berwarna-warni','Mempunyai akar banir'], j:0, m:1, tp:'Tumbuhan: kemandirian spesies', ar:'R'},
+  {t:'o', s:'Seorang murid menambah bilangan mentol dalam sebuah litar <b>bersiri</b>. Apakah yang berlaku kepada kecerahan mentol?', p:['Bertambah cerah','Mentol berkelip','Tidak berubah','Menjadi lebih malap'], j:3, m:1, tp:'Elektrik: litar bersiri', ar:'R'},
+  {t:'o', s:'Ruang kecil ditinggalkan di antara sambungan landasan kereta api. Mengapa?', p:['Supaya landasan mudah dicuci','Supaya air hujan dapat mengalir','Supaya landasan dapat mengembang pada hari panas','Supaya kereta api bergerak perlahan'], j:2, m:1, tp:'Haba: pengembangan & pengecutan', ar:'R'},
+  {t:'o', s:'Pernyataan manakah yang <b>betul</b> tentang gas?', p:['Mempunyai bentuk yang tetap','Memenuhi seluruh ruang bekas','Tidak mempunyai jisim','Isi padunya tetap'], j:1, m:1, tp:'Jirim: sifat gas', ar:'R'},
+  {t:'o', s:'Buruj Pari (Southern Cross) membantu pelayar untuk menentukan arah ______.', p:['selatan','utara','timur','barat'], j:0, m:1, tp:'Buruj: kegunaan', ar:'R'},
+  {t:'o', s:'Ciri yang manakah paling penting bagi sebuah alat yang <b>mampan</b>?', p:['Murah tetapi cepat rosak','Menggunakan banyak tenaga elektrik','Diperbuat daripada bahan tahan lama dan mesra alam','Berat dan sukar diangkat'], j:2, m:1, tp:'Mesin: ciri alat mampan (KBAT)', ar:'T'},
+ ]},
+ { n: 'Bahagian B', m: 8, a: 'Jawab semua soalan.', q: [
+  {t:'x', h:`<p class="arahan"><b>Soalan 11.</b> Padankan biji benih atau buah dengan cara penyebarannya.</p>`},
+  {no:'11(a)', t:'o', s:'Rambutan', p:['Air','Angin','Haiwan dan manusia','Letupan'], j:2, m:1, tp:'Tumbuhan: penyebaran biji benih', ar:'R'},
+  {no:'11(b)', t:'o', s:'Kelapa', p:['Air','Angin','Haiwan dan manusia','Letupan'], j:0, m:1, tp:'Tumbuhan: penyebaran biji benih', ar:'R'},
+  {no:'11(c)', t:'o', s:'Kacang bendi', p:['Air','Angin','Haiwan dan manusia','Letupan'], j:3, m:1, tp:'Tumbuhan: penyebaran biji benih', ar:'R'},
+  {no:'11(d)', t:'o', s:'Lalang', p:['Air','Angin','Haiwan dan manusia','Letupan'], j:1, m:1, tp:'Tumbuhan: penyebaran biji benih', ar:'R'},
+  {t:'x', h:`<p class="arahan"><b>Soalan 12.</b> Rajah 1 menunjukkan laluan peredaran darah dalam badan manusia.</p><div class="rantai"><span>Peparu</span>⇄<span>Organ X</span>⇄<span>Seluruh badan</span></div><p class="cap">Rajah 1</p>`},
+  {no:'12(a)', t:'s', s:'Namakan organ X.', m:1, tr:['jantung'], sk:'Jantung', tp:'Manusia: sistem peredaran darah', ar:'R'},
+  {no:'12(b)', t:'s', s:'Darah yang kaya dengan oksigen mengalir dari ______ ke organ X.', m:1, tr:['peparu'], sk:'Peparu', tp:'Manusia: laluan darah', ar:'R'},
+  {no:'12(c)', t:'s', s:'Apakah yang berlaku di dalam peparu?', m:1, sk:'Pertukaran karbon dioksida dengan oksigen.', tp:'Manusia: fungsi peparu', ar:'R'},
+  {no:'12(d)', t:'s', s:'Nyatakan <b>satu</b> cara menjaga kesihatan sistem peredaran darah.', m:1, sk:'Bersenam secara teratur / mengurangkan makanan berlemak / tidak merokok.', tp:'Manusia: menjaga sistem badan', ar:'R'},
+ ]},
+ { n: 'Bahagian C', m: 32, a: 'Jawab semua soalan.', q: [
+  {t:'x', h:`<p class="arahan"><b>Soalan 13.</b> Sebuah kelalang kon diisi penuh dengan air berwarna dan ditutup dengan penyumbat yang dilalui tiub kaca. Kelalang itu dimasukkan ke dalam bikar berisi air panas, kemudian ke dalam bikar berisi air ais.</p>${KPS}`},
+  {no:'13(a)', t:'s', s:'Apakah yang diperhatikan pada aras air berwarna dalam tiub kaca apabila kelalang dimasukkan ke dalam air panas?', m:1, sk:'Aras air berwarna dalam tiub kaca naik.', tp:'Haba: pengembangan', ar:'R'},
+  {no:'13(b)', t:'s', s:'Buat satu <b>inferens</b> bagi pemerhatian di 13(a).', m:2, sk:'Air berwarna menerima haba (1m) lalu mengembang (1m).', tp:'KPS: membuat inferens', ar:'S'},
+  {no:'13(c)', t:'s', s:'Apakah yang berlaku kepada aras air berwarna apabila kelalang dimasukkan ke dalam air ais?', m:1, sk:'Aras air berwarna turun (air mengecut kerana kehilangan haba).', tp:'Haba: pengecutan', ar:'S'},
+  {no:'13(d)', t:'s', s:'Nyatakan pemboleh ubah yang <b>dimanipulasikan</b>.', m:1, sk:'Suhu air dalam bikar (air panas / air ais).', tp:'KPS: mengawal pemboleh ubah', ar:'S'},
+  {no:'13(e)', t:'s', s:'Nyatakan pemboleh ubah yang <b>bergerak balas</b>.', m:1, sk:'Aras air berwarna dalam tiub kaca.', tp:'KPS: mengawal pemboleh ubah', ar:'S'},
+  {no:'13(f)', t:'s', s:'Wayar elektrik pada tiang dipasang secara kendur. Terangkan sebabnya.', m:2, sk:'Wayar mengecut apabila kehilangan haba pada waktu malam/cuaca sejuk (1m); jika dipasang tegang, wayar akan putus (1m).', tp:'Haba: aplikasi pengembangan (KBAT)', ar:'T'},
+  {t:'x', h:`<p class="arahan"><b>Soalan 14.</b> Dua litar dibina menggunakan mentol dan sel kering yang sama.</p><div class="kad4 dua"><div><b>Litar X</b><br>Dua mentol disambung <b>bersiri</b> dengan satu suis.</div><div><b>Litar Y</b><br>Dua mentol disambung <b>selari</b>. Mentol 1 dikawal suis S1, mentol 2 dikawal suis S2.</div></div>`},
+  {no:'14(a)', t:'o', s:'Mentol dalam litar manakah menyala lebih cerah?', p:['Litar X','Litar Y','Sama cerah'], j:1, m:1, tp:'Elektrik: membanding litar', ar:'S'},
+  {no:'14(b)', t:'o', s:'Dalam litar Y, suis S1 dibuka manakala suis S2 ditutup. Apakah keadaan mentol 2?', p:['Menyala','Padam','Berkelip'], j:0, m:1, tp:'Elektrik: suis dalam litar selari', ar:'S'},
+  {no:'14(c)', t:'s', s:'Dalam litar X, salah satu mentol terbakar. Apakah yang berlaku kepada mentol yang satu lagi?', m:1, sk:'Mentol itu padam / tidak menyala.', tp:'Elektrik: litar bersiri', ar:'S'},
+  {no:'14(d)', t:'s', s:'Terangkan jawapan kamu di 14(c).', m:2, sk:'Litar bersiri hanya ada satu laluan arus (1m); apabila mentol terbakar, litar menjadi tidak lengkap dan arus tidak dapat mengalir (1m).', tp:'Elektrik: litar bersiri (KBAT)', ar:'T'},
+  {no:'14(e)', t:'s', s:'Mengapakah pendawaian rumah menggunakan litar selari? Berikan <b>dua</b> sebab.', m:2, sk:'Jika satu alat rosak, alat lain masih berfungsi (1m); setiap alat boleh dihidupkan/dimatikan secara berasingan (1m); mentol lebih cerah.', tp:'Elektrik: aplikasi litar selari', ar:'T'},
+  {no:'14(f)', t:'s', s:'Namakan <b>satu</b> sumber tenaga elektrik yang boleh dibaharui.', m:1, sk:'Suria / angin / air (hidro) / biojisim / ombak.', tp:'Elektrik: sumber tenaga', ar:'R'},
+  {t:'x', h:`<p class="arahan"><b>Soalan 15.</b> Jadual 1 menunjukkan cara beberapa haiwan memastikan kemandirian spesiesnya.</p><table class="jd"><tr><th>Haiwan</th><th>Ciri atau tingkah laku khas</th></tr><tr><td>Sotong</td><td>Memancutkan dakwat hitam</td></tr><tr><td>Cicak</td><td>Memutuskan ekor</td></tr><tr><td>Kanggaru</td><td>Membawa anak di dalam kantung</td></tr><tr><td>Tupai tanah</td><td>Berhibernasi</td></tr><tr><td>Burung bangau</td><td>Berhijrah</td></tr></table><p class="cap">Jadual 1</p>`},
+  {no:'15(a)', t:'s', s:'Namakan <b>dua</b> haiwan dalam Jadual 1 yang melindungi diri daripada <b>musuh</b>.', m:2, sk:'Sotong (1m), cicak (1m).', tp:'Haiwan: mengelas', ar:'S'},
+  {no:'15(b)', t:'s', s:'Apakah maksud <b>kemandirian spesies</b>?', m:2, sk:'Keupayaan haiwan atau tumbuhan untuk meneruskan kelangsungan spesiesnya (1m) supaya tidak pupus (1m).', tp:'Haiwan: maksud kemandirian', ar:'R'},
+  {no:'15(c)', t:'s', s:'Bagaimanakah kanggaru memastikan kemandirian anaknya?', m:1, sk:'Membawa anaknya di dalam kantung supaya anaknya selamat daripada musuh.', tp:'Haiwan: menjaga anak', ar:'R'},
+  {no:'15(d)', t:'s', s:'Tupai tanah berhibernasi untuk melindungi diri daripada ______.', m:1, sk:'Cuaca sejuk melampau (musim sejuk).', tp:'Haiwan: cuaca melampau', ar:'S'},
+  {no:'15(e)', t:'s', s:'<b>Ramalkan</b> apa yang akan berlaku jika cicak tidak dapat memutuskan ekornya.', m:2, sk:'Cicak mudah ditangkap/dimakan musuh (1m); populasi cicak berkurang/spesies mungkin pupus (1m).', tp:'KPS: meramal (KBAT)', ar:'T'},
+  {t:'x', h:`<p class="arahan"><b>Soalan 16.</b> Rajah 2 menunjukkan perubahan keadaan jirim bagi air.</p><div class="kitar"><div>Ais <b>—P→</b> Air</div><div>Air <b>—Q→</b> Wap air</div><div>Wap air <b>—R→</b> Air</div><div>Air <b>—S→</b> Ais</div></div><p class="cap">Rajah 2</p>`},
+  {no:'16(a)', t:'s', s:'Namakan proses P.', m:1, tr:['peleburan','lebur','meleburkan','melebur'], sk:'Peleburan', tp:'Jirim: perubahan keadaan', ar:'R'},
+  {no:'16(b)', t:'s', s:'Proses yang manakah melibatkan <b>kehilangan haba</b>?', m:2, tr:['rdans','r,s','rs','sdanr'], sk:'R (pemeluwapan) dan S (pembekuan) — 1m setiap satu.', tp:'Jirim: haba & perubahan keadaan', ar:'S'},
+  {no:'16(c)', t:'s', s:'Pembentukan awan melibatkan proses ______.', m:1, tr:['pemeluwapan','r'], sk:'Pemeluwapan (R)', tp:'Jirim: kitaran air', ar:'S'},
+  {no:'16(d)', t:'w', rows:4, s:'Terangkan bagaimana hujan terbentuk.', m:3, sk:'Air di laut/sungai menyejat apabila dipanaskan oleh Matahari (1m).<br>Wap air naik ke udara yang sejuk lalu memeluwap membentuk awan (1m).<br>Titisan air bergabung menjadi berat lalu turun sebagai hujan (1m).', tp:'Jirim: pembentukan awan & hujan (KBAT)', ar:'T'},
+  {no:'16(e)', t:'s', s:'Nyatakan <b>satu</b> contoh penyejatan dalam kehidupan harian.', m:1, sk:'Pakaian basah menjadi kering apabila dijemur / lopak air hilang selepas hujan.', tp:'Jirim: penyejatan', ar:'R'},
+ ]},
+ ]
+},
+/* ============================== SET 3 ============================== */
+{
+ set: 3,
+ bhg: [
+ { n: 'Bahagian A', m: 10, a: 'Jawab semua soalan. Pilih jawapan yang paling tepat.', q: [
+  {t:'o', s:'Tulang rusuk melindungi ______.', p:['jantung dan peparu','otak','perut dan usus','buah pinggang'], j:0, m:1, tp:'Manusia: sistem rangka', ar:'R'},
+  {t:'o', s:'Darah diangkut ke seluruh badan melalui ______.', p:['saraf','tulang','peparu','salur darah'], j:3, m:1, tp:'Manusia: sistem peredaran darah', ar:'R'},
+  {t:'o', s:'Seorang kanak-kanak tercekik makanan. Sistem badan yang manakah turut terjejas?', p:['Sistem rangka','Sistem pernafasan','Sistem pembiakan','Sistem saraf sahaja'], j:1, m:1, tp:'Manusia: hubungan antara sistem', ar:'R'},
+  {t:'o', s:'Ikan arowana memastikan kemandirian anaknya dengan cara ______.', p:['berhijrah ke laut','memutuskan sirip','membawa anak di dalam mulut','menyembunyikan anak di dalam pasir'], j:2, m:1, tp:'Haiwan: menjaga anak', ar:'R'},
+  {t:'o', s:'Siratan makanan ialah ______.', p:['satu rantai makanan yang pendek','tumbuhan yang membuat makanan','haiwan yang memakan tumbuhan','beberapa rantai makanan yang saling berhubung kait'], j:3, m:1, tp:'Haiwan: siratan makanan', ar:'R'},
+  {t:'o', s:'Pokok getah menggugurkan daunnya pada musim kemarau. Apakah tujuannya?', p:['Mengurangkan kehilangan air','Menarik serangga','Melindungi diri daripada haiwan','Menghasilkan lebih banyak susu getah'], j:0, m:1, tp:'Tumbuhan: menyesuaikan diri dengan musim', ar:'R'},
+  {t:'o', s:'Antara berikut, yang manakah langkah keselamatan semasa mengendalikan alat elektrik?', p:['Menyentuh suis dengan tangan basah','Memasang banyak palam pada satu soket','Mematikan suis sebelum mencabut palam','Menanggalkan palam dengan menarik wayarnya'], j:2, m:1, tp:'Elektrik: langkah keselamatan', ar:'R'},
+  {t:'o', s:'Apakah unit piawai bagi suhu?', p:['Kilogram (kg)','Darjah Celsius (°C)','Mililiter (mℓ)','Sentimeter (cm)'], j:1, m:1, tp:'Haba: mengukur suhu', ar:'R'},
+  {t:'o', s:'Objek yang manakah boleh berkarat?', p:['Tin aluminium','Bekas plastik','Cawan kaca','Paku besi'], j:3, m:1, tp:'Pengaratan: objek boleh berkarat', ar:'R'},
+  {t:'o', s:'Pada hari ke-7 dalam kalendar Hijrah, Ahmad melihat bulan separa. Fasa Bulan yang manakah akan dilihatnya kira-kira seminggu kemudian?', p:['Bulan purnama','Bulan sabit','Anak bulan','Bulan tidak kelihatan'], j:0, m:1, tp:'Bulan: fasa Bulan (KBAT)', ar:'T'},
+ ]},
+ { n: 'Bahagian B', m: 8, a: 'Jawab semua soalan.', q: [
+  {t:'x', h:`<p class="arahan"><b>Soalan 11.</b> Kelaskan ciri tumbuhan berikut mengikut tujuannya.</p>`},
+  {no:'11(a)', t:'o', s:'Pokok rotan mempunyai duri pada batangnya.', p:['Melindungi diri daripada musuh','Menyesuaikan diri dengan musim kemarau'], j:0, m:1, tp:'Tumbuhan: kemandirian spesies', ar:'R'},
+  {no:'11(b)', t:'o', s:'Pokok jati menggugurkan daunnya.', p:['Melindungi diri daripada musuh','Menyesuaikan diri dengan musim kemarau'], j:1, m:1, tp:'Tumbuhan: kemandirian spesies', ar:'R'},
+  {no:'11(c)', t:'o', s:'Pokok ipoh mengeluarkan getah beracun.', p:['Melindungi diri daripada musuh','Menyesuaikan diri dengan musim kemarau'], j:0, m:1, tp:'Tumbuhan: kemandirian spesies', ar:'R'},
+  {no:'11(d)', t:'o', s:'Kaktus mempunyai batang yang tebal untuk menyimpan air.', p:['Melindungi diri daripada musuh','Menyesuaikan diri dengan musim kemarau'], j:1, m:1, tp:'Tumbuhan: kemandirian spesies', ar:'R'},
+  {t:'x', h:`<p class="arahan"><b>Soalan 12.</b> Sebuah basikal mempunyai beberapa mesin ringkas. Kenal pasti mesin ringkas pada bahagian berikut.</p>`},
+  {no:'12(a)', t:'o', s:'Pedal dan engkol', p:['Tuas','Roda dan gandar','Skru','Takal'], j:1, m:1, tp:'Mesin: mesin ringkas', ar:'R'},
+  {no:'12(b)', t:'o', s:'Pengikat tempat duduk yang diputar', p:['Tuas','Roda dan gandar','Skru','Takal'], j:2, m:1, tp:'Mesin: mesin ringkas', ar:'R'},
+  {no:'12(c)', t:'o', s:'Pemegang brek', p:['Tuas','Roda dan gandar','Skru','Takal'], j:0, m:1, tp:'Mesin: mesin ringkas', ar:'R'},
+  {no:'12(d)', t:'s', s:'Nyatakan <b>satu</b> ciri yang menjadikan basikal sebuah alat yang <b>mampan</b>.', m:1, sk:'Tahan lama / mesra alam (tidak menggunakan bahan api) / mudah diselenggara / selamat digunakan.', tp:'Mesin: alat mampan', ar:'T'},
+ ]},
+ { n: 'Bahagian C', m: 32, a: 'Jawab semua soalan.', q: [
+  {t:'x', h:`<p class="arahan"><b>Soalan 13.</b> Air panas dibiarkan menyejuk di dalam bilik. Suhu air dicatat setiap 5 minit.</p><table class="jd"><tr><th>Masa (minit)</th><td>0</td><td>5</td><td>10</td><td>15</td><td>20</td><td>25</td></tr><tr><th>Suhu air (°C)</th><td>80</td><td>62</td><td>48</td><td>38</td><td>32</td><td>30</td></tr></table><p class="cap">Jadual 1</p>${KPS}`},
+  {no:'13(a)', t:'s', s:'Namakan alat yang digunakan untuk mengukur suhu air.', m:1, tr:['termometer'], sk:'Termometer', tp:'Haba: mengukur suhu', ar:'R'},
+  {no:'13(b)', t:'s', s:'Huraikan perubahan suhu air berdasarkan Jadual 1.', m:2, sk:'Semakin lama masa, semakin menurun suhu air (1m), sehingga hampir sama dengan suhu bilik (1m).', tp:'KPS: mentafsir data', ar:'S'},
+  {no:'13(c)', t:'s', s:'<b>Ramalkan</b> suhu air pada minit ke-30.', m:1, tr:['30','30°c','30c'], sk:'30 °C', tp:'KPS: meramal', ar:'S'},
+  {no:'13(d)', t:'s', s:'Buat satu <b>inferens</b> mengapa suhu air berhenti menurun pada kira-kira 30 °C.', m:1, sk:'Suhu air telah sama dengan suhu persekitaran (suhu bilik).', tp:'KPS: membuat inferens', ar:'T'},
+  {no:'13(e)', t:'s', s:'Nyatakan pemboleh ubah yang <b>dimanipulasikan</b> dan yang <b>bergerak balas</b>.', m:2, sk:'Dimanipulasikan: masa (1m)<br>Bergerak balas: suhu air (1m)', tp:'KPS: mengawal pemboleh ubah', ar:'S'},
+  {no:'13(f)', t:'s', s:'Nyatakan <b>satu</b> langkah berjaga-jaga semasa mengendalikan air panas.', m:1, sk:'Memakai sarung tangan tahan haba / memegang bikar dengan penyepit / berhati-hati supaya tidak tertumpah.', tp:'Haba: langkah keselamatan', ar:'R'},
+  {t:'x', h:`<p class="arahan"><b>Soalan 14.</b> Rajah 1 menunjukkan siratan makanan di sebuah kawasan sawah.</p><div class="siratan"><div>Padi → Belalang → Katak → Ular → Helang</div><div>Padi → Tikus → Ular</div><div>Tikus → Helang</div></div><p class="cap">Rajah 1</p>`},
+  {no:'14(a)', t:'s', s:'Bina satu rantai makanan yang mengandungi <b>empat</b> hidupan daripada siratan makanan itu.', m:2, sk:'Contoh: Padi → Belalang → Katak → Ular / Padi → Tikus → Ular → Helang. (2m jika urutan dan anak panah betul.)', tp:'Haiwan: membina rantai makanan', ar:'S'},
+  {no:'14(b)', t:'s', s:'Namakan pengeluar dalam siratan makanan itu.', m:1, tr:['padi'], sk:'Padi', tp:'Haiwan: pengeluar', ar:'R'},
+  {no:'14(c)', t:'s', s:'Namakan <b>satu</b> haiwan yang memakan lebih daripada satu jenis haiwan lain.', m:1, tr:['ular','helang'], sk:'Ular (katak, tikus) atau helang (ular, tikus).', tp:'Haiwan: siratan makanan', ar:'S'},
+  {no:'14(d)', t:'s', s:'<b>Ramalkan</b> kesan terhadap populasi tikus dan padi jika semua ular ditangkap.', m:2, sk:'Populasi tikus bertambah (1m); populasi padi berkurang kerana lebih banyak dimakan tikus (1m).', tp:'Haiwan: perubahan populasi (KBAT)', ar:'T'},
+  {no:'14(e)', t:'s', s:'Terangkan bagaimana tenaga dipindahkan dalam rantai makanan.', m:2, sk:'Tenaga daripada Matahari diserap oleh tumbuhan hijau untuk fotosintesis (1m); tenaga dipindahkan kepada pengguna apabila pengguna memakan pengeluar/pengguna lain (1m).', tp:'Haiwan: pemindahan tenaga', ar:'T'},
+  {t:'x', h:`<p class="arahan"><b>Soalan 15.</b> Empat paku besi P, Q, R dan S diletakkan di dalam piring berisi sedikit air dan dibiarkan di luar kelas selama 5 hari.</p><table class="jd"><tr><th>Paku</th><th>Rawatan</th></tr><tr><td>P</td><td>Disapu minyak</td></tr><tr><td>Q</td><td>Dicat</td></tr><tr><td>R</td><td>Tiada rawatan</td></tr><tr><td>S</td><td>Disapu gris</td></tr></table><p class="cap">Jadual 2</p>`},
+  {no:'15(a)', t:'o', s:'Paku yang manakah akan berkarat?', p:['P','Q','R','S'], j:2, m:1, tp:'Pengaratan: meramal', ar:'R'},
+  {no:'15(b)', t:'s', s:'Apakah tujuan paku R dalam penyiasatan ini?', m:1, sk:'Sebagai kawalan / perbandingan dengan paku yang dirawat.', tp:'KPS: mengeksperimen', ar:'S'},
+  {no:'15(c)', t:'s', s:'Nyatakan satu <b>kesimpulan</b> bagi penyiasatan ini.', m:2, sk:'Menyapu minyak, gris atau cat dapat mencegah paku besi daripada berkarat. (2m)', tp:'KPS: membuat kesimpulan', ar:'T'},
+  {no:'15(d)', t:'s', s:'Terangkan bagaimana cat dapat mencegah pengaratan.', m:2, sk:'Cat menjadi lapisan pelindung (1m) yang menghalang besi daripada terdedah kepada air dan udara (1m).', tp:'Pengaratan: cara mencegah', ar:'S'},
+  {no:'15(e)', t:'s', s:'Mengapakah penting untuk mencegah pengaratan pada jambatan besi? Berikan <b>dua</b> sebab.', m:2, sk:'Jambatan lebih tahan lama (1m); mengelakkan jambatan rapuh dan runtuh — keselamatan pengguna (1m); menjimatkan kos baik pulih.', tp:'Pengaratan: kepentingan mencegah (KBAT)', ar:'T'},
+  {t:'x', h:`<p class="arahan"><b>Soalan 16.</b> Jadual 3 menunjukkan penggunaan penghawa dingin di rumah Amir dan jumlah bil elektrik bagi dua bulan.</p><table class="jd"><tr><th>Bulan</th><th>Penggunaan penghawa dingin sehari</th><th>Bil elektrik</th></tr><tr><td>Jun</td><td>4 jam</td><td>RM180</td></tr><tr><td>Julai</td><td>8 jam</td><td>RM240</td></tr></table><p class="cap">Jadual 3</p>`},
+  {no:'16(a)', t:'s', s:'Nyatakan <b>satu</b> faktor yang mempengaruhi penggunaan tenaga elektrik.', m:1, sk:'Tempoh masa alat digunakan / bilangan alat / kuasa alat elektrik.', tp:'Elektrik: faktor penggunaan', ar:'R'},
+  {no:'16(b)', t:'s', s:'Mengapakah bil elektrik bulan Julai lebih tinggi daripada bulan Jun?', m:2, sk:'Penghawa dingin digunakan lebih lama pada bulan Julai (1m), jadi lebih banyak tenaga elektrik digunakan (1m).', tp:'KPS: mentafsir data', ar:'S'},
+  {no:'16(c)', t:'s', s:'Cadangkan <b>dua</b> cara untuk menjimatkan penggunaan elektrik di rumah.', m:2, sk:'Mematikan suis apabila tidak digunakan; menggunakan lampu jimat tenaga/LED; menetapkan suhu penghawa dingin pada 24–25 °C; menggunakan kipas berbanding penghawa dingin.', tp:'Elektrik: penjimatan tenaga', ar:'S'},
+  {no:'16(d)', t:'s', s:'Nyatakan <b>satu</b> kesan salah mengendalikan alat elektrik.', m:1, sk:'Renjatan elektrik / kebakaran / litar pintas.', tp:'Elektrik: kesan salah guna', ar:'R'},
+  {no:'16(e)', t:'w', rows:3, s:'Cadangkan <b>satu</b> idea inovasi untuk mengurangkan pembaziran elektrik di sekolah. Terangkan cara idea itu berfungsi.', m:2, sk:'Idea munasabah (1m) + penerangan cara berfungsi (1m). Contoh: lampu dengan pengesan gerakan yang menyala hanya apabila ada orang di dalam kelas.', tp:'Elektrik: menjana idea (KBAT)', ar:'T'},
+ ]},
+ ]
+},
+];
+
+})();
+</script>
+<script>
+(function(){
+'use strict';
+const $ = (s, r=document) => r.querySelector(s);
+const app = $('#app');
+const ABC = 'ABCDEFGH';
+const MASA = 75*60;
+const store = {
+ get(k){ try{ return JSON.parse(localStorage.getItem('skoruasa:'+k)); }catch(e){ return null; } },
+ set(k,v){ try{ localStorage.setItem('skoruasa:'+k, JSON.stringify(v)); }catch(e){} },
+ del(k){ try{ localStorage.removeItem('skoruasa:'+k); }catch(e){} }
+};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm = s => String(s||'').toLowerCase().replace(/\s+/g,'').replace(/^rm/,'').replace(/\.$/,'').replace(/[–—]/g,'-');
+const gred = p => p>=82?['A','Cemerlang']:p>=66?['B','Kepujian']:p>=50?['C','Baik']:p>=35?['D','Memuaskan']:p>=20?['E','Mencapai Tahap Minimum']:['F','Belum Mencapai Tahap Minimum'];
+const kira = s => s.trim() ? s.trim().split(/\s+/).length : 0;
+const SW = 'fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"';
+const ICON = {
+ bm:`<svg viewBox="0 0 32 32" ${SW}><path d="M4 7c4-1.5 8-1.5 12 1v18c-4-2.5-8-2.5-12-1z"/><path d="M28 7c-4-1.5-8-1.5-12 1v18c4-2.5 8-2.5 12-1z"/><path d="M8 12h4M8 16h4M20 12h4M20 16h4"/></svg>`,
+ bi:`<svg viewBox="0 0 32 32" ${SW}><path d="M5 6h22v15H14l-6 5v-5H5z"/><path d="M10 17l2.5-7 2.5 7M11 15h3M18 10v7M18 10h2.2a1.7 1.7 0 010 3.4H18M18 13.4h2.6a1.8 1.8 0 010 3.6H18"/></svg>`,
+ mt:`<svg viewBox="0 0 32 32" ${SW}><rect x="5" y="4" width="22" height="24" rx="4"/><path d="M10 10h12M10 16h3M11.5 14.5v3M19 16h3M10 21.5l3 3M13 21.5l-3 3M19 22h3M19 25h3"/></svg>`,
+ sn:`<svg viewBox="0 0 32 32" ${SW}><path d="M12 4h8M13 4v8l-7 12a3 3 0 002.6 4.5h14.8A3 3 0 0026 24l-7-12V4"/><path d="M9 20h14"/><circle cx="14" cy="24" r="1.2" fill="currentColor"/><circle cx="18.5" cy="22.5" r="1" fill="currentColor"/></svg>`
+};
+const bintang = g => ({A:3,B:2,C:2,D:1,E:1}[g]||0);
+const starHtml = n => [0,1,2].map(i=>`<span class="${i<n?'on':''}">★</span>`).join('');
+const HERO_ART = `<svg class="hero-art" viewBox="0 0 160 150" aria-hidden="true">
+ <rect x="22" y="18" width="100" height="124" rx="10" fill="var(--paper)" stroke="var(--line)" stroke-width="4" transform="rotate(-6 72 80)"/>
+ <g transform="rotate(-6 72 80)" stroke="var(--rule)" stroke-width="4" stroke-linecap="round"><path d="M40 52h62M40 70h62M40 88h48M40 106h56"/></g>
+ <g transform="rotate(-6 72 80)"><circle cx="34" cy="52" r="5" fill="var(--bm)"/><circle cx="34" cy="70" r="5" fill="var(--bi)"/><circle cx="34" cy="88" r="5" fill="var(--mt)"/><circle cx="34" cy="106" r="5" fill="var(--sn)"/></g>
+ <text x="104" y="54" font-family="Kalam, cursive" font-size="38" font-weight="700" fill="var(--red)" transform="rotate(-12 104 54)">A</text>
+ <g transform="rotate(38 118 104)"><rect x="104" y="56" width="18" height="70" rx="3" fill="var(--sun)" stroke="var(--line)" stroke-width="4"/><path d="M104 126l9 18 9-18z" fill="var(--paper)" stroke="var(--line)" stroke-width="4" stroke-linejoin="round"/><path d="M110 138l3 6 3-6z" fill="var(--line)"/></g>
+</svg>`;
+const MSG = {A:'Hebat! Kamu bintang kelas! 🌟', B:'Bagus sekali! Sikit lagi ke A!', C:'Baik! Teruskan berusaha.', D:'Boleh lagi! Ulang kaji topik di bawah.', E:'Jangan putus asa — kamu pasti boleh!', F:'Mari cuba lagi, satu topik demi satu topik.'};
+
+// Nombor soalan & senarai item bermarkah bagi satu set
+function items(set){
+ const out=[]; let n=0;
+ set.bhg.forEach((b,bi)=> b.q.forEach((q,qi)=>{ if(q.t==='x') return;
+  let lbl; if(q.no){ lbl=q.no; n=parseInt(q.no,10); } else { n++; lbl=String(n); }
+  out.push({q, lbl, id:bi+'-'+qi, bi});
+ }));
+ return out;
+}
+
+/* ---------- Laman utama ---------- */
+function home(){
+ setNav('utama'); timerHide();
+ const M = META;
+ let h = `<section class="hero"><div><h1>Jom sedia untuk <mark>UASA Tahun 5!</mark></h1>
+ <p>Pilih subjek dan set, jawab terus di skrin, dan lihat markah kamu serta-merta. Setiap kertas ikut <b>format rasmi UASA KPM</b>, dengan skema jawapan di hujung set.</p>
+ <div class="facts"><span>4 subjek</span><span>12 kertas</span><span>50 markah</span><span>1 jam 15 minit</span></div></div>${HERO_ART}</section><div class="grid">`;
+ M.urutan.forEach(k=>{
+  const mp=M.mp[k];
+  const nb = SETS[k].reduce((a,s)=>{ const b=store.get(`best:${k}:${s.set}`); return a+(b?bintang(b.g):0); },0);
+  h += `<article class="mp" style="--c:var(--${k});--t:var(--${k}-t)"><div class="mp-h"><span class="ico">${ICON[k]}</span><div><h2>${mp.nama}</h2><small>${nb} / 9 bintang dikumpul</small></div></div>
+  <div class="mp-b"><p class="fmt">${M.format[k].map(r=>r[0]).join(' · ')}</p><div class="sets">`;
+  SETS[k].forEach(s=>{
+   const best = store.get(`best:${k}:${s.set}`);
+   h += `<a class="set-btn ${best?'done':''}" href="#${k}-${s.set}"><b>Set ${s.set}</b><span class="st" aria-hidden="true">${starHtml(best?bintang(best.g):0)}</span><span class="sc">${best? best.m+'/50 · Gred '+best.g : 'Belum cuba'}</span></a>`;
+  });
+  h += `</div></div></article>`;
+ });
+ h += `</div><p class="note"><b>Tentang ramalan ini.</b> Soalan UASA sebenar disediakan oleh setiap sekolah mengikut format KPM, jadi tiada sesiapa dapat menjamin soalan yang sama akan keluar. Set ini dibina untuk memadankan format, pemberat markah dan topik teras DSKP Tahun 5 sepenuhnya. Lihat <a href="#analisis">Analisis</a> untuk topik yang paling wajar diberi tumpuan.</p>`;
+ app.innerHTML = h;
+}
+
+/* ---------- Kertas soalan ---------- */
+let cur = null; // {k, set, st}
+function paper(k, n){
+ const set = SETS[k] && SETS[k].find(s=>s.set===n);
+ if(!set) return home();
+ setNav('');
+ const mp = META.mp[k];
+ const key = `ans:${k}:${n}`;
+ const st = store.get(key) || {a:{}, self:{}, done:false, sk:false, t:MASA};
+ cur = {k, n, set, st, key, mp, its: items(set)};
+ const fmt = META.format[k];
+ $('#progbar').style.setProperty('--c', `var(--${k})`);
+ let h = `<article class="paper" style="--c:var(--${k});--t:var(--${k}-t)">
+ <div class="cover"><span class="ico">${ICON[k]}</span><div><div class="lbl">UASA Tahun 5 · Kertas Ramalan</div><h1>${mp.nama}</h1></div>
+ <div class="meta"><span class="setno">Set ${n}</span></div>
+ <div class="bar"><span>⏱ 1 jam 15 minit</span><span>50 markah</span><span>${fmt.length} bahagian · jawab semua</span></div></div>
+ <div class="tools"><a class="btn" href="#utama">← Semua kertas</a><button class="btn" id="b-timer">⏱ Mula pemasa</button><button class="btn red" id="b-skema">Buka skema</button><button class="btn" id="b-reset">Padam jawapan</button></div>
+ <div id="conf"></div>`;
+ set.bhg.forEach((b,bi)=>{
+  h += `<section class="sec"><div class="sec-h"><h2>${b.n}</h2><span class="m">[${b.m} markah]</span></div><p class="sec-a">${b.a}</p>`;
+  b.q.forEach((q,qi)=>{
+   if(q.t==='x'){ h += `<div class="stim">${q.h}</div>`; return; }
+   const it = cur.its.find(x=>x.id===bi+'-'+qi);
+   h += qHtml(it, st);
+  });
+  h += `</section>`;
+ });
+ h += `<div class="submit"><p id="prog"></p><button class="btn pri" id="b-hantar">Hantar &amp; semak ✓</button></div>
+ <div id="hasil"></div><div id="skema"></div></article>`;
+ app.innerHTML = h;
+ bindPaper();
+ progress();
+ if(st.done || st.sk) renderSkema();
+ timerShow();
+ window.scrollTo(0,0);
+}
+
+function qHtml(it, st){
+ const q=it.q, v=st.a[it.id];
+ let body='';
+ if(q.t==='o'){
+  const c8 = q.p.length===8 && q.p.every(x=>x.length===1);
+  const c2 = !c8 && q.p.every(x=>x.length<22);
+  body = `<div class="opts ${c8?'c8':c2?'c2':''}" role="group" aria-label="Pilihan jawapan soalan ${esc(it.lbl)}">` + q.p.map((p,i)=>
+   `<button type="button" class="opt" data-q="${it.id}" data-i="${i}" aria-pressed="${v===i}"><span class="bub">${ABC[i]}</span>${c8?'':`<span>${p}</span>`}</button>`).join('') + `</div>`;
+ } else if(q.t==='s'){
+  body = `<input class="inp" id="i-${it.id}" data-q="${it.id}" autocomplete="off" placeholder="Tulis jawapan" value="${esc(v||'')}">`;
+ } else {
+  body = `<textarea class="inp" id="i-${it.id}" data-q="${it.id}" rows="${q.rows||6}" placeholder="Tulis jawapan di sini">${esc(v||'')}</textarea><div class="wc" id="wc-${it.id}">${kira(v||'')} patah perkataan</div>`;
+ }
+ const dij = v!==undefined && v!==null && v!=='';
+ return `<div class="q${dij?' answered':''}" id="q-${it.id}"><div class="qn${it.lbl.length>2?' long':''}">${esc(it.lbl)}</div><div class="qb"><span class="qm">[${q.m} markah]</span><p class="qs">${q.s}</p>${body}</div></div>`;
+}
+
+function save(){ store.set(cur.key, cur.st); }
+function progress(){
+ const tot = cur.its.length;
+ const ans = cur.its.filter(it=>{ const v=cur.st.a[it.id]; return v!==undefined && v!==null && v!==''; }).length;
+ const el=$('#prog'); if(el) el.textContent = ans===tot ? `Semua ${tot} soalan sudah dijawab. Hebat!` : `${ans} daripada ${tot} soalan telah dijawab.`;
+ const pp=$('#prog-pill'); pp.hidden=false; pp.textContent=`✏️ ${ans}/${tot}`;
+ const pb=$('#progbar'); pb.hidden=false; pb.firstElementChild.style.width=(ans/tot*100)+'%';
+ cur.its.forEach(it=>{ const v=cur.st.a[it.id]; const q=$('#q-'+it.id); if(q) q.classList.toggle('answered', v!==undefined && v!==null && v!==''); });
+}
+
+function bindPaper(){
+ app.addEventListener('click', onClick);
+ app.addEventListener('input', onInput);
+}
+function onClick(e){
+ if(!cur) return;
+ const o = e.target.closest('.opt');
+ if(o && !cur.st.done){
+  const id=o.dataset.q, i=+o.dataset.i;
+  cur.st.a[id]=i; save();
+  o.parentElement.querySelectorAll('.opt').forEach(b=>b.setAttribute('aria-pressed', b===o));
+  progress(); return;
+ }
+ const sb = e.target.closest('[data-self]');
+ if(sb){ const id=sb.dataset.self; cur.st.self[id]=+sb.dataset.v; save(); renderSkema(); return; }
+ const t = e.target.closest('button'); if(!t) return;
+ if(t.id==='b-hantar'){ submit(); }
+ else if(t.id==='b-skema'){
+  if(cur.st.done || cur.st.sk){ $('#skema').scrollIntoView({behavior:'smooth'}); return; }
+  $('#conf').innerHTML = `<div class="confirm">Buka skema sebelum menjawab? Skema akan dipaparkan di hujung kertas. <button class="btn red" id="c-skema">Ya, buka</button><button class="btn" id="c-batal">Batal</button></div>`;
+ }
+ else if(t.id==='c-skema'){ cur.st.sk=true; save(); $('#conf').innerHTML=''; renderSkema(); $('#skema').scrollIntoView({behavior:'smooth'}); }
+ else if(t.id==='c-batal' || t.id==='r-batal'){ $('#conf').innerHTML=''; }
+ else if(t.id==='b-reset'){
+  $('#conf').innerHTML = `<div class="confirm">Padam semua jawapan dan markah bagi set ini? <button class="btn red" id="r-ya">Ya, padam</button><button class="btn" id="r-batal">Batal</button></div>`;
+ }
+ else if(t.id==='r-ya'){ store.del(cur.key); timerStop(); const k=cur.k,n=cur.n; cur=null; app.removeEventListener('click', onClick); app.removeEventListener('input', onInput); paper(k,n); }
+ else if(t.id==='b-timer'){ timerToggle(); }
+}
+function onInput(e){
+ if(!cur || cur.st.done) return;
+ const el=e.target; if(!el.dataset || !el.dataset.q) return;
+ cur.st.a[el.dataset.q]=el.value; save();
+ const wc=$('#wc-'+el.dataset.q); if(wc) wc.textContent = kira(el.value)+' patah perkataan';
+ progress();
+}
+
+function autoMark(it){
+ const q=it.q, v=cur.st.a[it.id];
+ if(q.t==='o') return v===q.j ? q.m : 0;
+ if(q.t==='s' && q.tr && v){ const nv=norm(v); if(q.tr.some(t=>norm(t)===nv)) return q.m; }
+ return null; // perlu tanda sendiri
+}
+function score(){
+ let auto=0, self=0, pending=0, max=0; const salah=[];
+ const ar={R:[0,0],S:[0,0],T:[0,0]};
+ cur.its.forEach(it=>{
+  const q=it.q; max+=q.m;
+  let m = autoMark(it);
+  if(m===null){ if(cur.st.self[it.id]!==undefined){ m=cur.st.self[it.id]; self+=m; } else { pending++; m=0; } }
+  else auto+=m;
+  ar[q.ar][0]+=m; ar[q.ar][1]+=q.m;
+  if(m<q.m) salah.push(q.tp);
+ });
+ return {auto, self, pending, max, total:auto+self, ar, salah};
+}
+
+function submit(){
+ cur.st.done=true; save(); timerStop();
+ app.querySelectorAll('.inp').forEach(el=>el.readOnly=true);
+ // tanda pilihan objektif
+ cur.its.forEach(it=>{ if(it.q.t!=='o') return;
+  app.querySelectorAll(`.opt[data-q="${it.id}"]`).forEach(b=>{ const i=+b.dataset.i;
+   if(i===it.q.j) b.classList.add('ok'); else if(i===cur.st.a[it.id]) b.classList.add('no'); });
+ });
+ renderSkema();
+ $('#hasil').scrollIntoView({behavior:'smooth'});
+}
+
+function renderResult(){
+ const s=score(), pct=Math.round(s.total/s.max*100), g=gred(pct);
+ if(cur.st.done){
+  const prev=store.get(`best:${cur.k}:${cur.n}`);
+  if(s.pending===0 && (!prev || s.total>=prev.m)) store.set(`best:${cur.k}:${cur.n}`, {m:s.total, g:g[0]});
+ }
+ const topik=[...new Set(s.salah)].slice(0,8);
+ if(cur.st.done && s.pending===0 && pct>=66 && !cur.yay){ cur.yay=true; confetti(); }
+ const arl = k=>`${s.ar[k][0]}/${s.ar[k][1]}`;
+ $('#hasil').innerHTML = `<div class="result"><div class="stamp">${s.total}<small>/ ${s.max}</small></div><div>
+ <div class="bigstars" aria-label="${bintang(g[0])} bintang">${starHtml(bintang(g[0]))}</div>
+ <p class="msg">${MSG[g[0]]}</p>
+ <h3>Gred ${g[0]} · ${g[1]} (${pct}%)</h3>
+ <p>Ditanda automatik: <b>${s.auto}</b> markah · Tanda sendiri: <b>${s.self}</b> markah${s.pending?` · <b>${s.pending}</b> soalan belum ditanda — semak skema di bawah dan pilih markah.`:''}</p>
+ <p>Aras rendah ${arl('R')} · sederhana ${arl('S')} · tinggi ${arl('T')}</p>
+ ${topik.length?`<p><b>Topik untuk diulang kaji:</b></p><ul>${topik.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>`:''}
+ <p class="kecil">Gred ikut julat UASA: A 82–100, B 66–81, C 50–65, D 35–49, E 20–34, F 0–19.</p></div></div>`;
+}
+
+function confetti(){
+ if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+ const c=document.createElement('canvas'); c.className='confetti'; document.body.appendChild(c);
+ let x=null; try{ x=c.getContext('2d'); }catch(e){} if(!x){ c.remove(); return; }
+ const W=c.width=innerWidth, H=c.height=innerHeight;
+ const cs=getComputedStyle(document.documentElement), col=['--bm','--bi','--mt','--sn','--sun','--red'].map(v=>cs.getPropertyValue(v).trim()||'#ffd23f');
+ const P=Array.from({length:140},()=>({x:Math.random()*W, y:-20-Math.random()*H*.5, vx:(Math.random()-.5)*3, vy:2+Math.random()*3.5, r:Math.random()*6.28, vr:(Math.random()-.5)*.3, w:6+Math.random()*6, h:8+Math.random()*8, c:col[Math.floor(Math.random()*col.length)]}));
+ let f=0; (function step(){ x.clearRect(0,0,W,H); P.forEach(p=>{ p.x+=p.vx; p.y+=p.vy; p.vy+=.03; p.r+=p.vr; x.save(); x.translate(p.x,p.y); x.rotate(p.r); x.fillStyle=p.c; x.fillRect(-p.w/2,-p.h/2,p.w,p.h); x.restore(); });
+  if(++f<220) requestAnimationFrame(step); else c.remove(); })();
+}
+
+function renderSkema(){
+ const done=cur.st.done;
+ if(done) renderResult();
+ let h = `<section class="skema" id="skema-sec"><div class="sec-h"><h2>Skema Jawapan · Set ${cur.n}</h2><span class="m">${cur.mp.nama}</span></div>`;
+ if(!done) h += `<p class="sec-a">Skema dibuka sebelum menjawab. Jawab kertas dan tekan "Hantar &amp; semak" untuk mendapat markah.</p>`;
+ let lastB=-1;
+ cur.its.forEach(it=>{
+  const q=it.q;
+  if(it.bi!==lastB){ lastB=it.bi; h+=`<p class="sec-a" style="font-style:normal;font-weight:700">${cur.set.bhg[it.bi].n}</p>`; }
+  let ans='';
+  if(q.t==='o') ans = `<span class="pen">${ABC[q.j]}</span> · ${q.p[q.j].length>1?q.p[q.j]:''}`;
+  else if(q.t==='s') ans = q.sk;
+  const detail = q.t==='w' ? q.sk : (q.t==='s' ? '' : '');
+  let you='', tag='', self='';
+  if(done){
+   const v=cur.st.a[it.id], am=autoMark(it);
+   if(q.t==='o') you = v===undefined ? 'Tidak dijawab' : `Jawapan anda: ${ABC[v]}`;
+   else if(q.t==='s') you = v ? `Jawapan anda: <q>${esc(v)}</q>` : 'Tidak dijawab';
+   else you = v ? `Jawapan anda: ${kira(v)} patah perkataan` : 'Tidak dijawab';
+   if(am!==null) tag = `<span class="tag ${am===q.m?'ok':'no'}">${am}/${q.m} · auto</span>`;
+   else {
+    const sv=cur.st.self[it.id];
+    tag = `<span class="tag ${sv===undefined?'':(sv===q.m?'ok':'no')}">${sv===undefined?'?':sv}/${q.m}</span>`;
+    self = `<div class="self"><span>Bandingkan dengan skema, kemudian beri markah:</span>${Array.from({length:q.m+1},(_,m)=>`<button type="button" data-self="${it.id}" data-v="${m}" aria-pressed="${sv===m}">${m}</button>`).join('')}</div>`;
+   }
+  }
+  h += `<div class="sk"><div class="qn">${esc(it.lbl)}</div><div class="sk-body">
+   <div style="display:flex;gap:8px;align-items:baseline;justify-content:space-between;flex-wrap:wrap"><div class="sk-ans">${ans}</div>${tag||`<span class="tag">${q.m} markah</span>`}</div>
+   ${detail?`<div class="sk-detail tbl">${detail}</div>`:''}
+   <div class="sk-you">${you} <span class="kecil">· ${esc(q.tp)}</span></div>${self}</div></div>`;
+ });
+ h += `</section>`;
+ $('#skema').innerHTML = h;
+}
+
+/* ---------- Pemasa ---------- */
+let tick=null;
+const fmtT = t => { const h=Math.floor(t/3600), m=Math.floor(t%3600/60), s=t%60; return [h,m,s].map(x=>String(x).padStart(2,'0')).join(':'); };
+function timerShow(){ const b=$('#timer'); b.hidden=false; b.textContent='⏱ '+fmtT(cur.st.t??MASA); b.classList.toggle('low', (cur.st.t??MASA)<600); }
+function timerHide(){ timerStop(); $('#timer').hidden=true; $('#prog-pill').hidden=true; $('#progbar').hidden=true; }
+function timerStop(){ if(tick){ clearInterval(tick); tick=null; } const b=$('#b-timer'); if(b) b.textContent='⏱ Mula pemasa'; }
+function timerToggle(){
+ if(!cur || cur.st.done) return;
+ if(tick){ timerStop(); return; }
+ const b=$('#b-timer'); if(b) b.textContent='⏸ Jeda pemasa';
+ tick=setInterval(()=>{ cur.st.t=Math.max(0,(cur.st.t??MASA)-1); timerShow(); if(cur.st.t%10===0) save();
+  if(cur.st.t===0){ timerStop(); save(); $('#conf').innerHTML=`<div class="confirm"><b>Masa tamat.</b> Tekan "Hantar &amp; semak jawapan" untuk melihat markah.</div>`; } },1000);
+}
+$('#timer').addEventListener('click', ()=>timerToggle());
+
+/* ---------- Analisis ---------- */
+function analisis(k){
+ setNav('analisis'); timerHide();
+ k = k || 'bm';
+ const M=META, mp=M.mp[k];
+ // taburan markah ikut topik utama dalam 3 set
+ const dist={};
+ SETS[k].forEach(s=>items(s).forEach(it=>{ const t=it.q.tp.split(':')[0].replace(/\s*\(.*\)/,'').trim(); dist[t]=(dist[t]||0)+it.q.m; }));
+ const rows=Object.entries(dist).sort((a,b)=>b[1]-a[1]); const mx=rows[0][1];
+ let h = `<section class="an paper" style="--c:var(--${k});--t:var(--${k}-t)"><h2>Analisis Ramalan UASA Tahun 5</h2>
+ <p class="kecil">Asas analisis: Format Instrumen Pentaksiran UASA Tahap Dua Sekolah Rendah (KPM, 2025), DSKP KSSR Semakan Tahun 5, dan corak kertas model UASA terbitan 2024–2025.</p>
+ <div class="tabs" role="tablist">${M.urutan.map(x=>`<button role="tab" style="--tc:var(--${x})" aria-selected="${x===k}" data-an="${x}">${M.mp[x].nama}</button>`).join('')}</div>
+ <h3>Format rasmi · 50 markah · 1 jam 15 minit</h3><div class="tbl"><table class="jd"><tr><th>Bahagian</th><th>Kandungan</th><th>Markah</th></tr>${M.format[k].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</table></div>
+ <h3>Fokus ramalan</h3>
+ <p class="kecil"><span class="pill wajib">PASTI</span> ditetapkan oleh format rasmi · <span class="pill tinggi">TINGGI</span> standard teras DSKP yang sesuai dengan format · <span class="pill sederhana">SEDERHANA</span> mungkin muncul 1 soalan</p>
+ <div class="rlist">${M.ramalan[k].map(r=>`<div class="ritem"><div><span class="pill ${r[0]}">${r[0]==='wajib'?'PASTI':r[0].toUpperCase()}</span></div><div><h4>${r[1]}</h4><p>${r[2]}</p></div></div>`).join('')}</div>
+ <h3>Taburan markah mengikut bidang dalam 3 set ini</h3><p class="kecil">Jumlah 150 markah (3 × 50).</p>
+ <div class="dist">${rows.map(([t,v])=>`<div class="drow"><span class="lb" title="${esc(t)}">${esc(t)}</span><div class="tr"><div class="fl" style="width:${(v/mx*100).toFixed(1)}%"></div></div><span class="v">${v}</span></div>`).join('')}</div>
+ <p class="note" style="margin-bottom:0">Soalan UASA disediakan oleh panitia setiap sekolah berpandukan format di atas. Bahagian yang ditanda <b>PASTI</b> akan muncul kerana ditetapkan oleh format; topik khusus dalam bahagian lain berbeza antara sekolah. Gunakan set ini untuk menguasai format dan topik teras, bukan menghafal jawapan.</p>
+ </section>`;
+ app.innerHTML = h;
+ app.querySelectorAll('[data-an]').forEach(b=>b.addEventListener('click', ()=>analisis(b.dataset.an)));
+}
+
+/* ---------- Penghala ---------- */
+function setNav(p){ ['utama','analisis'].forEach(x=>{ const a=$('#nav-'+x); if(p===x) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); }); }
+function route(){
+ if(cur){ app.removeEventListener('click', onClick); app.removeEventListener('input', onInput); timerStop(); cur=null; }
+ const h=(location.hash||'').slice(1);
+ const m=h.match(/^(bm|bi|mt|sn)-([123])$/);
+ if(m) return paper(m[1], +m[2]);
+ const a=h.match(/^analisis(?:-(bm|bi|mt|sn))?$/);
+ if(a) return analisis(a[1]);
+ home();
+}
+window.addEventListener('hashchange', route);
+route();
+})();
+</script>
