@@ -1,5 +1,16 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#e9f5ff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1733" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SkorUASA">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%232f6bff%22/%3E%3Ctext x=%2232%22 y=%2246%22 font-size=%2238%22 font-family=%22Arial%22 font-weight=%22900%22 text-anchor=%22middle%22 fill=%22%23ffd23f%22%3EA%3C/text%3E%3C/svg%3E">
+<style>:root{padding-top:env(safe-area-inset-top,0px)} [hidden]{display:none!important} img{max-width:100%}</style>
 <title>SkorUASA</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="SkorUASA.com — 3 set soalan ramalan UASA Tahun 5 bagi Bahasa Melayu, Bahasa Inggeris, Matematik dan Sains, ikut format rasmi KPM dengan skema jawapan.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -233,6 +244,85 @@ canvas.confetti{position:fixed; inset:0; pointer-events:none; z-index:50; width:
 .drow .fl{height:100%; background:var(--c); border-radius:999px}
 .drow .v{text-align:right; font-variant-numeric:tabular-nums; font-weight:900}
 @media (max-width:520px){ .drow{grid-template-columns:minmax(0,1fr) 3.4em} .drow .tr{grid-column:1/-1; grid-row:2} }
+/* ---------- Telefon: bar bawah untuk ibu jari ---------- */
+.mbar{display:none}
+.sheet-bg{position:fixed; inset:0; background:rgba(15,23,51,.45); z-index:40}
+.sheet{position:fixed; left:0; right:0; bottom:0; z-index:41; background:var(--paper); border-top:3px solid var(--line); border-radius:22px 22px 0 0; max-height:72vh; overflow:auto;
+ padding:14px max(16px, env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(16px, env(safe-area-inset-left,0px)); box-shadow:0 -10px 30px rgba(15,23,51,.25)}
+.sheet-h{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px}
+.sheet-h b{font-family:var(--f-disp); font-size:1.25rem}
+.sheet-h .grip{position:absolute; top:6px; left:50%; width:44px; height:5px; border-radius:3px; background:var(--rule); transform:translateX(-50%)}
+.qgrid-sec{font-weight:800; font-size:.85rem; color:var(--ink2); margin:10px 0 6px}
+.qgrid{display:grid; grid-template-columns:repeat(auto-fill, minmax(52px,1fr)); gap:8px}
+.qgrid a{display:grid; place-items:center; min-height:46px; border-radius:12px; border:2.5px solid var(--line); text-decoration:none; color:var(--ink); font-family:var(--f-disp); font-weight:800; font-size:.92rem; background:var(--paper)}
+.qgrid a.on{background:var(--c); color:var(--on)}
+.qgrid a.ok{background:var(--ok); color:var(--on); border-color:var(--ok)}
+.qgrid a.no{background:var(--red); color:var(--on); border-color:var(--red)}
+.legend{display:flex; gap:12px; flex-wrap:wrap; font-size:.8rem; font-weight:800; color:var(--ink2); margin-top:12px}
+.legend i{display:inline-block; width:12px; height:12px; border-radius:4px; border:2px solid var(--line); vertical-align:-1px; margin-right:4px}
+.stim table.jd, .sk-detail table, .petikan table{display:block; overflow-x:auto; max-width:100%}
+@media (max-width:640px){
+ body{font-size:16px; padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+ .top .wrap{padding-block:8px}
+ .brand{font-size:1.4rem}
+ .top .nav, .top .pill-top{display:none}
+ .mbar{display:flex; position:fixed; left:0; right:0; bottom:0; z-index:30; background:var(--paper); border-top:3px solid var(--line);
+  padding:8px max(12px, env(safe-area-inset-right,0px)) calc(8px + env(safe-area-inset-bottom,0px)) max(12px, env(safe-area-inset-left,0px)); gap:8px; align-items:stretch}
+ .mbar[hidden]{display:none}
+ .mbar button, .mbar a{flex:1 1 0; min-width:0; min-height:52px; border:2.5px solid var(--line); border-radius:14px; background:var(--paper); color:var(--ink); font-weight:800; font-size:.86rem; line-height:1.15;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1px; text-decoration:none; cursor:pointer; padding:4px 6px; font-variant-numeric:tabular-nums}
+ .mbar .big{font-family:var(--f-disp); font-size:1.08rem}
+ .mbar .small{font-size:.7rem; color:var(--ink2); font-weight:800}
+ .mbar .go{flex:1.3 1 0; background:var(--c, var(--mt)); color:var(--on); box-shadow:3px 3px 0 var(--line)}
+ .mbar .go .small{color:inherit; opacity:.9}
+ .mbar .low{background:var(--red-t); color:var(--red); border-color:var(--red)}
+ .mbar a[aria-current="page"]{background:var(--sun); color:#1d2b4f}
+ .mbar a svg{width:22px; height:22px}
+ .hero{padding-block:20px 0}
+ .hero h1{font-size:2rem}
+ .grid{gap:18px; padding-block:18px 4px}
+ .mp{box-shadow:4px 4px 0 var(--c)}
+ .mp-h{padding:12px 14px}
+ .ico{width:46px; height:46px; border-radius:14px} .ico svg{width:26px; height:26px}
+ .mp h2{font-size:1.3rem}
+ .mp-b{padding:14px}
+ .set-btn{padding:12px 4px 10px}
+ .paper{padding:16px 14px 20px; margin-block:12px 20px; border-width:2.5px; box-shadow:4px 4px 0 var(--c, var(--line)); border-radius:16px}
+ .cover{grid-template-columns:auto 1fr auto; padding:12px; gap:4px 12px}
+ .cover .ico{width:46px; height:46px}
+ .cover h1{font-size:1.45rem}
+ .cover .meta{grid-column:auto; text-align:right}
+ .cover .meta .setno{font-size:1.05rem; padding:0 8px}
+ .cover .bar span{font-size:.76rem; padding:2px 9px}
+ .tools{gap:6px; margin-block:12px 0}
+ .tools .btn{font-size:.82rem; padding:7px 12px}
+ .tools #b-timer{display:none}
+ .sec{margin-top:26px}
+ .sec-h h2{font-size:1.12rem}
+ .q{grid-template-columns:2.3em minmax(0,1fr); gap:0 10px; padding-block:14px}
+ .qn{width:2.1em; height:2.1em; font-size:.92rem}
+ .qn.long{font-size:.72rem; min-width:2.1em}
+ .qm{float:none; display:inline-block; margin:0 0 6px}
+ .qs{font-size:1rem}
+ .opt{min-height:50px; padding:10px 12px; font-size:.97rem}
+ .opts.c8 .opt{justify-content:center; padding:8px 4px}
+ .opts.c2{grid-template-columns:1fr 1fr}
+ .petikan{padding:12px 14px} .poster{padding:12px}
+ .grafik-g div{font-size:1.7rem}
+ .rantai{font-size:1rem; gap:6px} .rantai span{padding:4px 10px; font-size:.92rem}
+ .submit{padding:14px; margin-top:24px}
+ .submit .btn.pri{width:100%; justify-content:center}
+ .result{padding:16px; gap:12px; box-shadow:4px 4px 0 var(--red)}
+ .stamp{font-size:2.6rem; width:3.2em; height:3.2em}
+ .result .msg{font-size:1.25rem}
+ .sk{grid-template-columns:2.3em minmax(0,1fr); gap:0 10px}
+ .self button{min-width:2.8em; min-height:40px}
+ .an h2{font-size:1.45rem}
+ .tabs{flex-wrap:nowrap; overflow-x:auto; padding-bottom:6px; margin-inline:-2px}
+ .tabs button{flex:none}
+ .note{margin-block:12px 20px}
+}
+@media (max-width:360px){ .opts.c2{grid-template-columns:1fr} .cover .bar span:nth-child(3){display:none} }
 @media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto!important; transition:none!important; animation:none!important} }
 @media print{
  body{background:#fff} .top, .tools, .submit, .self, .confirm{display:none!important}
@@ -240,6 +330,8 @@ canvas.confetti{position:fixed; inset:0; pointer-events:none; z-index:50; width:
 }
 </style>
 
+</head>
+<body>
 <header class="top"><div class="wrap">
  <a class="brand" href="#utama" aria-label="SkorUASA.com — laman utama">Skor<span class="u u1">U</span><span class="u u2">A</span><span class="u u3">S</span><span class="u u4">A</span><small>.com</small></a>
  <nav class="nav" aria-label="Menu utama"><a href="#utama" id="nav-utama">Kertas</a><a href="#analisis" id="nav-analisis">Analisis</a></nav>
@@ -247,6 +339,16 @@ canvas.confetti{position:fixed; inset:0; pointer-events:none; z-index:50; width:
  <button class="pill-top" id="timer" hidden title="Mula / jeda pemasa">⏱ 01:15:00</button>
 </div><div class="progbar" id="progbar" hidden><i></i></div></header>
 <main id="app" class="wrap"></main>
+<nav class="mbar" id="tabbar" aria-label="Menu utama telefon">
+ <a href="#utama" id="tab-utama"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Kertas</a>
+ <a href="#analisis" id="tab-analisis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Analisis</a>
+</nav>
+<div class="mbar" id="actbar" hidden>
+ <button type="button" id="m-soalan"><span class="big" id="m-prog">0/0</span><span class="small">☰ Soalan</span></button>
+ <button type="button" id="m-timer"><span class="big" id="m-time">01:15:00</span><span class="small" id="m-tlabel">▶ Mula masa</span></button>
+ <button type="button" class="go" id="m-hantar"><span class="big" id="m-go">Hantar ✓</span><span class="small" id="m-gosub">Semak jawapan</span></button>
+</div>
+<div id="sheet-root"></div>
 
 <script>
 (function(){
@@ -1090,7 +1192,7 @@ function items(set){
 
 /* ---------- Laman utama ---------- */
 function home(){
- setNav('utama'); timerHide();
+ setNav('utama'); timerHide(); view('home');
  const M = META;
  let h = `<section class="hero"><div><h1>Jom sedia untuk <mark>UASA Tahun 5!</mark></h1>
  <p>Pilih subjek dan set, jawab terus di skrin, dan lihat markah kamu serta-merta. Setiap kertas ikut <b>format rasmi UASA KPM</b>, dengan skema jawapan di hujung set.</p>
@@ -1121,12 +1223,12 @@ function paper(k, n){
  const st = store.get(key) || {a:{}, self:{}, done:false, sk:false, t:MASA};
  cur = {k, n, set, st, key, mp, its: items(set)};
  const fmt = META.format[k];
- $('#progbar').style.setProperty('--c', `var(--${k})`);
+ $('#progbar').style.setProperty('--c', `var(--${k})`); $('#actbar').style.setProperty('--c', `var(--${k})`); view('paper');
  let h = `<article class="paper" style="--c:var(--${k});--t:var(--${k}-t)">
  <div class="cover"><span class="ico">${ICON[k]}</span><div><div class="lbl">UASA Tahun 5 · Kertas Ramalan</div><h1>${mp.nama}</h1></div>
  <div class="meta"><span class="setno">Set ${n}</span></div>
  <div class="bar"><span>⏱ 1 jam 15 minit</span><span>50 markah</span><span>${fmt.length} bahagian · jawab semua</span></div></div>
- <div class="tools"><a class="btn" href="#utama">← Semua kertas</a><button class="btn" id="b-timer">⏱ Mula pemasa</button><button class="btn red" id="b-skema">Buka skema</button><button class="btn" id="b-reset">Padam jawapan</button></div>
+ <div class="tools"><a class="btn" href="#utama">← Semua kertas</a><button class="btn" id="b-timer">⏱ Mula pemasa</button><button class="btn" id="b-senarai">☰ Senarai soalan</button><button class="btn red" id="b-skema">Buka skema</button><button class="btn" id="b-reset">Padam jawapan</button></div>
  <div id="conf"></div>`;
  set.bhg.forEach((b,bi)=>{
   h += `<section class="sec"><div class="sec-h"><h2>${b.n}</h2><span class="m">[${b.m} markah]</span></div><p class="sec-a">${b.a}</p>`;
@@ -1141,7 +1243,7 @@ function paper(k, n){
  <div id="hasil"></div><div id="skema"></div></article>`;
  app.innerHTML = h;
  bindPaper();
- progress();
+ progress(); mbarSync();
  if(st.done || st.sk) renderSkema();
  timerShow();
  window.scrollTo(0,0);
@@ -1171,6 +1273,7 @@ function progress(){
  const el=$('#prog'); if(el) el.textContent = ans===tot ? `Semua ${tot} soalan sudah dijawab. Hebat!` : `${ans} daripada ${tot} soalan telah dijawab.`;
  const pp=$('#prog-pill'); pp.hidden=false; pp.textContent=`✏️ ${ans}/${tot}`;
  const pb=$('#progbar'); pb.hidden=false; pb.firstElementChild.style.width=(ans/tot*100)+'%';
+ $('#m-prog').textContent=`${ans}/${tot}`;
  cur.its.forEach(it=>{ const v=cur.st.a[it.id]; const q=$('#q-'+it.id); if(q) q.classList.toggle('answered', v!==undefined && v!==null && v!==''); });
 }
 
@@ -1202,6 +1305,7 @@ function onClick(e){
  }
  else if(t.id==='r-ya'){ store.del(cur.key); timerStop(); const k=cur.k,n=cur.n; cur=null; app.removeEventListener('click', onClick); app.removeEventListener('input', onInput); paper(k,n); }
  else if(t.id==='b-timer'){ timerToggle(); }
+ else if(t.id==='b-senarai'){ openSheet(); }
 }
 function onInput(e){
  if(!cur || cur.st.done) return;
@@ -1239,7 +1343,7 @@ function submit(){
   app.querySelectorAll(`.opt[data-q="${it.id}"]`).forEach(b=>{ const i=+b.dataset.i;
    if(i===it.q.j) b.classList.add('ok'); else if(i===cur.st.a[it.id]) b.classList.add('no'); });
  });
- renderSkema();
+ renderSkema(); mbarSync();
  $('#hasil').scrollIntoView({behavior:'smooth'});
 }
 
@@ -1305,27 +1409,66 @@ function renderSkema(){
    <div class="sk-you">${you} <span class="kecil">· ${esc(q.tp)}</span></div>${self}</div></div>`;
  });
  h += `</section>`;
- $('#skema').innerHTML = h;
+ $('#skema').innerHTML = h; wrapTables();
 }
 
 /* ---------- Pemasa ---------- */
 let tick=null;
 const fmtT = t => { const h=Math.floor(t/3600), m=Math.floor(t%3600/60), s=t%60; return [h,m,s].map(x=>String(x).padStart(2,'0')).join(':'); };
-function timerShow(){ const b=$('#timer'); b.hidden=false; b.textContent='⏱ '+fmtT(cur.st.t??MASA); b.classList.toggle('low', (cur.st.t??MASA)<600); }
-function timerHide(){ timerStop(); $('#timer').hidden=true; $('#prog-pill').hidden=true; $('#progbar').hidden=true; }
-function timerStop(){ if(tick){ clearInterval(tick); tick=null; } const b=$('#b-timer'); if(b) b.textContent='⏱ Mula pemasa'; }
+function timerShow(){ const t=cur.st.t??MASA, b=$('#timer'); b.hidden=false; b.textContent='⏱ '+fmtT(t); b.classList.toggle('low', t<600);
+ $('#m-time').textContent=fmtT(t); $('#m-timer').classList.toggle('low', t<600); }
+function timerHide(){ timerStop(); $('#timer').hidden=true; $('#prog-pill').hidden=true; $('#progbar').hidden=true; closeSheet(); }
+function timerStop(){ if(tick){ clearInterval(tick); tick=null; } const b=$('#b-timer'); if(b) b.textContent='⏱ Mula pemasa'; const l=$('#m-tlabel'); if(l) l.textContent = cur&&cur.st.done ? 'Masa berhenti' : '▶ Mula masa'; }
 function timerToggle(){
  if(!cur || cur.st.done) return;
  if(tick){ timerStop(); return; }
- const b=$('#b-timer'); if(b) b.textContent='⏸ Jeda pemasa';
+ const b=$('#b-timer'); if(b) b.textContent='⏸ Jeda pemasa'; $('#m-tlabel').textContent='⏸ Jeda';
  tick=setInterval(()=>{ cur.st.t=Math.max(0,(cur.st.t??MASA)-1); timerShow(); if(cur.st.t%10===0) save();
   if(cur.st.t===0){ timerStop(); save(); $('#conf').innerHTML=`<div class="confirm"><b>Masa tamat.</b> Tekan "Hantar &amp; semak jawapan" untuk melihat markah.</div>`; } },1000);
 }
 $('#timer').addEventListener('click', ()=>timerToggle());
 
+/* ---------- Bar telefon & senarai soalan ---------- */
+function view(v){ document.body.dataset.view=v; $('#tabbar').hidden = v==='paper'; $('#actbar').hidden = v!=='paper';
+ ['utama','analisis'].forEach(x=>{ const a=$('#tab-'+x); if((v==='home'&&x==='utama')||(v==='an'&&x==='analisis')) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); }); }
+function wrapTables(){ app.querySelectorAll('table.jd, table.rb').forEach(t=>{ if(!t.parentElement.classList.contains('tbl')){ const d=document.createElement('div'); d.className='tbl'; t.replaceWith(d); d.appendChild(t); } }); }
+function mbarSync(){
+ if(!cur) return; wrapTables();
+ const done=cur.st.done;
+ $('#m-go').textContent = done ? 'Markah ↓' : 'Hantar ✓';
+ $('#m-gosub').textContent = done ? 'Lihat keputusan' : 'Semak jawapan';
+ if(done) $('#m-tlabel').textContent='Masa berhenti';
+}
+function openSheet(){
+ if(!cur) return;
+ let h=`<div class="sheet-bg" data-close="1"></div><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-t" style="--c:var(--${cur.k})"><span class="grip"></span>
+ <div class="sheet-h"><b id="sheet-t">Senarai soalan</b><button class="btn" data-close="1">Tutup ✕</button></div>`;
+ let lastB=-1;
+ cur.its.forEach(it=>{
+  if(it.bi!==lastB){ if(lastB>-1) h+='</div>'; lastB=it.bi; h+=`<p class="qgrid-sec">${cur.set.bhg[it.bi].n}</p><div class="qgrid">`; }
+  const v=cur.st.a[it.id], dij=v!==undefined&&v!==null&&v!=='';
+  let cls = dij?'on':'';
+  if(cur.st.done){ const m=autoMark(it), sv=cur.st.self[it.id]; const got = m!==null?m:sv; if(got!==undefined) cls = got===it.q.m?'ok':'no'; }
+  h+=`<a href="#${cur.k}-${cur.n}" class="${cls}" data-go="${it.id}">${esc(it.lbl)}</a>`;
+ });
+ h+=`</div><div class="legend"><span><i style="background:var(--paper)"></i>Belum dijawab</span><span><i style="background:var(--c)"></i>Sudah dijawab</span>${cur.st.done?'<span><i style="background:var(--ok)"></i>Betul</span><span><i style="background:var(--red)"></i>Kurang markah</span>':''}</div></div>`;
+ $('#sheet-root').innerHTML=h;
+ const f=$('#sheet-root [data-close]:not(.sheet-bg)'); if(f) f.focus();
+}
+function closeSheet(){ $('#sheet-root').innerHTML=''; }
+$('#sheet-root').addEventListener('click', e=>{
+ const g=e.target.closest('[data-go]');
+ if(g){ e.preventDefault(); closeSheet(); const el=$('#q-'+g.dataset.go); if(el){ el.scrollIntoView({behavior:'smooth', block:'center'}); const f=el.querySelector('.opt, .inp'); if(f) setTimeout(()=>f.focus({preventScroll:true}), 350); } return; }
+ if(e.target.closest('[data-close]')) closeSheet();
+});
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeSheet(); });
+$('#m-soalan').addEventListener('click', openSheet);
+$('#m-timer').addEventListener('click', ()=>timerToggle());
+$('#m-hantar').addEventListener('click', ()=>{ if(!cur) return; if(cur.st.done) $('#hasil').scrollIntoView({behavior:'smooth'}); else submit(); });
+
 /* ---------- Analisis ---------- */
 function analisis(k){
- setNav('analisis'); timerHide();
+ setNav('analisis'); timerHide(); view('an');
  k = k || 'bm';
  const M=META, mp=M.mp[k];
  // taburan markah ikut topik utama dalam 3 set
@@ -1362,3 +1505,6 @@ window.addEventListener('hashchange', route);
 route();
 })();
 </script>
+
+</body>
+</html>
